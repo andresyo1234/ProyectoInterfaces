@@ -35,6 +35,8 @@ import javax.swing.border.BevelBorder;
 public class Login extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textInputUsuario;
+	private JTextField textInputContraseña;
 
 	public static void main(String[] args) {
 		
@@ -69,7 +71,7 @@ public class Login extends JFrame {
         
 		
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(new Color(231, 246, 242));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -83,13 +85,13 @@ public class Login extends JFrame {
 			
 			//Evento para cuando el raton pase por encima del panel de Pedir Cita, le de un feedback al usuario y cambie de color
 			public void mouseEntered(MouseEvent e) {
-				botonRegistro.setBackground(new Color(42,159,194));
+				botonRegistro.setBackground(new Color(165, 201, 202));
 							
 			}
 			@Override
 			//Mismo evento para cuando deje de estar el raton encima vuelva al color original
 			public void mouseExited(MouseEvent e) {
-				botonRegistro.setBackground(new Color(132,192,199));
+				botonRegistro.setBackground(new Color(57, 91, 100));
 					
 			}
 			@Override
@@ -102,12 +104,13 @@ public class Login extends JFrame {
 			}
 		});
 		botonRegistro.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		botonRegistro.setBackground(new Color(132,192,199));
+		botonRegistro.setBackground(new Color(57, 91, 100));
 		botonRegistro.setForeground(Color.WHITE);
-		botonRegistro.setBounds(315, 367, 123, 41);
+		botonRegistro.setBounds(309, 363, 115, 41);
 		contentPane.add(botonRegistro);
 		
 		JLabel textoRegistro = new JLabel("Registro");
+		textoRegistro.setForeground(new Color(255, 255, 255));
 		textoRegistro.setBorder(null);
 		botonRegistro.add(textoRegistro);
 		textoRegistro.setFont(new Font("Segoe UI", Font.BOLD, 20));
@@ -115,7 +118,7 @@ public class Login extends JFrame {
 		JLabel textoTitulo = new JLabel("Bienvenido");
 		textoTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		textoTitulo.setFont(new Font("Segoe UI", Font.BOLD, 35));
-		textoTitulo.setBounds(270, 110, 249, 54);
+		textoTitulo.setBounds(252, 104, 249, 54);
 		contentPane.add(textoTitulo);
 		
 		
@@ -126,16 +129,18 @@ public class Login extends JFrame {
 		botonInicio.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				botonInicio.setBackground(new Color(42,159,194));
+				botonInicio.setBackground(new Color(165, 201, 202));
 			}
+			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				botonInicio.setBackground(new Color(132,192,199));
+				botonInicio.setBackground(new Color(57, 91, 100));
 			}
+			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				
-				MenuInicio mn = new MenuInicio();
+				AgendaPrincipal mn = new AgendaPrincipal();
 				mn.setVisible(true);
 
 				dispose();
@@ -149,13 +154,28 @@ public class Login extends JFrame {
 		
 		botonInicio.setForeground(Color.WHITE);
 		botonInicio.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		botonInicio.setBackground(new Color(132, 192, 199));
-		botonInicio.setBounds(299, 274, 151, 41);
+		botonInicio.setBackground(new Color(57, 91, 100));
+		botonInicio.setBounds(294, 304, 140, 41);
 		contentPane.add(botonInicio);
 		
 		JLabel lblNewLabel = new JLabel("Iniciar Sesion");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonInicio.add(lblNewLabel);
+		
+		textInputUsuario = new JTextField();
+		textInputUsuario.setBackground(new Color(165, 201, 202));
+		textInputUsuario.setText("Usuario...");
+		textInputUsuario.setBounds(262, 179, 229, 36);
+		contentPane.add(textInputUsuario);
+		textInputUsuario.setColumns(10);
+		
+		textInputContraseña = new JTextField();
+		textInputContraseña.setText("Contrase\u00F1a...");
+		textInputContraseña.setColumns(10);
+		textInputContraseña.setBackground(new Color(165, 201, 202));
+		textInputContraseña.setBounds(262, 238, 229, 36);
+		contentPane.add(textInputContraseña);
 		
 		
 		
