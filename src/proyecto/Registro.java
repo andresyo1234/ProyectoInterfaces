@@ -68,7 +68,7 @@ public class Registro extends JFrame {
 
 
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(231, 246, 242));
+		contentPane.setBackground(new Color(64, 128, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -133,11 +133,14 @@ public class Registro extends JFrame {
 		botonInicio.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
 		lblUneteANosotros = new JLabel("Unete a nosotros!");
+		lblUneteANosotros.setForeground(new Color(255, 255, 255));
+		lblUneteANosotros.setBackground(new Color(255, 255, 255));
 		lblUneteANosotros.setFont(new Font("Tahoma", Font.PLAIN, 21));
 		lblUneteANosotros.setBounds(103, 29, 181, 19);
 		contentPane.add(lblUneteANosotros);
 		
 		lblRellenaLosCampos = new JLabel("Rellena los Campos con tus datos personales");
+		lblRellenaLosCampos.setForeground(new Color(255, 255, 255));
 		lblRellenaLosCampos.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblRellenaLosCampos.setBounds(103, 53, 548, 19);
 		contentPane.add(lblRellenaLosCampos);

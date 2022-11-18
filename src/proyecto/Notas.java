@@ -22,6 +22,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 public class Notas extends JFrame {
 
@@ -200,6 +201,12 @@ public class Notas extends JFrame {
 		lblCartera.setForeground(Color.WHITE);
 		lblCartera.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonCartera.add(lblCartera);
+		
+		JLabel lblNotas = new JLabel("NOTAS");
+		lblNotas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNotas.setFont(new Font("Segoe UI", Font.BOLD, 52));
+		lblNotas.setBounds(90, 141, 584, 196);
+		contentPane.add(lblNotas);
 
 	}
 }

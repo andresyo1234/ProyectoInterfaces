@@ -22,6 +22,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 public class Cartera extends JFrame {
 
@@ -200,6 +201,12 @@ public class Cartera extends JFrame {
 		lblCartera.setForeground(Color.WHITE);
 		lblCartera.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonCartera.add(lblCartera);
+		
+		JLabel lblCartera_1 = new JLabel("CARTERA");
+		lblCartera_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCartera_1.setFont(new Font("Segoe UI", Font.BOLD, 52));
+		lblCartera_1.setBounds(109, 139, 584, 196);
+		contentPane.add(lblCartera_1);
 
 	}
 }

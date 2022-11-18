@@ -31,6 +31,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import javax.swing.border.BevelBorder;
+import java.awt.Component;
 
 public class Login extends JFrame {
 
@@ -71,7 +72,7 @@ public class Login extends JFrame {
         
 		
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(231, 246, 242));
+		contentPane.setBackground(new Color(64, 128, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -104,21 +105,23 @@ public class Login extends JFrame {
 			}
 		});
 		botonRegistro.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		botonRegistro.setBackground(new Color(57, 91, 100));
-		botonRegistro.setForeground(Color.WHITE);
+		botonRegistro.setBackground(new Color(128, 128, 128));
+		botonRegistro.setForeground(new Color(0, 0, 0));
 		botonRegistro.setBounds(309, 363, 115, 41);
 		contentPane.add(botonRegistro);
 		
 		JLabel textoRegistro = new JLabel("Registro");
-		textoRegistro.setForeground(new Color(255, 255, 255));
+		textoRegistro.setForeground(new Color(0, 0, 0));
 		textoRegistro.setBorder(null);
 		botonRegistro.add(textoRegistro);
 		textoRegistro.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		
-		JLabel textoTitulo = new JLabel("Bienvenido");
+		JLabel textoTitulo = new JLabel("BIENVENIDO");
+		textoTitulo.setBackground(new Color(128, 128, 128));
+		textoTitulo.setForeground(new Color(255, 255, 255));
 		textoTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		textoTitulo.setFont(new Font("Segoe UI", Font.BOLD, 35));
-		textoTitulo.setBounds(252, 104, 249, 54);
+		textoTitulo.setFont(new Font("Monospaced", Font.BOLD, 60));
+		textoTitulo.setBounds(140, 51, 476, 79);
 		contentPane.add(textoTitulo);
 		
 		
@@ -152,19 +155,22 @@ public class Login extends JFrame {
 		
 		
 		
-		botonInicio.setForeground(Color.WHITE);
+		botonInicio.setForeground(new Color(64, 128, 128));
 		botonInicio.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		botonInicio.setBackground(new Color(57, 91, 100));
+		botonInicio.setBackground(new Color(128, 128, 128));
 		botonInicio.setBounds(294, 304, 140, 41);
 		contentPane.add(botonInicio);
 		
 		JLabel lblNewLabel = new JLabel("Iniciar Sesion");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setBackground(new Color(21, 52, 98));
+		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonInicio.add(lblNewLabel);
 		
 		textInputUsuario = new JTextField();
-		textInputUsuario.setBackground(new Color(165, 201, 202));
+		textInputUsuario.setAlignmentX(Component.LEFT_ALIGNMENT);
+		textInputUsuario.setBorder(UIManager.getBorder("ComboBox.border"));
+		textInputUsuario.setBackground(new Color(255, 255, 255));
 		textInputUsuario.setText("Usuario...");
 		textInputUsuario.setBounds(262, 179, 229, 36);
 		contentPane.add(textInputUsuario);
@@ -173,7 +179,7 @@ public class Login extends JFrame {
 		textInputContraseña = new JTextField();
 		textInputContraseña.setText("Contrase\u00F1a...");
 		textInputContraseña.setColumns(10);
-		textInputContraseña.setBackground(new Color(165, 201, 202));
+		textInputContraseña.setBackground(new Color(255, 255, 255));
 		textInputContraseña.setBounds(262, 238, 229, 36);
 		contentPane.add(textInputContraseña);
 		
