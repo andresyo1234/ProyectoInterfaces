@@ -91,7 +91,7 @@ public class Compra extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				
-				Compra ag = new Compra();
+				AgendaPrincipal ag= new AgendaPrincipal();
 				ag.setVisible(true);
 
 				dispose();
