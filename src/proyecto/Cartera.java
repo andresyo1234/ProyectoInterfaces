@@ -23,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Cartera extends JFrame {
 
@@ -206,29 +207,26 @@ public class Cartera extends JFrame {
 		dineroTxt.setForeground(new Color(44, 44, 44));
 		dineroTxt.setHorizontalAlignment(SwingConstants.CENTER);
 		dineroTxt.setFont(new Font("Segoe UI", Font.BOLD, 60));
-		dineroTxt.setBounds(270, 189, 233, 152);
+		dineroTxt.setBounds(268, 147, 233, 152);
 		contentPane.add(dineroTxt);
 		
-		JButton botonA�adirDinero = new JButton("A\u00F1adir Dinero");
-		botonA�adirDinero.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		botonA�adirDinero.setBounds(159, 337, 145, 41);
-		contentPane.add(botonA�adirDinero);
+		JButton botonAñadirDinero = new JButton("A\u00F1adir Dinero");
+		botonAñadirDinero.setIcon(new ImageIcon(Cartera.class.getResource("/Imagenes/s.png")));
+		botonAñadirDinero.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		botonAñadirDinero.setBounds(159, 337, 156, 41);
+		contentPane.add(botonAñadirDinero);
 		
 		JButton btnQuitarDinero = new JButton("Quitar Dinero");
+		btnQuitarDinero.setIcon(new ImageIcon(Cartera.class.getResource("/Imagenes/borrar.png")));
 		btnQuitarDinero.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		btnQuitarDinero.setBounds(454, 337, 145, 41);
+		btnQuitarDinero.setBounds(454, 337, 156, 41);
 		contentPane.add(btnQuitarDinero);
-		
-		JLabel lblNewLabel = new JLabel("aqui va foto de tarjetas y puedas ir cambiando");
-		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		lblNewLabel.setBounds(182, 74, 437, 84);
-		contentPane.add(lblNewLabel);
 		
 		JPanel botonNotas_1 = new JPanel();
 		botonNotas_1.setForeground(Color.WHITE);
 		botonNotas_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		botonNotas_1.setBackground(new Color(57, 91, 100));
-		botonNotas_1.setBounds(92, 76, 55, 41);
+		botonNotas_1.setBounds(159, 76, 55, 41);
 		contentPane.add(botonNotas_1);
 		
 		JLabel lblBlocDeNotas_1 = new JLabel("<");
@@ -243,7 +241,7 @@ public class Cartera extends JFrame {
 
 		botonNotas_1_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		botonNotas_1_1.setBackground(new Color(57, 91, 100));
-		botonNotas_1_1.setBounds(629, 76, 55, 41);
+		botonNotas_1_1.setBounds(544, 76, 55, 41);
 		contentPane.add(botonNotas_1_1);
 		
 		JLabel lblBlocDeNotas_1_1 = new JLabel(">");
@@ -251,10 +249,10 @@ public class Cartera extends JFrame {
 		lblBlocDeNotas_1_1.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonNotas_1_1.add(lblBlocDeNotas_1_1);
 		
-		JLabel lblPonerFotitoO = new JLabel("poner fotito o algo aqui para mejorar esta mierda");
-		lblPonerFotitoO.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		lblPonerFotitoO.setBounds(213, 183, 437, 84);
-		contentPane.add(lblPonerFotitoO);
+		JLabel fotoMancha = new JLabel("");
+		fotoMancha.setIcon(new ImageIcon(Login.class.getResource("/Imagenes/Ilustracion_sin_titulo_2.png")));
+		fotoMancha.setBounds(268, 217, 610, 459);
+		contentPane.add(fotoMancha);
 
 	}
 }

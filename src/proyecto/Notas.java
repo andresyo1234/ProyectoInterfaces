@@ -29,6 +29,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.ImageIcon;
 
 public class Notas extends JFrame {
 
@@ -224,13 +225,20 @@ public class Notas extends JFrame {
 		contentPane.add(tituloNota);
 		tituloNota.setColumns(10);
 		
-		JButton añadirNota = new JButton("A\u00F1adir Nota");
-		añadirNota.setBounds(483, 79, 129, 23);
-		contentPane.add(añadirNota);
-		
 		JButton btnAbrirNota = new JButton("Abrir Nota");
+		btnAbrirNota.setIcon(new ImageIcon(Notas.class.getResource("/Imagenes/s.png")));
+		btnAbrirNota.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		btnAbrirNota.setBounds(324, 79, 129, 23);
 		contentPane.add(btnAbrirNota);
-
+		
+		JButton btnBorrarNota = new JButton("Borrar Nota");
+		btnBorrarNota.setIcon(new ImageIcon(Notas.class.getResource("/Imagenes/borrar.png")));
+		btnBorrarNota.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		btnBorrarNota.setBounds(488, 79, 129, 23);
+		contentPane.add(btnBorrarNota);
+		JLabel fotoMancha = new JLabel("");
+		fotoMancha.setIcon(new ImageIcon(Login.class.getResource("/Imagenes/Ilustracion_sin_titulo_2.png")));
+		fotoMancha.setBounds(268, -63, 610, 459);
+		contentPane.add(fotoMancha);
 	}
 }
