@@ -2,18 +2,16 @@ package proyecto;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-
+import javax.swing.border.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JSlider;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
-import javax.swing.border.LineBorder;
-import javax.swing.border.BevelBorder;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -23,6 +21,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Cartera extends JFrame {
 
@@ -202,11 +202,59 @@ public class Cartera extends JFrame {
 		lblCartera.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonCartera.add(lblCartera);
 		
-		JLabel lblCartera_1 = new JLabel("CARTERA");
-		lblCartera_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCartera_1.setFont(new Font("Segoe UI", Font.BOLD, 52));
-		lblCartera_1.setBounds(109, 139, 584, 196);
-		contentPane.add(lblCartera_1);
+		JLabel dineroTxt = new JLabel("00,00\u20AC");
+		dineroTxt.setForeground(new Color(44, 44, 44));
+		dineroTxt.setHorizontalAlignment(SwingConstants.CENTER);
+		dineroTxt.setFont(new Font("Segoe UI", Font.BOLD, 60));
+		dineroTxt.setBounds(270, 189, 233, 152);
+		contentPane.add(dineroTxt);
+		
+		JButton botonAñadirDinero = new JButton("A\u00F1adir Dinero");
+		botonAñadirDinero.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		botonAñadirDinero.setBounds(159, 337, 145, 41);
+		contentPane.add(botonAñadirDinero);
+		
+		JButton btnQuitarDinero = new JButton("Quitar Dinero");
+		btnQuitarDinero.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnQuitarDinero.setBounds(454, 337, 145, 41);
+		contentPane.add(btnQuitarDinero);
+		
+		JLabel lblNewLabel = new JLabel("aqui va foto de tarjetas y puedas ir cambiando");
+		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		lblNewLabel.setBounds(182, 74, 437, 84);
+		contentPane.add(lblNewLabel);
+		
+		JPanel botonNotas_1 = new JPanel();
+		botonNotas_1.setForeground(Color.WHITE);
+		botonNotas_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		botonNotas_1.setBackground(new Color(57, 91, 100));
+		botonNotas_1.setBounds(92, 76, 55, 41);
+		contentPane.add(botonNotas_1);
+		
+		JLabel lblBlocDeNotas_1 = new JLabel("<");
+		lblBlocDeNotas_1.setForeground(Color.WHITE);
+		lblBlocDeNotas_1.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		botonNotas_1.add(lblBlocDeNotas_1);
+		
+		JPanel botonNotas_1_1 = new JPanel();
+		botonNotas_1_1.setForeground(Color.WHITE);
+	
+
+
+		botonNotas_1_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		botonNotas_1_1.setBackground(new Color(57, 91, 100));
+		botonNotas_1_1.setBounds(629, 76, 55, 41);
+		contentPane.add(botonNotas_1_1);
+		
+		JLabel lblBlocDeNotas_1_1 = new JLabel(">");
+		lblBlocDeNotas_1_1.setForeground(Color.WHITE);
+		lblBlocDeNotas_1_1.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		botonNotas_1_1.add(lblBlocDeNotas_1_1);
+		
+		JLabel lblPonerFotitoO = new JLabel("poner fotito o algo aqui para mejorar esta mierda");
+		lblPonerFotitoO.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		lblPonerFotitoO.setBounds(213, 183, 437, 84);
+		contentPane.add(lblPonerFotitoO);
 
 	}
 }

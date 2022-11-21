@@ -68,6 +68,11 @@ public class AgendaPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		JList list = new JList();
+		scrollPane.setViewportView(list);
+		contentPane.add(scrollPane);
+		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 784, 43);
 		contentPane.add(menuBar);
@@ -216,13 +221,18 @@ public class AgendaPrincipal extends JFrame {
 		lblCartera.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonCartera.add(lblCartera);
 		
-		JLabel lblNewLabel = new JLabel("AGENDA");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 52));
-		lblNewLabel.setBounds(91, 138, 584, 196);
-		contentPane.add(lblNewLabel);
-		
-		
-		
+		JList list_1 = new JList();
+		list_1.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		list_1.setModel(new AbstractListModel() {
+			String[] values = new String[] {"aaa", "aa", "a", "a", "a", "a", "a", "aa", "a", "a", "a", "a"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		list_1.setBounds(67, 119, 641, 272);
+		contentPane.add(list_1);
 	}
 }

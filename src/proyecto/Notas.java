@@ -23,10 +23,17 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
 
 public class Notas extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField tituloNota;
 
 	/**
 	 * Launch the application.
@@ -62,7 +69,7 @@ public class Notas extends JFrame {
 
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(231, 246, 242));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -202,11 +209,28 @@ public class Notas extends JFrame {
 		lblCartera.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonCartera.add(lblCartera);
 		
-		JLabel lblNotas = new JLabel("NOTAS");
-		lblNotas.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNotas.setFont(new Font("Segoe UI", Font.BOLD, 52));
-		lblNotas.setBounds(90, 141, 584, 196);
-		contentPane.add(lblNotas);
+		JTextArea textArea = new JTextArea();
+		textArea.setBorder(new LineBorder(new Color(192, 192, 192), 4, true));
+		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		textArea.setToolTipText("");
+		textArea.setBounds(50, 116, 690, 303);
+		
+		contentPane.add(textArea);
+		
+		tituloNota = new JTextField();
+		tituloNota.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		tituloNota.setText("Escribe un T\u00EDtulo...");
+		tituloNota.setBounds(50, 73, 242, 32);
+		contentPane.add(tituloNota);
+		tituloNota.setColumns(10);
+		
+		JButton añadirNota = new JButton("A\u00F1adir Nota");
+		añadirNota.setBounds(483, 79, 129, 23);
+		contentPane.add(añadirNota);
+		
+		JButton btnAbrirNota = new JButton("Abrir Nota");
+		btnAbrirNota.setBounds(324, 79, 129, 23);
+		contentPane.add(btnAbrirNota);
 
 	}
 }
