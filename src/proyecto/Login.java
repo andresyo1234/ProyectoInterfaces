@@ -36,7 +36,7 @@ public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textInputUsuario;
-	private JTextField textInputContraseña;
+	private JTextField textInputContraseÃ±a;
 
 	public static void main(String[] args) {
 		
@@ -170,12 +170,12 @@ public class Login extends JFrame {
 		contentPane.add(textInputUsuario);
 		textInputUsuario.setColumns(10);
 		
-		textInputContraseña = new JTextField();
-		textInputContraseña.setText("Contrase\u00F1a...");
-		textInputContraseña.setColumns(10);
-		textInputContraseña.setBackground(new Color(165, 201, 202));
-		textInputContraseña.setBounds(262, 238, 229, 36);
-		contentPane.add(textInputContraseña);
+		textInputContraseÃ±a = new JTextField();
+		textInputContraseÃ±a.setText("Contrase\u00F1a...");
+		textInputContraseÃ±a.setColumns(10);
+		textInputContraseÃ±a.setBackground(new Color(165, 201, 202));
+		textInputContraseÃ±a.setBounds(262, 238, 229, 36);
+		contentPane.add(textInputContraseÃ±a);
 		
 		
 		
