@@ -2,18 +2,16 @@ package proyecto;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-
+import javax.swing.border.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JSlider;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
-import javax.swing.border.LineBorder;
-import javax.swing.border.BevelBorder;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -22,6 +20,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class Cartera extends JFrame {
 
@@ -200,6 +202,57 @@ public class Cartera extends JFrame {
 		lblCartera.setForeground(Color.WHITE);
 		lblCartera.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonCartera.add(lblCartera);
+		
+		JLabel dineroTxt = new JLabel("00,00\u20AC");
+		dineroTxt.setForeground(new Color(44, 44, 44));
+		dineroTxt.setHorizontalAlignment(SwingConstants.CENTER);
+		dineroTxt.setFont(new Font("Segoe UI", Font.BOLD, 60));
+		dineroTxt.setBounds(268, 147, 233, 152);
+		contentPane.add(dineroTxt);
+		
+		JButton botonAñadirDinero = new JButton("A\u00F1adir Dinero");
+		botonAñadirDinero.setIcon(new ImageIcon(Cartera.class.getResource("/Imagenes/s.png")));
+		botonAñadirDinero.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		botonAñadirDinero.setBounds(159, 337, 156, 41);
+		contentPane.add(botonAñadirDinero);
+		
+		JButton btnQuitarDinero = new JButton("Quitar Dinero");
+		btnQuitarDinero.setIcon(new ImageIcon(Cartera.class.getResource("/Imagenes/borrar.png")));
+		btnQuitarDinero.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnQuitarDinero.setBounds(454, 337, 156, 41);
+		contentPane.add(btnQuitarDinero);
+		
+		JPanel botonNotas_1 = new JPanel();
+		botonNotas_1.setForeground(Color.WHITE);
+		botonNotas_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		botonNotas_1.setBackground(new Color(57, 91, 100));
+		botonNotas_1.setBounds(159, 76, 55, 41);
+		contentPane.add(botonNotas_1);
+		
+		JLabel lblBlocDeNotas_1 = new JLabel("<");
+		lblBlocDeNotas_1.setForeground(Color.WHITE);
+		lblBlocDeNotas_1.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		botonNotas_1.add(lblBlocDeNotas_1);
+		
+		JPanel botonNotas_1_1 = new JPanel();
+		botonNotas_1_1.setForeground(Color.WHITE);
+	
+
+
+		botonNotas_1_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		botonNotas_1_1.setBackground(new Color(57, 91, 100));
+		botonNotas_1_1.setBounds(544, 76, 55, 41);
+		contentPane.add(botonNotas_1_1);
+		
+		JLabel lblBlocDeNotas_1_1 = new JLabel(">");
+		lblBlocDeNotas_1_1.setForeground(Color.WHITE);
+		lblBlocDeNotas_1_1.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		botonNotas_1_1.add(lblBlocDeNotas_1_1);
+		
+		JLabel fotoMancha = new JLabel("");
+		fotoMancha.setIcon(new ImageIcon(Login.class.getResource("/Imagenes/Ilustracion_sin_titulo_2.png")));
+		fotoMancha.setBounds(268, 217, 610, 459);
+		contentPane.add(fotoMancha);
 
 	}
 }

@@ -31,12 +31,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import javax.swing.border.BevelBorder;
+import java.awt.Component;
+import javax.swing.border.LineBorder;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
+<<<<<<< HEAD
 	private JTextField textInputUsuario;
 	private JTextField textInputContraseña;
+=======
+	private JTextField textInputContraseña;
+	private JTextField txtUsuario;
+>>>>>>> 4e7a85ddba14235d33b5d2f35371b5a0d089c284
 
 	public static void main(String[] args) {
 		
@@ -71,12 +78,18 @@ public class Login extends JFrame {
         
 		
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(231, 246, 242));
+		contentPane.setForeground(new Color(99, 173, 148));
+		contentPane.setBackground(new Color(186, 218, 207));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		//HASTA AQUI 
+		
+		JLabel fotoMancha = new JLabel("");
+		fotoMancha.setIcon(new ImageIcon(Login.class.getResource("/Imagenes/Ilustracion_sin_titulo_2.png")));
+		fotoMancha.setBounds(300, -125, 610, 459);
+		contentPane.add(fotoMancha);
 		
 		JPanel botonRegistro = new JPanel();
 		botonRegistro.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -105,7 +118,7 @@ public class Login extends JFrame {
 		});
 		botonRegistro.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		botonRegistro.setBackground(new Color(57, 91, 100));
-		botonRegistro.setForeground(Color.WHITE);
+		botonRegistro.setForeground(new Color(0, 0, 0));
 		botonRegistro.setBounds(309, 363, 115, 41);
 		contentPane.add(botonRegistro);
 		
@@ -115,10 +128,12 @@ public class Login extends JFrame {
 		botonRegistro.add(textoRegistro);
 		textoRegistro.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		
-		JLabel textoTitulo = new JLabel("Bienvenido");
+		JLabel textoTitulo = new JLabel("Mi Agenda");
+		textoTitulo.setBackground(new Color(128, 128, 128));
+		textoTitulo.setForeground(new Color(52, 103, 103));
 		textoTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		textoTitulo.setFont(new Font("Segoe UI", Font.BOLD, 35));
-		textoTitulo.setBounds(252, 104, 249, 54);
+		textoTitulo.setFont(new Font("Segoe UI", Font.BOLD, 60));
+		textoTitulo.setBounds(140, 51, 476, 79);
 		contentPane.add(textoTitulo);
 		
 		
@@ -140,8 +155,8 @@ public class Login extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				
-				AgendaPrincipal mn = new AgendaPrincipal();
-				mn.setVisible(true);
+				AgendaPrincipal ag = new AgendaPrincipal();
+				ag.setVisible(true);
 
 				dispose();
 				
@@ -152,30 +167,43 @@ public class Login extends JFrame {
 		
 		
 		
-		botonInicio.setForeground(Color.WHITE);
+		
+		botonInicio.setForeground(new Color(64, 128, 128));
 		botonInicio.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		botonInicio.setBackground(new Color(57, 91, 100));
 		botonInicio.setBounds(294, 304, 140, 41);
 		contentPane.add(botonInicio);
 		
 		JLabel lblNewLabel = new JLabel("Iniciar Sesion");
+		lblNewLabel.setBackground(new Color(21, 52, 98));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonInicio.add(lblNewLabel);
 		
-		textInputUsuario = new JTextField();
-		textInputUsuario.setBackground(new Color(165, 201, 202));
-		textInputUsuario.setText("Usuario...");
-		textInputUsuario.setBounds(262, 179, 229, 36);
-		contentPane.add(textInputUsuario);
-		textInputUsuario.setColumns(10);
+		textInputContraseña = new JTextField();
+		textInputContraseña.setFont(new Font("Segoe UI", Font.BOLD, 11));
+		textInputContraseña.setText("Contrase\u00F1a...");
+		textInputContraseña.setColumns(10);
+		textInputContraseña.setBackground(new Color(255, 255, 255));
+		textInputContraseña.setBounds(262, 238, 229, 36);
+		contentPane.add(textInputContraseña);
 		
+<<<<<<< HEAD
 		textInputContraseña = new JTextField();
 		textInputContraseña.setText("Contrase\u00F1a...");
 		textInputContraseña.setColumns(10);
 		textInputContraseña.setBackground(new Color(165, 201, 202));
 		textInputContraseña.setBounds(262, 238, 229, 36);
 		contentPane.add(textInputContraseña);
+=======
+		txtUsuario = new JTextField();
+		txtUsuario.setText("Usuario...");
+		txtUsuario.setFont(new Font("Segoe UI", Font.BOLD, 11));
+		txtUsuario.setColumns(10);
+		txtUsuario.setBackground(Color.WHITE);
+		txtUsuario.setBounds(262, 178, 229, 36);
+		contentPane.add(txtUsuario);
+>>>>>>> 4e7a85ddba14235d33b5d2f35371b5a0d089c284
 		
 		
 		
