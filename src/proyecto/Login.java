@@ -37,7 +37,7 @@ import javax.swing.border.LineBorder;
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textInputContraseña;
+	private JTextField textInputContrasenya;
 	private JTextField txtUsuario;
 
 	public static void main(String[] args) {
@@ -175,13 +175,13 @@ public class Login extends JFrame {
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonInicio.add(lblNewLabel);
 		
-		textInputContraseña = new JTextField();
-		textInputContraseña.setFont(new Font("Segoe UI", Font.BOLD, 11));
-		textInputContraseña.setText("Contrase\u00F1a...");
-		textInputContraseña.setColumns(10);
-		textInputContraseña.setBackground(new Color(255, 255, 255));
-		textInputContraseña.setBounds(262, 238, 229, 36);
-		contentPane.add(textInputContraseña);
+		textInputContrasenya = new JTextField();
+		textInputContrasenya.setFont(new Font("Segoe UI", Font.BOLD, 11));
+		textInputContrasenya.setText("Contrase\u00F1a...");
+		textInputContrasenya.setColumns(10);
+		textInputContrasenya.setBackground(new Color(255, 255, 255));
+		textInputContrasenya.setBounds(262, 238, 229, 36);
+		contentPane.add(textInputContrasenya);
 		
 		txtUsuario = new JTextField();
 		txtUsuario.setText("Usuario...");

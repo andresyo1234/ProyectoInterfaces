@@ -155,7 +155,7 @@ public class Compra extends JFrame {
 		JPanel botonCompra = new JPanel();
 		botonCompra.setForeground(Color.WHITE);
 		botonCompra.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		botonCompra.setBackground(new Color(57, 91, 100));
+		botonCompra.setBackground(new Color(165, 201, 202));
 		menuBar.add(botonCompra);
 		
 		botonCompra.addMouseListener(new MouseAdapter() {
@@ -166,7 +166,7 @@ public class Compra extends JFrame {
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				botonCompra.setBackground(new Color(57, 91, 100));
+				botonCompra.setBackground(new Color(165, 201, 202));
 			}
 			
 			@Override

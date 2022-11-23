@@ -173,7 +173,7 @@ public class Cartera extends JFrame {
 		JPanel botonCartera = new JPanel();
 		botonCartera.setForeground(Color.WHITE);
 		botonCartera.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		botonCartera.setBackground(new Color(57, 91, 100));
+		botonCartera.setBackground(new Color(165, 201, 202));
 		menuBar.add(botonCartera);
 
 		botonCartera.addMouseListener(new MouseAdapter() {
@@ -184,7 +184,7 @@ public class Cartera extends JFrame {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				botonCartera.setBackground(new Color(57, 91, 100));
+				botonCartera.setBackground(new Color(165, 201, 202));
 			}
 
 			@Override
@@ -210,11 +210,11 @@ public class Cartera extends JFrame {
 		dineroTxt.setBounds(268, 147, 233, 152);
 		contentPane.add(dineroTxt);
 		
-		JButton botonAñadirDinero = new JButton("A\u00F1adir Dinero");
-		botonAñadirDinero.setIcon(new ImageIcon(Cartera.class.getResource("/Imagenes/s.png")));
-		botonAñadirDinero.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		botonAñadirDinero.setBounds(159, 337, 156, 41);
-		contentPane.add(botonAñadirDinero);
+		JButton botonAnyadirDinero = new JButton("A\u00F1adir Dinero");
+		botonAnyadirDinero.setIcon(new ImageIcon(Cartera.class.getResource("/Imagenes/s.png")));
+		botonAnyadirDinero.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		botonAnyadirDinero.setBounds(159, 337, 156, 41);
+		contentPane.add(botonAnyadirDinero);
 		
 		JButton btnQuitarDinero = new JButton("Quitar Dinero");
 		btnQuitarDinero.setIcon(new ImageIcon(Cartera.class.getResource("/Imagenes/borrar.png")));

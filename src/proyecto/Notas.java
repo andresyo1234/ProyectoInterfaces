@@ -30,11 +30,12 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.ImageIcon;
+import java.awt.Point;
+import java.awt.FlowLayout;
 
 public class Notas extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField tituloNota;
 
 	/**
 	 * Launch the application.
@@ -114,7 +115,7 @@ public class Notas extends JFrame {
 		JPanel botonNotas = new JPanel();
 		botonNotas.setForeground(Color.WHITE);
 		botonNotas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		botonNotas.setBackground(new Color(57, 91, 100));
+		botonNotas.setBackground(new Color(165, 201, 202));
 		menuBar.add(botonNotas);
 
 		botonNotas.addMouseListener(new MouseAdapter() {
@@ -125,7 +126,7 @@ public class Notas extends JFrame {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				botonNotas.setBackground(new Color(57, 91, 100));
+				botonNotas.setBackground(new Color(165, 201, 202));
 			}
 
 			@Override
@@ -204,41 +205,102 @@ public class Notas extends JFrame {
 
 			}
 		});
+		JPanel botonAgenda_1 = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) botonAgenda_1.getLayout();
+		botonAgenda_1.setForeground(Color.WHITE);
+		botonAgenda_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		botonAgenda_1.setBackground(new Color(57, 91, 100));
+		botonAgenda_1.setBounds(25, 66, 147, 97);
+		contentPane.add(botonAgenda_1);
+		
+		JLabel lblAgenda_1 = new JLabel("Agenda");
+		lblAgenda_1.setForeground(Color.WHITE);
+		lblAgenda_1.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		botonAgenda_1.add(lblAgenda_1);
+		botonAgenda_1.setVisible(false);
+		
+		botonAgenda_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				botonAgenda_1.setBackground(new Color(165, 201, 202));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				botonAgenda_1.setBackground(new Color(57, 91, 100));
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+				CrearNota cn = new CrearNota();
+				cn.setVisible(true);
+
+				dispose();
+
+			}
+		});
 
 		JLabel lblCartera = new JLabel("Cartera");
 		lblCartera.setForeground(Color.WHITE);
 		lblCartera.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonCartera.add(lblCartera);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBorder(new LineBorder(new Color(192, 192, 192), 4, true));
-		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		textArea.setToolTipText("");
-		textArea.setBounds(50, 116, 690, 303);
-		
-		contentPane.add(textArea);
-		
-		tituloNota = new JTextField();
-		tituloNota.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		tituloNota.setText("Escribe un T\u00EDtulo...");
-		tituloNota.setBounds(50, 73, 242, 32);
-		contentPane.add(tituloNota);
-		tituloNota.setColumns(10);
-		
-		JButton btnAbrirNota = new JButton("Abrir Nota");
-		btnAbrirNota.setIcon(new ImageIcon(Notas.class.getResource("/Imagenes/s.png")));
-		btnAbrirNota.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		btnAbrirNota.setBounds(324, 79, 129, 23);
-		contentPane.add(btnAbrirNota);
+		JButton btnCrearNota = new JButton("Crear Nota");
+		btnCrearNota.setActionCommand("Crear Lista");
+		btnCrearNota.setIcon(new ImageIcon(Notas.class.getResource("/Imagenes/s.png")));
+		btnCrearNota.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		btnCrearNota.setBounds(251, 427, 129, 23);
+		contentPane.add(btnCrearNota);
+		btnCrearNota.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnCrearNota.setBackground(new Color(165, 201, 202));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnCrearNota.setBackground(new Color(57, 91, 100));
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+				botonAgenda_1.setVisible(true);
+				
+				
+			}
+		});
 		
 		JButton btnBorrarNota = new JButton("Borrar Nota");
 		btnBorrarNota.setIcon(new ImageIcon(Notas.class.getResource("/Imagenes/borrar.png")));
 		btnBorrarNota.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		btnBorrarNota.setBounds(488, 79, 129, 23);
+		btnBorrarNota.setBounds(390, 427, 129, 23);
 		contentPane.add(btnBorrarNota);
 		JLabel fotoMancha = new JLabel("");
 		fotoMancha.setIcon(new ImageIcon(Login.class.getResource("/Imagenes/Ilustracion_sin_titulo_2.png")));
 		fotoMancha.setBounds(268, -63, 610, 459);
 		contentPane.add(fotoMancha);
+		btnBorrarNota.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnBorrarNota.setBackground(new Color(165, 201, 202));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnBorrarNota.setBackground(new Color(57, 91, 100));
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+				botonAgenda_1.setVisible(false);
+				
+				
+			}
+		});
+		
+		
 	}
 }
