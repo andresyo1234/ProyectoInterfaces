@@ -80,16 +80,6 @@ public class CrearNota extends JFrame {
 		contentPane.add(btnVolver);
 		btnVolver.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnVolver.setBackground(new Color(165, 201, 202));
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnVolver.setBackground(new Color(57, 91, 100));
-			}
-
-			@Override
 			public void mousePressed(MouseEvent e) {
 
 				Notas n = new Notas();

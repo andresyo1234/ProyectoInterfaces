@@ -253,15 +253,8 @@ public class Notas extends JFrame {
 		btnCrearNota.setBounds(251, 427, 129, 23);
 		contentPane.add(btnCrearNota);
 		btnCrearNota.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnCrearNota.setBackground(new Color(165, 201, 202));
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnCrearNota.setBackground(new Color(57, 91, 100));
-			}
+			
+			
 
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -282,15 +275,7 @@ public class Notas extends JFrame {
 		fotoMancha.setBounds(268, -63, 610, 459);
 		contentPane.add(fotoMancha);
 		btnBorrarNota.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnBorrarNota.setBackground(new Color(165, 201, 202));
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnBorrarNota.setBackground(new Color(57, 91, 100));
-			}
+			
 
 			@Override
 			public void mousePressed(MouseEvent e) {

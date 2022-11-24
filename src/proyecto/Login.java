@@ -37,17 +37,15 @@ import javax.swing.border.LineBorder;
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-<<<<<<< HEAD
+
 	private JTextField textInputContrasenya;
-=======
-<<<<<<< HEAD
+
+
 	private JTextField textInputUsuario;
-	private JTextField textInputContraseña;
-=======
-	private JTextField textInputContraseña;
->>>>>>> af77f5012158767b47393035a030238d6dbb7c2b
+	private JTextField textInputPswr;
+
 	private JTextField txtUsuario;
->>>>>>> 4e7a85ddba14235d33b5d2f35371b5a0d089c284
+
 
 	public static void main(String[] args) {
 		
@@ -192,14 +190,14 @@ public class Login extends JFrame {
 		textInputContrasenya.setBounds(262, 238, 229, 36);
 		contentPane.add(textInputContrasenya);
 		
-<<<<<<< HEAD
-		textInputContraseña = new JTextField();
-		textInputContraseña.setText("Contrase\u00F1a...");
-		textInputContraseña.setColumns(10);
-		textInputContraseña.setBackground(new Color(165, 201, 202));
-		textInputContraseña.setBounds(262, 238, 229, 36);
-		contentPane.add(textInputContraseña);
-=======
+
+		textInputPswr = new JTextField();
+		textInputPswr.setText("Contrase\u00F1a...");
+		textInputPswr.setColumns(10);
+		textInputPswr.setBackground(new Color(165, 201, 202));
+		textInputPswr.setBounds(262, 238, 229, 36);
+		contentPane.add(textInputPswr);
+
 		txtUsuario = new JTextField();
 		txtUsuario.setText("Usuario...");
 		txtUsuario.setFont(new Font("Segoe UI", Font.BOLD, 11));
@@ -207,11 +205,5 @@ public class Login extends JFrame {
 		txtUsuario.setBackground(Color.WHITE);
 		txtUsuario.setBounds(262, 178, 229, 36);
 		contentPane.add(txtUsuario);
->>>>>>> 4e7a85ddba14235d33b5d2f35371b5a0d089c284
-		
-		
-		
-		
-
 	}
 }
