@@ -29,6 +29,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.border.SoftBevelBorder;
 import java.awt.Component;
+import java.awt.Window.Type;
 
 public class AgendaPrincipal extends JFrame {
 
@@ -63,7 +64,6 @@ public class AgendaPrincipal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 500);
 		setResizable(false);
-		setTitle("Agenda");
 
 		setLocationRelativeTo(null);
 
@@ -72,45 +72,24 @@ public class AgendaPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JScrollPane scrollPane = new JScrollPane((Component) null);
 		scrollPane.setBounds(71, 107, 479, 305);
 		contentPane.add(scrollPane);
-		
+
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Nombre", "Apellidos", "Telefono", "Email", "Sexo"
-			}
-		));
+
+		table.setModel(new DefaultTableModel(new Object[][] { { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, { null, null, null, null, null }, { null, null, null, null, null },
+				{ null, null, null, null, null }, },
+				new String[] { "Nombre", "Apellidos", "Telefono", "Email", "Sexo" }));
 		scrollPane.setViewportView(table);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -249,7 +228,7 @@ public class AgendaPrincipal extends JFrame {
 		lblCartera.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonCartera.add(lblCartera);
 
-		JButton botonAnadirContacto = new JButton("Añadir Contacto");
+		JButton botonAnadirContacto = new JButton("Nuevo Contacto");
 		botonAnadirContacto.setIcon(new ImageIcon(AgendaPrincipal.class.getResource("/Imagenes/s.png")));
 		botonAnadirContacto.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		botonAnadirContacto.setBounds(570, 100, 167, 50);
@@ -269,23 +248,33 @@ public class AgendaPrincipal extends JFrame {
 
 		JButton botonEditarContacto = new JButton("Editar Contacto");
 		botonEditarContacto.setIcon(new ImageIcon(AgendaPrincipal.class.getResource("/Imagenes/lupa.png")));
-		botonEditarContacto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		botonEditarContacto.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		botonEditarContacto.setBounds(570, 161, 167, 50);
 		contentPane.add(botonEditarContacto);
+
+		botonEditarContacto.setEnabled(false);
+
 		botonEditarContacto.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
 
-				EditarContacto ec = new EditarContacto();
-				ec.setVisible(true);
+				if (botonEditarContacto.isEnabled()) {
 
-				dispose();
+					EditarContacto ec = new EditarContacto();
+					ec.setVisible(true);
 
+					dispose();
+
+				}
+
+			}
+		});
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+				botonEditarContacto.setEnabled(true);
 			}
 		});
 
@@ -294,16 +283,27 @@ public class AgendaPrincipal extends JFrame {
 		botonEliminarContacto.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		botonEliminarContacto.setBounds(570, 222, 167, 50);
 		contentPane.add(botonEliminarContacto);
+		botonEliminarContacto.setEnabled(false);
+
 		botonEliminarContacto.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
 
-				EliminarContacto elc = new EliminarContacto();
-				elc.setVisible(true);
+				if (botonEliminarContacto.isEnabled()) {
 
-				dispose();
+					// accion de eliminar un contacto
 
+				}
+
+			}
+		});
+
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+				botonEliminarContacto.setEnabled(true);
 			}
 		});
 

@@ -38,8 +38,6 @@ public class Login extends JFrame {
 
 	private JPanel contentPane;
 
-	private JTextField textInputContrasenya;
-
 
 	private JTextField textInputUsuario;
 	private JTextField textInputPswr;
@@ -72,7 +70,7 @@ public class Login extends JFrame {
 					//setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagenes/Ilustracion_sin_titulo_2.png")));
 					setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					setBounds(100, 100, 800, 500);
-					setResizable(false);
+					setResizable(true);
 					setTitle("Aplicacion Multitarea - Grupo 5");
 			
 			        setLocationRelativeTo(null);
@@ -182,14 +180,6 @@ public class Login extends JFrame {
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonInicio.add(lblNewLabel);
 		
-		textInputContrasenya = new JTextField();
-		textInputContrasenya.setFont(new Font("Segoe UI", Font.BOLD, 11));
-		textInputContrasenya.setText("Contrase\u00F1a...");
-		textInputContrasenya.setColumns(10);
-		textInputContrasenya.setBackground(new Color(255, 255, 255));
-		textInputContrasenya.setBounds(262, 238, 229, 36);
-		contentPane.add(textInputContrasenya);
-		
 
 		textInputPswr = new JTextField();
 		textInputPswr.setText("Contrase\u00F1a...");
@@ -199,6 +189,13 @@ public class Login extends JFrame {
 		contentPane.add(textInputPswr);
 
 		txtUsuario = new JTextField();
+		txtUsuario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				txtUsuario.setText("");
+			
+			}
+		});
 		txtUsuario.setText("Usuario...");
 		txtUsuario.setFont(new Font("Segoe UI", Font.BOLD, 11));
 		txtUsuario.setColumns(10);
