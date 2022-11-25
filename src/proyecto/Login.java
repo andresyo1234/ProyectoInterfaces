@@ -40,9 +40,9 @@ public class Login extends JFrame {
 
 
 	private JTextField textInputUsuario;
-	private JTextField textInputPswr;
 
 	private JTextField txtUsuario;
+	private JTextField txtContraseña;
 
 
 	public static void main(String[] args) {
@@ -179,14 +179,6 @@ public class Login extends JFrame {
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
 		botonInicio.add(lblNewLabel);
-		
-
-		textInputPswr = new JTextField();
-		textInputPswr.setText("Contrase\u00F1a...");
-		textInputPswr.setColumns(10);
-		textInputPswr.setBackground(new Color(165, 201, 202));
-		textInputPswr.setBounds(262, 238, 229, 36);
-		contentPane.add(textInputPswr);
 
 		txtUsuario = new JTextField();
 		txtUsuario.addMouseListener(new MouseAdapter() {
@@ -202,5 +194,20 @@ public class Login extends JFrame {
 		txtUsuario.setBackground(Color.WHITE);
 		txtUsuario.setBounds(262, 178, 229, 36);
 		contentPane.add(txtUsuario);
+		
+		txtContraseña = new JTextField();
+		txtContraseña.setText("Contrase\u00F1a...");
+		txtContraseña.setFont(new Font("Segoe UI", Font.BOLD, 11));
+		txtContraseña.setColumns(10);
+		txtContraseña.setBackground(Color.WHITE);
+		txtContraseña.setBounds(262, 239, 229, 36);
+		contentPane.add(txtContraseña);
+		txtContraseña.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				txtContraseña.setText("");
+			
+			}
+		});
 	}
 }
