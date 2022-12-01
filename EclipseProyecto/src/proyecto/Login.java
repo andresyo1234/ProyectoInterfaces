@@ -72,7 +72,7 @@ public class Login extends JFrame {
 					//setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagenes/Ilustracion_sin_titulo_2.png")));
 					setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					setBounds(100, 100, 800, 500);
-					setResizable(false);
+					setResizable(true);
 					setTitle("Aplicacion Multitarea - Grupo 5");
 			
 			        setLocationRelativeTo(null);
