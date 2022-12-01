@@ -259,7 +259,7 @@ public class Registro extends javax.swing.JFrame {
                  
                 
 
-if(mail.matches()&& pass.matches() && nombre.matches() && apellidos.matches()&& pass.matches()){
+if(mail.matches()&& pass.matches() && nombre.matches() && apellidos.matches()&& pass.matches()&&jPasswordFieldContraseña.getText().equals(jPasswordFieldConfirmar.getText())){
       InicioSesion is = new InicioSesion();
                                 is.setVisible(true);
                                 is.setSize(1080,720);
