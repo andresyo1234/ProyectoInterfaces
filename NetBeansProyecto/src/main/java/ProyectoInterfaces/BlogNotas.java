@@ -15,6 +15,7 @@ public class BlogNotas extends javax.swing.JFrame {
      */
     public BlogNotas() {
         initComponents();
+        setTitle("Bloc de Notas");
     }
 
     /**
@@ -42,6 +43,11 @@ public class BlogNotas extends javax.swing.JFrame {
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -51,14 +57,25 @@ public class BlogNotas extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(57, 91, 100));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton2.setText("Blog de Notas");
+        jButton2.setActionCommand("Bloc de Notas");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(57, 91, 100));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton3.setText("Lista Compra");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton3.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(57, 91, 100));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -72,6 +89,11 @@ public class BlogNotas extends javax.swing.JFrame {
         jButton4.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton4.setRequestFocusEnabled(false);
         jButton4.setRolloverEnabled(false);
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -123,6 +145,43 @@ public class BlogNotas extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
     }//GEN-LAST:event_jButton4ActionPerformed
+    //ABRIR AGENDA
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        AgendaPrincipal ap = new AgendaPrincipal();
+        ap.setVisible(true);
+        ap.setSize(1080, 720);
+        ap.setLocationRelativeTo(null);
+        dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
+    //ABRIR BLOC DE NOTAS
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        BlogNotas bn = new BlogNotas();
+        bn.setVisible(true);
+        bn.setSize(1080, 720);
+        bn.setLocationRelativeTo(null);
+        dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
+    //Abrir LISTA DE COMPRA
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        ListaCompra lc = new ListaCompra();
+        lc.setVisible(true);
+        lc.setSize(1080, 720);
+        lc.setLocationRelativeTo(null);
+        dispose();
+        
+    }//GEN-LAST:event_jButton3MouseClicked
+    //ABRIR CARTERA
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        Cartera cart = new Cartera();
+        cart.setVisible(true);
+        cart.setSize(1080, 720);
+        cart.setLocationRelativeTo(null);
+        dispose();
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments
