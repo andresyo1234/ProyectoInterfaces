@@ -6,6 +6,7 @@ package ProyectoInterfaces;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -246,26 +247,43 @@ public class Registro extends javax.swing.JFrame {
 
  
 		Pattern pattern = Pattern.compile("^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$");
-		Matcher mail = pattern.matcher(textFieldMail.getText());
-		
+		Pattern pat = Pattern.compile("^[A-Z][-a-zA-Z]+$");
+                Pattern pattern2 = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}_]:;',?/*~$^+=<>]).{8,50}$");
+                
+                
+                Matcher mail = pattern.matcher(textFieldMail.getText());
+                Matcher nombre = pat.matcher(textFieldNombre.getText());
+                Matcher apellidos = pat.matcher(textFieldApellidos.getText());
+                Matcher pass = pattern2.matcher(jPasswordFieldContraseña.getText());
+                
+                 
+                
 
-if(mail.matches()&&numero.matches){
-    
-}else
-{
-    InicioSesion is = new InicioSesion();
+if(mail.matches()&& pass.matches() && nombre.matches() && apellidos.matches()&& pass.matches()){
+      InicioSesion is = new InicioSesion();
                                 is.setVisible(true);
-                                
+                                is.setSize(1080,720);
+                                is.setLocationRelativeTo(null);
                                 dispose();
+}else
+      JOptionPane.showMessageDialog(null, "mail:"+mail.matches()+" pass:"+pass.matches()+" nombre:"+nombre.matches()+" apellido:"+apellidos.matches()+textFieldMail.getText());
+{
+  
 }
-
-
-
-
 
         
     }//GEN-LAST:event_jButton1MouseClicked
-
+ 
+    
+    public static boolean validarNumeros(String datos){
+        return datos.matches("[0-9]");
+    }
+    
+ 
+    
+    
+    
+    
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
