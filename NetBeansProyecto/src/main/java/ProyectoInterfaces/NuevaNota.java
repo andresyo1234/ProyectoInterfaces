@@ -20,6 +20,9 @@ public class NuevaNota extends javax.swing.JFrame {
      */
     public NuevaNota() {
         initComponents();
+        setLocationRelativeTo(null);
+        setSize(1080, 720);
+        setTitle("Mis Notas");
     }
 
     /**
@@ -43,11 +46,11 @@ public class NuevaNota extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         txtArea.setColumns(20);
-        txtArea.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtArea.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtArea.setRows(5);
         jScrollPane1.setViewportView(txtArea);
 
-        txtTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         txtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTituloActionPerformed(evt);
@@ -57,10 +60,10 @@ public class NuevaNota extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Escribe el titulo de la nota:");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Escribe la descripción de la nota:");
 
-        btnGuardarNota.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnGuardarNota.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnGuardarNota.setText("Guardar");
         btnGuardarNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +71,7 @@ public class NuevaNota extends javax.swing.JFrame {
             }
         });
 
-        btnCancelarNota.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnCancelarNota.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnCancelarNota.setText("Cancelar");
         btnCancelarNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +79,7 @@ public class NuevaNota extends javax.swing.JFrame {
             }
         });
 
-        btnResetNota.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnResetNota.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnResetNota.setText("Reset");
         btnResetNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,11 +92,11 @@ public class NuevaNota extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(99, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(319, 319, 319)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnGuardarNota)
                         .addGap(18, 18, 18)
                         .addComponent(btnCancelarNota)
@@ -103,12 +106,12 @@ public class NuevaNota extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -120,7 +123,7 @@ public class NuevaNota extends javax.swing.JFrame {
                     .addComponent(btnResetNota))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();

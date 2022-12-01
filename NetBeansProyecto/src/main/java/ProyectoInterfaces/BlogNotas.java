@@ -22,6 +22,7 @@ public class BlogNotas extends javax.swing.JFrame {
     public BlogNotas() {
         initComponents();
         limpiarJlist();
+        setTitle("Mi Agenda - Bloc de Notas");
     }
 
     /**
@@ -54,6 +55,11 @@ public class BlogNotas extends javax.swing.JFrame {
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         jButton1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -62,15 +68,25 @@ public class BlogNotas extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(57, 91, 100));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jButton2.setText("Blog de Notas");
+        jButton2.setText("Bloc de Notas");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         jButton2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(57, 91, 100));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton3.setText("Lista Compra");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         jButton3.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(57, 91, 100));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -84,6 +100,11 @@ public class BlogNotas extends javax.swing.JFrame {
         jButton4.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton4.setRequestFocusEnabled(false);
         jButton4.setRolloverEnabled(false);
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -112,7 +133,7 @@ public class BlogNotas extends javax.swing.JFrame {
             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
         );
 
-        btnAgregar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnAgregar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnAgregar.setText("Agregar Nota");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +141,7 @@ public class BlogNotas extends javax.swing.JFrame {
             }
         });
 
-        btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnEliminar.setText("Eliminar Nota");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +157,7 @@ public class BlogNotas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jlDatos);
 
-        btnAbrirNota.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnAbrirNota.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnAbrirNota.setText("Abrir Nota");
         btnAbrirNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,6 +223,42 @@ public class BlogNotas extends javax.swing.JFrame {
         nn.setVisible(true);
         abrirNota();
     }//GEN-LAST:event_btnAbrirNotaActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        AgendaPrincipal ap = new AgendaPrincipal();
+           ap.setVisible(true);
+           ap.setLocationRelativeTo(null);
+           ap.setSize(1080, 720);
+           dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        BlogNotas bg = new BlogNotas();
+           bg.setVisible(true);
+           bg.setLocationRelativeTo(null);
+           bg.setSize(1080, 720);
+           dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        ListaCompra lc = new ListaCompra();
+           lc.setVisible(true);
+           lc.setLocationRelativeTo(null);
+           lc.setSize(1080, 720);
+           dispose();
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        Cartera cart = new Cartera();
+           cart.setVisible(true);
+           cart.setLocationRelativeTo(null);
+           cart.setSize(1080, 720);
+           dispose();
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments

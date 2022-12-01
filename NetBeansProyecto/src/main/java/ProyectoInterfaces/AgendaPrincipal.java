@@ -26,6 +26,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
           jButton2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
            jButton3.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
             jButton4.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+            setTitle("Mi Agenda - Agenda");
     }
 
     /**
@@ -188,9 +189,14 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(57, 91, 100));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton1.setText("Agenda");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         jButton1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -199,21 +205,31 @@ public class AgendaPrincipal extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(57, 91, 100));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jButton2.setText("Blog de Notas");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton2.setText("Bloc de Notas");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         jButton2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(57, 91, 100));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton3.setText("Lista Compra");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         jButton3.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(57, 91, 100));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton4.setText("Cartera");
         jButton4.setAlignmentY(0.0F);
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton4.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -221,6 +237,11 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         jButton4.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton4.setRequestFocusEnabled(false);
         jButton4.setRolloverEnabled(false);
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -283,7 +304,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton5.setText("Añadir contacto");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(null));
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton5MouseClicked(evt);
@@ -340,7 +361,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
-                        .addGap(104, 104, 104))))
+                        .addContainerGap(104, Short.MAX_VALUE))))
         );
 
         setSize(new java.awt.Dimension(1096, 728));
@@ -407,6 +428,42 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
         
     }//GEN-LAST:event_jMenuItem1MouseClicked
+    /// ABRIR AGENDA    
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+           AgendaPrincipal ap = new AgendaPrincipal();
+           ap.setVisible(true);
+           ap.setLocationRelativeTo(null);
+           ap.setSize(1080, 720);
+           dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
+    //ABRIR BLOC
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        BlogNotas bn = new BlogNotas();
+        bn.setVisible(true);
+        bn.setLocationRelativeTo(null);
+        bn.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
+    //ABRIR LISTA COMPRA
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        ListaCompra lc = new ListaCompra();
+           lc.setVisible(true);
+           lc.setLocationRelativeTo(null);
+           lc.setSize(1080, 720);
+           dispose();
+    }//GEN-LAST:event_jButton3MouseClicked
+    //abrir cartera
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        Cartera cart = new Cartera();
+           cart.setVisible(true);
+           cart.setLocationRelativeTo(null);
+           cart.setSize(1080, 720);
+           dispose();
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments
