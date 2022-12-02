@@ -4,6 +4,13 @@
  */
 package ProyectoInterfaces;
 
+import static ProyectoInterfaces.Cartera.*;
+import java.awt.Color;
+import java.time.temporal.TemporalAccessor;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Andres
@@ -17,8 +24,9 @@ public class ayadirDinero extends javax.swing.JFrame {
         initComponents();
         setTitle("Mi Agenda - Mi Saldo");
         setLocationRelativeTo(null);
-        
-       
+        listModel.clear();
+        listaRegistro.setModel(listModel);
+
     }
 
     /**
@@ -31,25 +39,40 @@ public class ayadirDinero extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        dineroSpinner = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1080, 720));
 
-        jPanel1.setBackground(new java.awt.Color(102, 255, 102));
-
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("Introduce la Cantidad Deseada...");
+        jPanel1.setBackground(new java.awt.Color(153, 196, 255));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setText("Añadir Saldo");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setText("Quitar Saldo");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jButton3.setText("<");
@@ -59,36 +82,38 @@ public class ayadirDinero extends javax.swing.JFrame {
             }
         });
 
+        dineroSpinner.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(272, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE))
-                .addContainerGap(271, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addContainerGap(371, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                        .addGap(46, 46, 46)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                    .addComponent(dineroSpinner))
+                .addContainerGap(352, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(16, 16, 16)
                 .addComponent(jButton3)
-                .addGap(88, 88, 88)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addComponent(dineroSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 342, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,10 +132,58 @@ public class ayadirDinero extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-       
-           dispose();
-        
+
+        dispose();
+
     }//GEN-LAST:event_jButton3MouseClicked
+    //AYADIR DINERO 
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+
+        sumarCalcular();
+        if (dineroFinal < 0) {
+            textoDinero.setForeground(Color.red);
+        } else {
+            textoDinero.setForeground(Color.BLACK);
+        }
+
+        for (int i = 0; i < listaCartera.size(); i++) {
+            //Añadir cada elemento del ArrayList en el modelo de la lista
+            listModel.add(i, listaCartera.get(i));
+        }
+        listaRegistro.setModel(listModel);
+
+        dispose();
+
+
+    }//GEN-LAST:event_jButton1MouseClicked
+    //QUITAR SALDO
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+
+        restarCalcular();
+
+        if (dineroFinal < 0) {
+            textoDinero.setForeground(Color.red);
+        } else {
+            textoDinero.setForeground(Color.BLACK);
+        }
+        for (int i = 0; i < listaCartera.size(); i++) {
+            //Añadir cada elemento del ArrayList en el modelo de la lista
+            listModel.add(i, listaCartera.get(i));
+        }
+        listaRegistro.setModel(listModel);
+        dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,11 +220,40 @@ public class ayadirDinero extends javax.swing.JFrame {
         });
     }
 
+    //sumar dinero
+    public static void sumarCalcular() {
+        dineroModificar = (Integer) dineroSpinner.getValue();
+        dineroFinal = dineroModificar + dineroFinal;
+
+        textoDinero.setText(String.valueOf(dineroFinal) + "€");
+        
+        //NO FUNCIONA ES EL FORMATEO DE LAS HORAS
+        //fecha.getTime();
+        //texto = formateador.format((TemporalAccessor) fecha) + ", AÑADIDO: " + String.valueOf(dineroModificar) + "€";
+        
+        texto = "AÑADIDO: " + String.valueOf(dineroModificar) + "€";
+        listaCartera.add(texto);
+    }
+
+    public static void restarCalcular() {
+        dineroModificar = (Integer) dineroSpinner.getValue();
+        dineroFinal = dineroFinal - dineroModificar;
+
+        textoDinero.setText(String.valueOf(dineroFinal) + "€");
+        
+        //NO FUNCIONA ES EL FORMATEO DE LAS HORAS
+        //fecha.getTime();
+        //texto = formateador.format((TemporalAccessor) fecha) + ", RETIRADO: " + String.valueOf(dineroModificar) + "€";
+        
+        texto = "RETIRADO: " + String.valueOf(dineroModificar) + "€";
+        listaCartera.add(texto);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    public static javax.swing.JSpinner dineroSpinner;
+    public static javax.swing.JButton jButton1;
+    public static javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

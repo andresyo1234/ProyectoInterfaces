@@ -35,10 +35,9 @@ public class InicioSesion extends javax.swing.JFrame {
         jButtonRegistro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1080, 720));
         setSize(new java.awt.Dimension(1080, 720));
 
-        jPanel1.setBackground(new java.awt.Color(51, 255, 102));
+        jPanel1.setBackground(new java.awt.Color(153, 196, 255));
 
         label1.setAlignment(java.awt.Label.CENTER);
         label1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N

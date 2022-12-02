@@ -270,7 +270,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(102, 255, 153));
+        jPanel3.setBackground(new java.awt.Color(153, 196, 255));
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton5.setText("Añadir contacto");
