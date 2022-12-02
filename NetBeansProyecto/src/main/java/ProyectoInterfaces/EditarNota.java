@@ -6,6 +6,9 @@ package ProyectoInterfaces;
 
 
 import static ProyectoInterfaces.BlogNotas.*;
+import static ProyectoInterfaces.NuevaNota.modelo;
+import static ProyectoInterfaces.NuevaNota.txtArea;
+import static ProyectoInterfaces.NuevaNota.txtTitulo;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
@@ -13,12 +16,12 @@ import javax.swing.DefaultListModel;
  *
  * @author DanielEspinosaMauri
  */
-public class NuevaNota extends javax.swing.JFrame {
+public class EditarNota extends javax.swing.JFrame {
 
     /**
      * Creates new form NuevaNota
      */
-    public NuevaNota() {
+    public EditarNota() {
         initComponents();
         setLocationRelativeTo(null);
         setSize(1080, 720);
@@ -39,7 +42,7 @@ public class NuevaNota extends javax.swing.JFrame {
         txtTitulo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnAddNota = new javax.swing.JButton();
+        btnEditarNota = new javax.swing.JButton();
         btnCancelarNota = new javax.swing.JButton();
         btnResetNota = new javax.swing.JButton();
         tituloEditarNota = new javax.swing.JLabel();
@@ -64,11 +67,11 @@ public class NuevaNota extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Escribe la descripción de la nota:");
 
-        btnAddNota.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnAddNota.setText("Añadir");
-        btnAddNota.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarNota.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnEditarNota.setText("Guardar");
+        btnEditarNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddNotaActionPerformed(evt);
+                btnEditarNotaActionPerformed(evt);
             }
         });
 
@@ -89,34 +92,34 @@ public class NuevaNota extends javax.swing.JFrame {
         });
 
         tituloEditarNota.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        tituloEditarNota.setText("Añadir nota");
+        tituloEditarNota.setText("Editar nota");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(63, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtTitulo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(tituloEditarNota))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAddNota)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 273, Short.MAX_VALUE)
+                        .addComponent(btnEditarNota)
                         .addGap(18, 18, 18)
                         .addComponent(btnCancelarNota)
                         .addGap(18, 18, 18)
                         .addComponent(btnResetNota, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE))
-                .addContainerGap(71, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 949, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +134,7 @@ public class NuevaNota extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(btnAddNota)
+                    .addComponent(btnEditarNota)
                     .addComponent(btnCancelarNota)
                     .addComponent(btnResetNota))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -146,10 +149,10 @@ public class NuevaNota extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTituloActionPerformed
 
-    private void btnAddNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNotaActionPerformed
-        agregarDato();
+    private void btnEditarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarNotaActionPerformed
+        sobreescribirDato();
         dispose();
-    }//GEN-LAST:event_btnAddNotaActionPerformed
+    }//GEN-LAST:event_btnEditarNotaActionPerformed
 
     private void btnResetNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetNotaActionPerformed
         resetDatos();
@@ -176,33 +179,40 @@ public class NuevaNota extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NuevaNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NuevaNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NuevaNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NuevaNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NuevaNota().setVisible(true);
+                new EditarNota().setVisible(true);
             }
         });
     }
     
+   // public void sobreescribirDato() {
+   //     int i = jlDatos.getSelectedIndex();
+     
+   //     modelo.set(i, txtTitulo.getText());
+    //    datosArea.add(i, txtArea.getText());
+   //     datosTitulo.add(i, txtTitulo.getText());
+    //    eliminarDato();
+    //}
     
+    public DefaultListModel sobreescribirDato() {
+        eliminarDato();
 
-    public static DefaultListModel modelo = (DefaultListModel) BlogNotas.jlDatos.getModel();
-    public DefaultListModel agregarDato() {
-        
-
-        modelo.addElement(txtTitulo.getText());
-        datosArea.add(txtArea.getText());
-        datosTitulo.add(txtTitulo.getText());
+        modelo.insertElementAt(txtTitulo.getText(), 0);
+        datosArea.add(0, txtArea.getText());
+        datosTitulo.add(0, txtTitulo.getText());
         return modelo;
     }
     
@@ -214,8 +224,8 @@ public class NuevaNota extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddNota;
     private javax.swing.JButton btnCancelarNota;
+    private javax.swing.JButton btnEditarNota;
     private javax.swing.JButton btnResetNota;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

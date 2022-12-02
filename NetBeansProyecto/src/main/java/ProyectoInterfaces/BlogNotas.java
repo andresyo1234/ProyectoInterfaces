@@ -240,8 +240,8 @@ public class BlogNotas extends javax.swing.JFrame {
 
     private void btnAbrirNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirNotaActionPerformed
 
-        NuevaNota nn = new NuevaNota();
-        nn.setVisible(true);
+        EditarNota en = new EditarNota();
+        en.setVisible(true);
         abrirNota();
     }//GEN-LAST:event_btnAbrirNotaActionPerformed
 
@@ -325,7 +325,7 @@ public class BlogNotas extends javax.swing.JFrame {
     public static ArrayList<String> datosArea = new ArrayList<String>();
     public static ArrayList<String> datosTitulo = new ArrayList<String>();
 
-    public DefaultListModel eliminarDato() {
+    public static DefaultListModel eliminarDato() {
         DefaultListModel modelo = (DefaultListModel) jlDatos.getModel();
         int indx = jlDatos.getSelectedIndex();
         System.out.println(indx);
@@ -336,8 +336,8 @@ public class BlogNotas extends javax.swing.JFrame {
     }
 
     public void abrirNota() {
-        txtArea.setText(datosArea.get(jlDatos.getSelectedIndex()));
-        txtTitulo.setText(datosTitulo.get(jlDatos.getSelectedIndex()));
+        EditarNota.txtArea.setText(datosArea.get(jlDatos.getSelectedIndex()));
+        EditarNota.txtTitulo.setText(datosTitulo.get(jlDatos.getSelectedIndex()));
     }
 
 
