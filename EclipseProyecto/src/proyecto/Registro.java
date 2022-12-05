@@ -152,12 +152,10 @@ public class Registro extends JFrame {
 		contentPane.add(lblRellenaLosCampos);
 		
 		pwdEerwerwerwe = new JPasswordField();
-		pwdEerwerwerwe.setText("eerwerwerwe");
 		pwdEerwerwerwe.setBounds(103, 246, 248, 28);
 		contentPane.add(pwdEerwerwerwe);
 		
 		pwdErwerwerwwer = new JPasswordField();
-		pwdErwerwerwwer.setText("erwerwerwwer");
 		pwdErwerwerwwer.setBounds(403, 246, 248, 28);
 		contentPane.add(pwdErwerwerwwer);
 		

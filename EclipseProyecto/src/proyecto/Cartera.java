@@ -213,13 +213,13 @@ public class Cartera extends JFrame {
 		JButton botonAnyadirDinero = new JButton("A\u00F1adir Dinero");
 		botonAnyadirDinero.setIcon(new ImageIcon(Cartera.class.getResource("/Imagenes/s.png")));
 		botonAnyadirDinero.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		botonAnyadirDinero.setBounds(159, 337, 156, 41);
+		botonAnyadirDinero.setBounds(135, 337, 156, 41);
 		contentPane.add(botonAnyadirDinero);
 		
 		JButton btnQuitarDinero = new JButton("Quitar Dinero");
 		btnQuitarDinero.setIcon(new ImageIcon(Cartera.class.getResource("/Imagenes/borrar.png")));
 		btnQuitarDinero.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		btnQuitarDinero.setBounds(454, 337, 156, 41);
+		btnQuitarDinero.setBounds(467, 337, 156, 41);
 		contentPane.add(btnQuitarDinero);
 		
 		JPanel botonNotas_1 = new JPanel();
@@ -253,6 +253,11 @@ public class Cartera extends JFrame {
 		fotoMancha.setIcon(new ImageIcon(Login.class.getResource("/Imagenes/Ilustracion_sin_titulo_2.png")));
 		fotoMancha.setBounds(268, 217, 610, 459);
 		contentPane.add(fotoMancha);
+		
+		JButton btnNuevaTarjeta = new JButton("Nueva Tarjeta");
+		btnNuevaTarjeta.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnNuevaTarjeta.setBounds(301, 337, 156, 41);
+		contentPane.add(btnNuevaTarjeta);
 
 	}
 }

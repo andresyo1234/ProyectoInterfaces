@@ -19,7 +19,6 @@ public class Registro extends javax.swing.JFrame {
      */
     public Registro() {
         initComponents();
-        setTitle("Mi Agenda - Registro");
     }
 
     /**
