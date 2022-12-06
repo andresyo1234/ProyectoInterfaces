@@ -32,6 +32,9 @@ import javax.swing.border.SoftBevelBorder;
 import javax.swing.ImageIcon;
 import java.awt.Point;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 
 public class Notas extends JFrame {
 
@@ -210,7 +213,7 @@ public class Notas extends JFrame {
 		botonAgenda_1.setForeground(Color.WHITE);
 		botonAgenda_1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		botonAgenda_1.setBackground(new Color(57, 91, 100));
-		botonAgenda_1.setBounds(25, 66, 147, 97);
+		botonAgenda_1.setBounds(25, 66, 148, 97);
 		contentPane.add(botonAgenda_1);
 		
 		JLabel lblAgenda_1 = new JLabel("Agenda");

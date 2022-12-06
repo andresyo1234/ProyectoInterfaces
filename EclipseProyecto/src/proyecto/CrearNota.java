@@ -235,19 +235,27 @@ public class CrearNota extends JFrame {
 		contentPane.add(textArea);
 		
 		tituloNota = new JTextField();
+		tituloNota.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				tituloNota.setText("");
+				
+			}
+		});
 		tituloNota.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		tituloNota.setText("Escribe un T\u00EDtulo...");
 		tituloNota.setBounds(50, 73, 242, 32);
 		contentPane.add(tituloNota);
 		tituloNota.setColumns(10);
 		
-		JButton btnAbrirNota = new JButton("Abrir Nota");
+		JButton btnAbrirNota = new JButton("Guardar Nota");
 		btnAbrirNota.setIcon(new ImageIcon(CrearNota.class.getResource("/Imagenes/s.png")));
 		btnAbrirNota.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		btnAbrirNota.setBounds(324, 79, 129, 23);
 		contentPane.add(btnAbrirNota);
 		
-		JButton btnBorrarNota = new JButton("Borrar Nota");
+		JButton btnBorrarNota = new JButton("Vaciar ");
 		btnBorrarNota.setIcon(new ImageIcon(CrearNota.class.getResource("/Imagenes/borrar.png")));
 		btnBorrarNota.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		btnBorrarNota.setBounds(488, 79, 129, 23);
