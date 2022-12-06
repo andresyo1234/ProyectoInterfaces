@@ -2,15 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-<<<<<<< HEAD:NetBeansProyecto/src/main/java/ProyectoInterfaces/EditarNota.java
-package ProyectoInterfaces;
-
-
-import static ProyectoInterfaces.BlogNotas.*;
-import static ProyectoInterfaces.NuevaNota.modelo;
-import static ProyectoInterfaces.NuevaNota.txtArea;
-import static ProyectoInterfaces.NuevaNota.txtTitulo;
-=======
 package proyectointerfaces;
 
 
@@ -18,7 +9,6 @@ import static proyectointerfaces.BlogNotas.*;
 import static proyectointerfaces.NuevaNota.modelo;
 import static proyectointerfaces.NuevaNota.txtArea;
 import static proyectointerfaces.NuevaNota.txtTitulo;
->>>>>>> andresyo:NetBeansProyecto/src/proyectointerfaces/EditarNota.java
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
@@ -199,15 +189,12 @@ public class EditarNota extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-<<<<<<< HEAD:NetBeansProyecto/src/main/java/ProyectoInterfaces/EditarNota.java
-=======
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
->>>>>>> andresyo:NetBeansProyecto/src/proyectointerfaces/EditarNota.java
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

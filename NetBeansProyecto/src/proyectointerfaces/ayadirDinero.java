@@ -11,13 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 
-import static ProyectoInterfaces.Cartera.*;
-import java.awt.Color;
-import java.time.temporal.TemporalAccessor;
-import java.util.ArrayList;
-import java.util.Date;
-import javax.swing.DefaultListModel;
-
 /**
  *
  * @author Andres

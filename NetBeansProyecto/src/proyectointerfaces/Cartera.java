@@ -13,15 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 
-import static ProyectoInterfaces.BlogNotas.jlDatos;
-import java.awt.Color;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import javax.swing.DefaultListModel;
-
 /**
  *
  * @author AndresRoldanGonzalez
