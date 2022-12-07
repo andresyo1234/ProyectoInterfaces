@@ -4,6 +4,7 @@
  */
 package proyectointerfaces;
 
+import com.sun.jdi.connect.spi.Connection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -261,6 +262,16 @@ public class Registro extends javax.swing.JFrame {
 
 if(mail.matches()&& pass.matches() && nombre.matches() && apellidos.matches()&& pass.matches()&&jPasswordFieldContraseña.getText().equals(jPasswordFieldConfirmar.getText())){
       InicioSesion is = new InicioSesion();
+      
+      try{
+          
+          Connection con = Conexion.getConexion();
+          PreparedStatement ps = con.prepareStatement();
+          
+      }catch(){
+          
+      }
+      
                                 is.setVisible(true);
                                 is.setSize(1080,720);
                                 is.setLocationRelativeTo(null);
@@ -271,6 +282,7 @@ if(mail.matches()&& pass.matches() && nombre.matches() && apellidos.matches()&& 
   
 }
 
+    
         
     }//GEN-LAST:event_jButton1MouseClicked
  
