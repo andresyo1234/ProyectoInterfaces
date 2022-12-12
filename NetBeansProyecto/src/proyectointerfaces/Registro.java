@@ -4,9 +4,14 @@
  */
 package proyectointerfaces;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -261,6 +266,30 @@ public class Registro extends javax.swing.JFrame {
 
 if(mail.matches()&& pass.matches() && nombre.matches() && apellidos.matches()&& pass.matches()&&jPasswordFieldContraseña.getText().equals(jPasswordFieldConfirmar.getText())){
       InicioSesion is = new InicioSesion();
+      
+      try{
+          
+          Connection con = Conexion.getConexion();
+          PreparedStatement ps = con.prepareStatement("INSERT INTO Usuarios (NombreUsuario,Nombre,Apellidos,Email,Telefono,Genero,password) VALUES (?,?,?,?,?,?,?)");
+          ps.setString(1,"Usuario1");
+          ps.setString(2, "Jorge");
+          ps.setString(3, "Diaz");
+          ps.setString(4, "yocoendi@gmail.com");
+          ps.setInt(5, 619237059);
+          ps.setString(6, "Masculino");
+          ps.setString(7, "Masculino_88");
+          ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "El alumno se ha registrado correctamente");
+                  
+          
+             	}catch(SQLException e) {
+		 JOptionPane.showMessageDialog(null, "fallo1");
+		}catch(ClassNotFoundException e) {
+                 System.out.println("fallo2");
+		}catch(Exception e) {
+		
+		}
+      
                                 is.setVisible(true);
                                 is.setSize(1080,720);
                                 is.setLocationRelativeTo(null);
@@ -271,6 +300,7 @@ if(mail.matches()&& pass.matches() && nombre.matches() && apellidos.matches()&& 
   
 }
 
+    
         
     }//GEN-LAST:event_jButton1MouseClicked
  
