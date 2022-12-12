@@ -44,8 +44,18 @@ public class InicioSesion extends javax.swing.JFrame {
         label1.setText("Mi Agenda");
 
         jTextField1.setText("Usuario...");
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
 
         jTextField2.setText("Contraseña...");
+        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField2MouseClicked(evt);
+            }
+        });
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -148,6 +158,21 @@ public class InicioSesion extends javax.swing.JFrame {
                                 
                                 dispose();
     }//GEN-LAST:event_JButtonInicioMouseClicked
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        
+        String value = jTextField1.getText();
+        if(value.equals("Usuario...")){
+            jTextField1.setText("");
+        }
+    }//GEN-LAST:event_jTextField1MouseClicked
+
+    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
+        String value = jTextField2.getText();
+        if(value.equals("Contraseña...")){
+            jTextField2.setText("");
+        }
+    }//GEN-LAST:event_jTextField2MouseClicked
 
     /**
      * @param args the command line arguments
