@@ -4,7 +4,9 @@
  */
 package proyectointerfaces;
 
-import com.sun.jdi.connect.spi.Connection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 /**
@@ -27,11 +29,11 @@ public class Conexion {
 		//connection_.close();
 
 		}catch(SQLException e) {
-		e.printStackTrace();
+		
 		}catch(ClassNotFoundException e) {
-		e.printStackTrace();
+	
 		}catch(Exception e) {
-		e.printStackTrace();
+		
 		}
 		
 		return connection_;
