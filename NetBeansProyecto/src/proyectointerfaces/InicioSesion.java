@@ -4,6 +4,12 @@
  */
 package proyectointerfaces;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.*;
+
 /**
  *
  * @author LucasMorenoZabala
@@ -30,9 +36,9 @@ public class InicioSesion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         JButtonInicio = new javax.swing.JButton();
         jButtonRegistro = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1080, 720));
@@ -49,16 +55,9 @@ public class InicioSesion extends javax.swing.JFrame {
                 jTextField1MouseClicked(evt);
             }
         });
-
-        jTextField2.setText("Contraseña...");
-        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField2MouseClicked(evt);
-            }
-        });
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTextField1ActionPerformed(evt);
             }
         });
 
@@ -81,19 +80,25 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(298, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(298, 298, 298)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
                     .addComponent(jTextField2)
+                    .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
                     .addComponent(jTextField1)
                     .addComponent(JButtonInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonRegistro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(298, Short.MAX_VALUE))
+                .addGap(298, 298, 298))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +118,6 @@ public class InicioSesion extends javax.swing.JFrame {
 
         label1.getAccessibleContext().setAccessibleName("jLabelTituloInicioSesion");
         jTextField1.getAccessibleContext().setAccessibleName("jTextFieldUsuario");
-        jTextField2.getAccessibleContext().setAccessibleName("jTextFiedContraseña");
         JButtonInicio.getAccessibleContext().setAccessibleName("jButtonInicioSesion");
         jButtonRegistro.getAccessibleContext().setAccessibleName("jButtonRegistro");
         jButtonRegistro.getAccessibleContext().setAccessibleDescription("");
@@ -141,38 +145,81 @@ public class InicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRegistroActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void jButtonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRegistroMouseClicked
-         Registro r = new Registro();
-				r.setVisible(true);
-                                
-                                dispose();
+        Registro r = new Registro();
+        r.setVisible(true);
+
+        dispose();
     }//GEN-LAST:event_jButtonRegistroMouseClicked
 
     private void JButtonInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButtonInicioMouseClicked
         AgendaPrincipal ag = new AgendaPrincipal();
-                                ag.setVisible(true);
-                                
-                                dispose();
+
+        String nombreUsuario, psw = null;
+        int IdUsuario = 0;
+        
+
+        Statement st_;
+        ResultSet rs_;
+
+        try {
+
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            nombreUsuario = jTextField1.getText();
+
+            rs_ = st_.executeQuery("select * from Usuarios where NombreUsuario = '" + nombreUsuario + "'");
+            System.out.println("aa");
+
+            while (rs_.next()) {
+                IdUsuario = rs_.getInt(1);
+                psw = rs_.getString(8);
+            }
+            
+            System.out.println(psw);
+            System.out.println("id usuario: " + IdUsuario);
+            if (IdUsuario != 0) {
+                System.out.println("Nombre Usuario correcto");
+                
+                rs_.next();
+                System.out.println(new String(jTextField2.getPassword()));
+                if (new String(jTextField2.getPassword()).equals(psw)) {
+                    
+                    ag.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario no existe");
+            }
+
+            // JOptionPane.showMessageDialog(null, "El alumno se ha registrado correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "usuario ya exitente");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+
+        }
     }//GEN-LAST:event_JButtonInicioMouseClicked
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-        
+
         String value = jTextField1.getText();
-        if(value.equals("Usuario...")){
+        if (value.equals("Usuario...")) {
             jTextField1.setText("");
         }
     }//GEN-LAST:event_jTextField1MouseClicked
 
-    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
-        String value = jTextField2.getText();
-        if(value.equals("Contraseña...")){
-            jTextField2.setText("");
-        }
-    }//GEN-LAST:event_jTextField2MouseClicked
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,7 +264,7 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRegistro;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPasswordField jTextField2;
     private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }
