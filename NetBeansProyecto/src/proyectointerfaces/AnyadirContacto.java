@@ -8,9 +8,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import java.sql.*;
+
+
 
 /**
  *
@@ -64,6 +68,11 @@ public class AnyadirContacto extends javax.swing.JFrame {
 
         botonAnyadir.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         botonAnyadir.setText("Añadir");
+        botonAnyadir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonAnyadirMouseClicked(evt);
+            }
+        });
         botonAnyadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAnyadirActionPerformed(evt);
@@ -172,6 +181,34 @@ public class AnyadirContacto extends javax.swing.JFrame {
         ag.setVisible(true);
         dispose();
     }//GEN-LAST:event_botonAnyadirActionPerformed
+
+    private void botonAnyadirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnyadirMouseClicked
+       
+          Statement st_;
+          ResultSet rs_;
+        try {
+
+                Connection con = Conexion.getConexion();
+                 st_ = con.createStatement();
+                PreparedStatement ps = con.prepareStatement("INSERT INTO Contactos (Id_usuario,Nombre,Apellidos,Email,Telefono,Genero) VALUES (?,?,?,?,?,?)");
+                
+                ps.setString(1, inputNombre.getText());
+                ps.setString(2, inputApellido.getText());
+                ps.setString(3, inputEmail.getText());
+                //ps.setString(4, textFieldMail.getText());
+               // ps.setInt(5, Integer.parseInt(textFieldTelefono.getText()));
+                ps.setString(6, jComboBox1.getItemAt(jComboBox1.getSelectedIndex()));
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "El alumno se ha registrado correctamente");
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "fallo1");
+            } catch (ClassNotFoundException e) {
+                System.out.println("fallo2");
+            } catch (Exception e) {
+
+            }
+    }//GEN-LAST:event_botonAnyadirMouseClicked
 
     public static boolean validarNumeros(String datos) {
         return datos.matches("[0-9]");

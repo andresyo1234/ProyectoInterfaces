@@ -190,7 +190,7 @@ public class InicioSesion extends javax.swing.JFrame {
             nombreUsuario = inputUsuario.getText();
 
             rs_ = st_.executeQuery("select * from Usuarios where NombreUsuario = '" + nombreUsuario + "'");
-            System.out.println("aa");
+           
 
             while (rs_.next()) {
                 IdUsuario = rs_.getInt(1);
