@@ -4,6 +4,12 @@
  */
 package proyectointerfaces;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import java.sql.*;
+
 /**
  *
  * @author LucasMorenoZabala
@@ -28,85 +34,113 @@ public class InicioSesion extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        label1 = new java.awt.Label();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        JButtonInicio = new javax.swing.JButton();
-        jButtonRegistro = new javax.swing.JButton();
+        TituloInicioSesion = new java.awt.Label();
+        inputUsuario = new javax.swing.JTextField();
+        BotonInicioSesion = new javax.swing.JButton();
+        BotonRegistro = new javax.swing.JButton();
+        InputContrasenya = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1080, 720));
 
         jPanel1.setBackground(new java.awt.Color(153, 196, 255));
 
-        label1.setAlignment(java.awt.Label.CENTER);
-        label1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        label1.setText("Mi Agenda");
+        TituloInicioSesion.setAlignment(java.awt.Label.CENTER);
+        TituloInicioSesion.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        TituloInicioSesion.setText("MI AGENDA");
 
-        jTextField1.setText("Usuario...");
-
-        jTextField2.setText("Contraseña...");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
-        JButtonInicio.setText("Inicio Sesión");
-        JButtonInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+        inputUsuario.setText("Usuario...");
+        inputUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JButtonInicioMouseClicked(evt);
+                inputUsuarioMouseClicked(evt);
+            }
+        });
+        inputUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputUsuarioActionPerformed(evt);
             }
         });
 
-        jButtonRegistro.setText("Registro");
-        jButtonRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+        BotonInicioSesion.setText("Inicio Sesión");
+        BotonInicioSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonRegistroMouseClicked(evt);
+                BotonInicioSesionMouseClicked(evt);
             }
         });
-        jButtonRegistro.addActionListener(new java.awt.event.ActionListener() {
+
+        BotonRegistro.setText("Registro");
+        BotonRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonRegistroMouseClicked(evt);
+            }
+        });
+        BotonRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegistroActionPerformed(evt);
+                BotonRegistroActionPerformed(evt);
             }
         });
+
+        InputContrasenya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputContrasenyaActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Contraseña:");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Usuario:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(298, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField1)
-                    .addComponent(JButtonInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonRegistro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(298, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(298, 298, 298)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(InputContrasenya)
+                            .addComponent(TituloInicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
+                            .addComponent(inputUsuario)
+                            .addComponent(BotonInicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotonRegistro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(298, 298, 298))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(161, Short.MAX_VALUE)
-                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(JButtonInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addComponent(TituloInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inputUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(InputContrasenya, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78)
+                .addComponent(BotonInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(jButtonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addComponent(BotonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
-        label1.getAccessibleContext().setAccessibleName("jLabelTituloInicioSesion");
-        jTextField1.getAccessibleContext().setAccessibleName("jTextFieldUsuario");
-        jTextField2.getAccessibleContext().setAccessibleName("jTextFiedContraseña");
-        JButtonInicio.getAccessibleContext().setAccessibleName("jButtonInicioSesion");
-        jButtonRegistro.getAccessibleContext().setAccessibleName("jButtonRegistro");
-        jButtonRegistro.getAccessibleContext().setAccessibleDescription("");
+        TituloInicioSesion.getAccessibleContext().setAccessibleName("jLabelTituloInicioSesion");
+        inputUsuario.getAccessibleContext().setAccessibleName("jTextFieldUsuario");
+        BotonInicioSesion.getAccessibleContext().setAccessibleName("jButtonInicioSesion");
+        BotonRegistro.getAccessibleContext().setAccessibleName("jButtonRegistro");
+        BotonRegistro.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,27 +161,85 @@ public class InicioSesion extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
+    private void BotonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonRegistroActionPerformed
+    }//GEN-LAST:event_BotonRegistroActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    private void BotonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonRegistroMouseClicked
+        Registro r = new Registro();
+        r.setVisible(true);
 
-    private void jButtonRegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRegistroMouseClicked
-         Registro r = new Registro();
-				r.setVisible(true);
-                                
-                                dispose();
-    }//GEN-LAST:event_jButtonRegistroMouseClicked
+        dispose();
+    }//GEN-LAST:event_BotonRegistroMouseClicked
 
-    private void JButtonInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButtonInicioMouseClicked
+    public static int IdUsuario = 0;
+    private void BotonInicioSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInicioSesionMouseClicked
         AgendaPrincipal ag = new AgendaPrincipal();
-                                ag.setVisible(true);
-                                
-                                dispose();
-    }//GEN-LAST:event_JButtonInicioMouseClicked
+
+        String nombreUsuario, psw = null;
+        
+
+        Statement st_;
+        ResultSet rs_;
+
+        try {
+
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            nombreUsuario = inputUsuario.getText();
+
+            rs_ = st_.executeQuery("select * from Usuarios where NombreUsuario = '" + nombreUsuario + "'");
+            System.out.println("aa");
+
+            while (rs_.next()) {
+                IdUsuario = rs_.getInt(1);
+                psw = rs_.getString(8);
+            }
+
+            System.out.println(psw);
+            System.out.println("id usuario: " + IdUsuario);
+            if (IdUsuario != 0) {
+                System.out.println("Nombre Usuario correcto");
+
+                rs_.next();
+                System.out.println(new String(InputContrasenya.getPassword()));
+                if (new String(InputContrasenya.getPassword()).equals(psw)) {
+
+                    ag.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario no existe");
+            }
+
+            // JOptionPane.showMessageDialog(null, "El alumno se ha registrado correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "usuario ya exitente");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_BotonInicioSesionMouseClicked
+
+    private void inputUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputUsuarioMouseClicked
+
+        String value = inputUsuario.getText();
+        if (value.equals("Usuario...")) {
+            inputUsuario.setText("");
+        }
+    }//GEN-LAST:event_inputUsuarioMouseClicked
+
+    private void inputUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputUsuarioActionPerformed
+
+    private void InputContrasenyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputContrasenyaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputContrasenyaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,11 +280,13 @@ public class InicioSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JButtonInicio;
-    private javax.swing.JButton jButtonRegistro;
+    private javax.swing.JButton BotonInicioSesion;
+    private javax.swing.JButton BotonRegistro;
+    private javax.swing.JPasswordField InputContrasenya;
+    private java.awt.Label TituloInicioSesion;
+    private javax.swing.JTextField inputUsuario;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }
