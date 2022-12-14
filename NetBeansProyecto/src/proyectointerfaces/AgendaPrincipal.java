@@ -5,8 +5,14 @@
 package proyectointerfaces;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
@@ -22,11 +28,11 @@ public class AgendaPrincipal extends javax.swing.JFrame {
      */
     public AgendaPrincipal() {
         initComponents();
-         jButton1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-          jButton2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-           jButton3.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-            jButton4.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-            setTitle("Mi Agenda - Agenda");
+        BotonPaginaAgenda.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+        jButton2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+        BotonPaginaCompra.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+        BotonPaginaCartera.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+        setTitle("Mi Agenda - Agenda");
     }
 
     /**
@@ -50,18 +56,17 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jPopupMenu2 = new javax.swing.JPopupMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        BotonPaginaAgenda = new javax.swing.JButton();
+        BotonPaginaCompra = new javax.swing.JButton();
+        BotonPaginaCartera = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaContactos = new javax.swing.JTable();
+        anyadirContacto = new javax.swing.JButton();
+        anyadirContacto1 = new javax.swing.JButton();
+        anyadirContacto2 = new javax.swing.JButton();
 
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton6.setText("Crear");
@@ -165,86 +170,68 @@ public class AgendaPrincipal extends javax.swing.JFrame {
                 .addGap(49, 49, 49))
         );
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItem1MouseClicked(evt);
-            }
-        });
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jPopupMenu2.add(jMenuItem1);
-
-        jMenuItem2.setText("jMenuItem2");
-        jPopupMenu2.add(jMenuItem2);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(231, 246, 242));
 
         jPanel1.setBackground(new java.awt.Color(57, 91, 100));
 
-        jButton1.setBackground(new java.awt.Color(57, 91, 100));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jButton1.setText("Agenda");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+        BotonPaginaAgenda.setBackground(new java.awt.Color(57, 91, 100));
+        BotonPaginaAgenda.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        BotonPaginaAgenda.setText("Agenda");
+        BotonPaginaAgenda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BotonPaginaAgenda.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        BotonPaginaAgenda.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        BotonPaginaAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonPaginaAgendaActionPerformed(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+
+        BotonPaginaCompra.setBackground(new java.awt.Color(57, 91, 100));
+        BotonPaginaCompra.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        BotonPaginaCompra.setText("Lista Compra");
+        BotonPaginaCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BotonPaginaCompra.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        BotonPaginaCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonPaginaCompraMouseClicked(evt);
+            }
+        });
+        BotonPaginaCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotonPaginaCompraActionPerformed(evt);
+            }
+        });
+
+        BotonPaginaCartera.setBackground(new java.awt.Color(57, 91, 100));
+        BotonPaginaCartera.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        BotonPaginaCartera.setText("Cartera");
+        BotonPaginaCartera.setAlignmentY(0.0F);
+        BotonPaginaCartera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BotonPaginaCartera.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        BotonPaginaCartera.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        BotonPaginaCartera.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotonPaginaCartera.setIconTextGap(0);
+        BotonPaginaCartera.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        BotonPaginaCartera.setRequestFocusEnabled(false);
+        BotonPaginaCartera.setRolloverEnabled(false);
+        BotonPaginaCartera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BotonPaginaCarteraMouseClicked(evt);
+            }
+        });
+        BotonPaginaCartera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonPaginaCarteraActionPerformed(evt);
             }
         });
 
         jButton2.setBackground(new java.awt.Color(57, 91, 100));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton2.setText("Bloc de Notas");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
-
-        jButton3.setBackground(new java.awt.Color(57, 91, 100));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jButton3.setText("Lista Compra");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton3.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
-
-        jButton4.setBackground(new java.awt.Color(57, 91, 100));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jButton4.setText("Cartera");
-        jButton4.setAlignmentY(0.0F);
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton4.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setIconTextGap(0);
-        jButton4.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton4.setRequestFocusEnabled(false);
-        jButton4.setRolloverEnabled(false);
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
-            }
-        });
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -253,40 +240,26 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonPaginaAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonPaginaCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonPaginaCartera, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BotonPaginaCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BotonPaginaCartera, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addComponent(BotonPaginaAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(153, 196, 255));
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jButton5.setText("Añadir contacto");
-        jButton5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
-            }
-        });
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaContactos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -309,36 +282,85 @@ public class AgendaPrincipal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane1.setViewportView(TablaContactos);
+        if (TablaContactos.getColumnModel().getColumnCount() > 0) {
+            TablaContactos.getColumnModel().getColumn(0).setResizable(false);
+            TablaContactos.getColumnModel().getColumn(1).setResizable(false);
+            TablaContactos.getColumnModel().getColumn(2).setResizable(false);
+            TablaContactos.getColumnModel().getColumn(3).setResizable(false);
+            TablaContactos.getColumnModel().getColumn(4).setResizable(false);
         }
+
+        anyadirContacto.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        anyadirContacto.setText("Añadir contacto");
+        anyadirContacto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        anyadirContacto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                anyadirContactoMouseClicked(evt);
+            }
+        });
+        anyadirContacto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anyadirContactoActionPerformed(evt);
+            }
+        });
+
+        anyadirContacto1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        anyadirContacto1.setText("Editar contacto");
+        anyadirContacto1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        anyadirContacto1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                anyadirContacto1MouseClicked(evt);
+            }
+        });
+        anyadirContacto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anyadirContacto1ActionPerformed(evt);
+            }
+        });
+
+        anyadirContacto2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        anyadirContacto2.setText("Eliminar contacto");
+        anyadirContacto2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        anyadirContacto2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                anyadirContacto2MouseClicked(evt);
+            }
+        });
+        anyadirContacto2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anyadirContacto2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(anyadirContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                    .addComponent(anyadirContacto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(anyadirContacto2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(anyadirContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(anyadirContacto1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(anyadirContacto2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(39, 39, 39))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -353,27 +375,26 @@ public class AgendaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
-        setSize(new java.awt.Dimension(1096, 728));
+        setSize(new java.awt.Dimension(1096, 740));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BotonPaginaAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPaginaAgendaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BotonPaginaAgendaActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void anyadirContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anyadirContactoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_anyadirContactoActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-        
-        
-       
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void BotonPaginaCarteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPaginaCarteraActionPerformed
+
+
+    }//GEN-LAST:event_BotonPaginaCarteraActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -387,75 +408,96 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+    private void anyadirContactoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anyadirContactoMouseClicked
         jFrame1.pack();
         jFrame1.setLocationRelativeTo(null);
         jFrame1.setVisible(true);
         jFrame1.setSize(1080, 720);
+
         
-    }//GEN-LAST:event_jButton5MouseClicked
+    }//GEN-LAST:event_anyadirContactoMouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        
-        
+
         Vector v = new Vector();
         v.add(jTextField1.getText());
         v.add(jTextField2.getText());
         v.add(jTextField3.getText());
         v.add(jTextField4.getText());
         v.add(String.valueOf(jComboBox1.getSelectedItem()));
-                
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        DefaultTableModel model = (DefaultTableModel) TablaContactos.getModel();
         model.addRow(v);
         
-        
-        
+  
+
+
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       rootPane.repaint();
+        rootPane.repaint();
         System.out.println("refresh");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
-        
+
     }//GEN-LAST:event_jMenuItem1MouseClicked
     /// ABRIR AGENDA    
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-           AgendaPrincipal ap = new AgendaPrincipal();
-           ap.setVisible(true);
-           ap.setLocationRelativeTo(null);
-           ap.setSize(1080, 720);
-           dispose();
+        AgendaPrincipal ap = new AgendaPrincipal();
+        ap.setVisible(true);
+        ap.setLocationRelativeTo(null);
+        ap.setSize(1080, 720);
+        dispose();
     }//GEN-LAST:event_jButton1MouseClicked
-    //ABRIR BLOC
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+
+    //ABRIR LISTA COMPRA
+    private void BotonPaginaCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonPaginaCompraMouseClicked
         // TODO add your handling code here:
+        ListaCompra lc = new ListaCompra();
+        lc.setVisible(true);
+        lc.setLocationRelativeTo(null);
+        lc.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_BotonPaginaCompraMouseClicked
+    //abrir cartera
+    private void BotonPaginaCarteraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonPaginaCarteraMouseClicked
+        // TODO add your handling code here:
+        Cartera cart = new Cartera();
+        cart.setVisible(true);
+        cart.setLocationRelativeTo(null);
+        cart.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_BotonPaginaCarteraMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         BlogNotas bn = new BlogNotas();
         bn.setVisible(true);
         bn.setLocationRelativeTo(null);
         bn.setSize(1080, 720);
         dispose();
-    }//GEN-LAST:event_jButton2MouseClicked
-    //ABRIR LISTA COMPRA
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void BotonPaginaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPaginaCompraActionPerformed
         // TODO add your handling code here:
-        ListaCompra lc = new ListaCompra();
-           lc.setVisible(true);
-           lc.setLocationRelativeTo(null);
-           lc.setSize(1080, 720);
-           dispose();
-    }//GEN-LAST:event_jButton3MouseClicked
-    //abrir cartera
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    }//GEN-LAST:event_BotonPaginaCompraActionPerformed
+
+    private void anyadirContacto1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anyadirContacto1MouseClicked
         // TODO add your handling code here:
-        Cartera cart = new Cartera();
-           cart.setVisible(true);
-           cart.setLocationRelativeTo(null);
-           cart.setSize(1080, 720);
-           dispose();
-    }//GEN-LAST:event_jButton4MouseClicked
+    }//GEN-LAST:event_anyadirContacto1MouseClicked
+
+    private void anyadirContacto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anyadirContacto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_anyadirContacto1ActionPerformed
+
+    private void anyadirContacto2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anyadirContacto2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_anyadirContacto2MouseClicked
+
+    private void anyadirContacto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anyadirContacto2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_anyadirContacto2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -490,20 +532,22 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
                 new AgendaPrincipal().setVisible(true);
-                
-                
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BotonPaginaAgenda;
+    private javax.swing.JButton BotonPaginaCartera;
+    private javax.swing.JButton BotonPaginaCompra;
+    private javax.swing.JTable TablaContactos;
+    private javax.swing.JButton anyadirContacto;
+    private javax.swing.JButton anyadirContacto1;
+    private javax.swing.JButton anyadirContacto2;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFrame jFrame1;
@@ -512,13 +556,9 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
