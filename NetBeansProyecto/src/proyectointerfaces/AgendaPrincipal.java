@@ -388,7 +388,9 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonPaginaAgendaActionPerformed
 
     private void anyadirContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anyadirContactoActionPerformed
-        // TODO add your handling code here:
+        AnyadirContacto ac = new AnyadirContacto();
+        ac.setVisible(true);
+        dispose();
     }//GEN-LAST:event_anyadirContactoActionPerformed
 
     private void BotonPaginaCarteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPaginaCarteraActionPerformed
@@ -409,12 +411,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void anyadirContactoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anyadirContactoMouseClicked
-        jFrame1.pack();
-        jFrame1.setLocationRelativeTo(null);
-        jFrame1.setVisible(true);
-        jFrame1.setSize(1080, 720);
-
-        
+                
     }//GEN-LAST:event_anyadirContactoMouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
@@ -488,7 +485,9 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_anyadirContacto1MouseClicked
 
     private void anyadirContacto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anyadirContacto1ActionPerformed
-        // TODO add your handling code here:
+        EditarContacto ec = new EditarContacto();
+        ec.setVisible(true);
+        dispose();
     }//GEN-LAST:event_anyadirContacto1ActionPerformed
 
     private void anyadirContacto2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anyadirContacto2MouseClicked
