@@ -4,6 +4,10 @@
  */
 package proyectointerfaces;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -44,9 +48,11 @@ public class Registro extends javax.swing.JFrame {
         label8 = new java.awt.Label();
         label9 = new java.awt.Label();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        BotonRegistrarse = new javax.swing.JButton();
         label10 = new java.awt.Label();
         textFieldMail = new java.awt.TextField();
+        label11 = new java.awt.Label();
+        textFieldNombreUsuario = new java.awt.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1080, 720));
@@ -60,6 +66,11 @@ public class Registro extends javax.swing.JFrame {
 
         textFieldNombre.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         textFieldNombre.setText("Nombre...");
+        textFieldNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textFieldNombreMouseClicked(evt);
+            }
+        });
         textFieldNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldNombreActionPerformed(evt);
@@ -71,6 +82,11 @@ public class Registro extends javax.swing.JFrame {
 
         textFieldApellidos.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         textFieldApellidos.setText("Apellidos...");
+        textFieldApellidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textFieldApellidosMouseClicked(evt);
+            }
+        });
         textFieldApellidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldApellidosActionPerformed(evt);
@@ -84,6 +100,11 @@ public class Registro extends javax.swing.JFrame {
         label6.setText("Contraseña");
 
         jPasswordFieldContraseña.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jPasswordFieldContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldContraseñaActionPerformed(evt);
+            }
+        });
 
         label7.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label7.setText("Confirmar Contraseña");
@@ -92,6 +113,11 @@ public class Registro extends javax.swing.JFrame {
 
         textFieldTelefono.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         textFieldTelefono.setText("Teléfono...");
+        textFieldTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textFieldTelefonoMouseClicked(evt);
+            }
+        });
 
         label8.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         label8.setText("Teléfono");
@@ -100,23 +126,23 @@ public class Registro extends javax.swing.JFrame {
         label9.setText("Género");
 
         jComboBox1.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "OdooFan" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jButton1.setText("Registrarse");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        BotonRegistrarse.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        BotonRegistrarse.setText("Registrarse");
+        BotonRegistrarse.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                BotonRegistrarseMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotonRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotonRegistrarseActionPerformed(evt);
             }
         });
 
@@ -125,9 +151,30 @@ public class Registro extends javax.swing.JFrame {
 
         textFieldMail.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         textFieldMail.setText("Email...");
+        textFieldMail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textFieldMailMouseClicked(evt);
+            }
+        });
         textFieldMail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldMailActionPerformed(evt);
+            }
+        });
+
+        label11.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        label11.setText("Nombre Usuario");
+
+        textFieldNombreUsuario.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        textFieldNombreUsuario.setText("Nombre Usuario...");
+        textFieldNombreUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textFieldNombreUsuarioMouseClicked(evt);
+            }
+        });
+        textFieldNombreUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldNombreUsuarioActionPerformed(evt);
             }
         });
 
@@ -136,44 +183,50 @@ public class Registro extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textFieldMail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonRegistrarse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(label3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPasswordFieldContraseña)
-                            .addComponent(textFieldTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(textFieldNombreUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(label6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(label3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPasswordFieldContraseña, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textFieldTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 129, Short.MAX_VALUE))
-                            .addComponent(label8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                                .addGap(0, 131, Short.MAX_VALUE))
+                            .addComponent(label8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(label11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(180, 180, 180)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(label4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(textFieldApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(label9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPasswordFieldConfirmar)
-                            .addComponent(label7, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)))
-                    .addComponent(label10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldMail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(label7, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(10, 10, 10)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textFieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                         .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -181,11 +234,11 @@ public class Registro extends javax.swing.JFrame {
                         .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textFieldApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textFieldMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,7 +248,7 @@ public class Registro extends javax.swing.JFrame {
                         .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPasswordFieldConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,9 +258,9 @@ public class Registro extends javax.swing.JFrame {
                         .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(BotonRegistrarse)
+                .addGap(10, 10, 10))
         );
 
         label1.getAccessibleContext().setAccessibleName("jlabelTituloRegistro");
@@ -222,7 +275,7 @@ public class Registro extends javax.swing.JFrame {
         label8.getAccessibleContext().setAccessibleName("jLabelTelefono");
         label9.getAccessibleContext().setAccessibleName("jLabelSexo");
         jComboBox1.getAccessibleContext().setAccessibleName("jComboBoxSexo");
-        jButton1.getAccessibleContext().setAccessibleName("jButtonInicioSesion");
+        BotonRegistrarse.getAccessibleContext().setAccessibleName("jButtonInicioSesion");
 
         getAccessibleContext().setAccessibleName("jFrameRegistro");
 
@@ -238,52 +291,69 @@ public class Registro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldApellidosActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void BotonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegistrarseActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    }//GEN-LAST:event_BotonRegistrarseActionPerformed
+
+    private void BotonRegistrarseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonRegistrarseMouseClicked
+
+        Pattern pattern = Pattern.compile("^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$");
+        Pattern pat = Pattern.compile("^[A-Z][-a-zA-Z]+$");
+        Pattern pattern2 = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}_]:;',?/*~$^+=<>]).{8,50}$");
+
+        Matcher mail = pattern.matcher(textFieldMail.getText());
+        Matcher nombre = pat.matcher(textFieldNombre.getText());
+        Matcher apellidos = pat.matcher(textFieldApellidos.getText());
+        Matcher pass = pattern2.matcher(jPasswordFieldContraseña.getText());
+
+        if (mail.matches() && pass.matches() && nombre.matches() && apellidos.matches() && pass.matches() && jPasswordFieldContraseña.getText().equals(jPasswordFieldConfirmar.getText())) {
+            InicioSesion is = new InicioSesion();
+
+            try {
+
+                Connection con = Conexion.getConexion();
+                PreparedStatement ps = con.prepareStatement("INSERT INTO Usuarios (NombreUsuario,Nombre,Apellidos,Email,Telefono,Genero,password) VALUES (?,?,?,?,?,?,?)");
+                ps.setString(1, textFieldNombreUsuario.getText());
+                ps.setString(2, textFieldNombre.getText());
+                ps.setString(3, textFieldApellidos.getText());
+                ps.setString(4, textFieldMail.getText());
+                ps.setInt(5, Integer.parseInt(textFieldTelefono.getText()));
+                ps.setString(6, jComboBox1.getItemAt(jComboBox1.getSelectedIndex()));
+                ps.setString(7, new String(jPasswordFieldContraseña.getPassword()));
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "El alumno se ha registrado correctamente");
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "fallo1");
+            } catch (ClassNotFoundException e) {
+                System.out.println("fallo2");
+            } catch (Exception e) {
+
+            }
+
+            is.setVisible(true);
+            is.setSize(1080, 720);
+            is.setLocationRelativeTo(null);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    (mail.matches() ? "" : "mail: Incorrecoto \n")
+                    + (pass.matches() ? "" : "contraseña incorrecta, la contraseña debe tener mayusculas minusculasnumeros y caracteres especiales \n")
+                    + (nombre.matches() ? "" : " nombre: Incorrecto, debe tener una mayuscula \n")
+                    + (apellidos.matches() ? "" : " apellidos: Incorrecto, debe tener una mayuscula \n"));
+        }
+        {
+
+        }
 
 
- 
-		Pattern pattern = Pattern.compile("^([0-9a-zA-Z]+[-._+&])*[0-9a-zA-Z]+@([-0-9a-zA-Z]+[.])+[a-zA-Z]{2,6}$");
-		Pattern pat = Pattern.compile("^[A-Z][-a-zA-Z]+$");
-                Pattern pattern2 = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}_]:;',?/*~$^+=<>]).{8,50}$");
-                
-                
-                Matcher mail = pattern.matcher(textFieldMail.getText());
-                Matcher nombre = pat.matcher(textFieldNombre.getText());
-                Matcher apellidos = pat.matcher(textFieldApellidos.getText());
-                Matcher pass = pattern2.matcher(jPasswordFieldContraseña.getText());
-                
-                 
-                
+    }//GEN-LAST:event_BotonRegistrarseMouseClicked
 
-if(mail.matches()&& pass.matches() && nombre.matches() && apellidos.matches()&& pass.matches()&&jPasswordFieldContraseña.getText().equals(jPasswordFieldConfirmar.getText())){
-      InicioSesion is = new InicioSesion();
-                                is.setVisible(true);
-                                is.setSize(1080,720);
-                                is.setLocationRelativeTo(null);
-                                dispose();
-}else
-      JOptionPane.showMessageDialog(null, "mail:"+mail.matches()+" pass:"+pass.matches()+" nombre:"+nombre.matches()+" apellido:"+apellidos.matches()+textFieldMail.getText());
-{
-  
-}
-
-        
-    }//GEN-LAST:event_jButton1MouseClicked
- 
-    
-    public static boolean validarNumeros(String datos){
+    public static boolean validarNumeros(String datos) {
         return datos.matches("[0-9]");
     }
-    
- 
-    
-    
-    
-    
+
+
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -291,6 +361,44 @@ if(mail.matches()&& pass.matches() && nombre.matches() && apellidos.matches()&& 
     private void textFieldMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldMailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldMailActionPerformed
+
+    private void textFieldNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNombreUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldNombreUsuarioActionPerformed
+
+    private void textFieldNombreUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textFieldNombreUsuarioMouseClicked
+        if (textFieldNombreUsuario.getText().equals("Nombre Usuario...")) {
+            textFieldNombreUsuario.setText("");
+        }
+    }//GEN-LAST:event_textFieldNombreUsuarioMouseClicked
+
+    private void textFieldNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textFieldNombreMouseClicked
+        if (textFieldNombre.getText().equals("Nombre...")) {
+            textFieldNombre.setText("");
+        }
+    }//GEN-LAST:event_textFieldNombreMouseClicked
+
+    private void textFieldApellidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textFieldApellidosMouseClicked
+        if (textFieldApellidos.getText().equals("Apellidos...")) {
+            textFieldApellidos.setText("");
+        }
+    }//GEN-LAST:event_textFieldApellidosMouseClicked
+
+    private void textFieldMailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textFieldMailMouseClicked
+        if (textFieldMail.getText().equals("Email...")) {
+            textFieldMail.setText("");
+        }
+    }//GEN-LAST:event_textFieldMailMouseClicked
+
+    private void textFieldTelefonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textFieldTelefonoMouseClicked
+        if (textFieldTelefono.getText().equals("Teléfono...")) {
+            textFieldTelefono.setText("");
+        }
+    }//GEN-LAST:event_textFieldTelefonoMouseClicked
+
+    private void jPasswordFieldContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldContraseñaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,12 +439,13 @@ if(mail.matches()&& pass.matches() && nombre.matches() && apellidos.matches()&& 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BotonRegistrarse;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPasswordField jPasswordFieldConfirmar;
     private javax.swing.JPasswordField jPasswordFieldContraseña;
     private java.awt.Label label1;
     private java.awt.Label label10;
+    private java.awt.Label label11;
     private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.Label label4;
@@ -347,6 +456,7 @@ if(mail.matches()&& pass.matches() && nombre.matches() && apellidos.matches()&& 
     private java.awt.TextField textFieldApellidos;
     private java.awt.TextField textFieldMail;
     private java.awt.TextField textFieldNombre;
+    private java.awt.TextField textFieldNombreUsuario;
     private java.awt.TextField textFieldTelefono;
     // End of variables declaration//GEN-END:variables
 }
