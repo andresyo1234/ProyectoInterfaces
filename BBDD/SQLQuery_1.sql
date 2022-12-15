@@ -31,7 +31,7 @@ GO
 
 CREATE TABLE [dbo].[Contactos]
 (
-    [IdContacto] INT NOT NULL PRIMARY KEY, -- Primary Key column
+    [Id_Contacto] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, -- Primary Key column
     [Id_usuario] INT NOT NULL UNIQUE, 
     [Nombre] NVARCHAR(50) NOT NULL,
     [Apellidos] NVARCHAR(50) NOT NULL,
@@ -46,23 +46,23 @@ CREATE TABLE [dbo].[Contactos]
 
 CREATE TABLE [dbo].[Notas]
 (
-    [IdNota] INT NOT NULL PRIMARY KEY, -- Primary Key column
+    [Id_Nota] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, -- Primary Key column
+    [Id_usuario] INT NOT NULL UNIQUE,
     [Titulo] NVARCHAR(50) NOT NULL,
     [Nota] NVARCHAR(50) NOT NULL,
-    [idusuario] INT NOT NULL UNIQUE,
 
-    CONSTRAINT fkidusuario FOREIGN KEY (idusuario)  REFERENCES Usuarios(Id)
+    CONSTRAINT fkidusuario FOREIGN KEY (Id_usuario)  REFERENCES Usuarios(Id)
     -- Specify more columns here
    
 )
 
 CREATE TABLE [dbo].[Articulo]
 (
-    [IdArticulo] INT NOT NULL PRIMARY KEY, -- Primary Key column
+    [Id_Articulo] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, -- Primary Key column
+    [Id_usuario]  INT NOT NULL UNIQUE,
     [Nombre] NVARCHAR(50) NOT NULL,
-    [idUsuario]  INT NOT NULL UNIQUE,
 
-     CONSTRAINT fkidUsuarioArticulo FOREIGN KEY (idUsuario)  REFERENCES Usuarios(Id)
+     CONSTRAINT fkidUsuarioArticulo FOREIGN KEY (Id_usuario)  REFERENCES Usuarios(Id)
    
     -- Specify more columns here
 )
@@ -71,15 +71,15 @@ CREATE TABLE [dbo].[Articulo]
 
 CREATE TABLE [dbo].[Tarjetas]
 (
-    [idTarjeta] INT NOT NULL PRIMARY KEY,-- Primary Key column
-    [IdUsuario]  INT NOT NULL UNIQUE, 
+    [Id_Tarjeta] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,-- Primary Key column
+    [Id_usuario]  INT NOT NULL UNIQUE, 
     [Saldo] INT NOT NULL,
     [Caducidad] DATE NOT NULL,
     [Codigo] INT NOT NULL,
     [NumeroCuenta] NVARCHAR(100) NOT NULL,
     [Imagen] IMAGE NULL
 
-    CONSTRAINT fkIdUsuarioTarjetas FOREIGN KEY (IdUsuario)  REFERENCES Usuarios(Id)
+    CONSTRAINT fkIdUsuarioTarjetas FOREIGN KEY (Id_usuario)  REFERENCES Usuarios(Id)
    
   
     -- Specify more columns here

@@ -5,9 +5,13 @@
 package proyectointerfaces;
 
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import static proyectointerfaces.BlogNotas.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,6 +70,11 @@ public class NuevaNota extends javax.swing.JFrame {
 
         btnAddNota.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAddNota.setText("Añadir");
+        btnAddNota.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddNotaMouseClicked(evt);
+            }
+        });
         btnAddNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddNotaActionPerformed(evt);
@@ -147,8 +156,36 @@ public class NuevaNota extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTituloActionPerformed
 
     private void btnAddNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNotaActionPerformed
+        
+        boolean title = txtTitulo.getText().length()<=0;
+         boolean txt = txtArea.getText().length()<=0;
+        
+        if(title || txt){
+            JOptionPane.showMessageDialog(null,(title? "El campo titulo tine que estar relleno \n":"") + (txt?"inserte Texto a la nota": ""));
+        }else{
+        try {
+                
+                Connection con = Conexion.getConexion();
+                PreparedStatement ps = con.prepareStatement("INSERT INTO Notas (Titulo,Nota,idusuario) VALUES (?,?,?)");
+                ps.setString(1, txtTitulo.getText());
+                ps.setString(2, txtArea.getText());
+                ps.setInt(3, InicioSesion.IdUsuario);
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Nota creada correctamente");
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "fallo1");
+            } catch (ClassNotFoundException e) {
+                System.out.println("fallo2");
+            } catch (Exception e) {
+
+            }
+        
+        
+        
         agregarDato();
         dispose();
+        }
     }//GEN-LAST:event_btnAddNotaActionPerformed
 
     private void btnResetNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetNotaActionPerformed
@@ -158,6 +195,17 @@ public class NuevaNota extends javax.swing.JFrame {
     private void btnCancelarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarNotaActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarNotaActionPerformed
+
+    private void btnAddNotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddNotaMouseClicked
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btnAddNotaMouseClicked
 
     /**
      * @param args the command line arguments
