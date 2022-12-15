@@ -224,20 +224,11 @@ public class AnyadirContacto extends javax.swing.JFrame {
            
                 PreparedStatement ps = connection_.prepareStatement("INSERT INTO Contactos (Id_usuario,Nombre,Apellidos,Email,Telefono,Genero) VALUES (?,?,?,?,?,?)");
                 ps.setInt(1, idusuario);
-                System.out.println(idusuario);
                 ps.setString(2, nombre);
-                                System.out.println(nombre);
-
                 ps.setString(3, apellido);
-System.out.println(apellido);
                 ps.setString(4, email);
-System.out.println(email);
                 ps.setInt(5, telefono);
-System.out.println(telefono);
                 ps.setString(6, genero);
-System.out.println(genero);
-                
-                System.out.println(ps.toString());
                 ps.executeUpdate();
             System.out.println("hola");
 
