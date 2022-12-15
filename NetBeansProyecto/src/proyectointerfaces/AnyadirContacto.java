@@ -210,24 +210,35 @@ public class AnyadirContacto extends javax.swing.JFrame {
             connection_ = Conexion.getConexion();
             st_ = connection_.createStatement();
 
-            String nombre, apellido, email, genero, telefono;
-            int idusuario;
+            String nombre, apellido, email, genero;
+            int idusuario, telefono;
             System.out.println(InicioSesion.IdUsuario);
             nombre = inputNombre.getText();
             apellido = inputApellido.getText();
             email = inputEmail.getText();
             genero = comboBoxGenero.getItemAt(comboBoxGenero.getSelectedIndex());
             idusuario = InicioSesion.IdUsuario;
-            telefono = inputTelefono.getText();
+            telefono = Integer.parseInt((inputTelefono.getText()));
 
             System.out.println("adios");
-            st_.executeQuery("INSERT INTO Contactos(Id_usuario, Nombre, Apellidos, Email, Telefono, Genero) VALUES('"
-                    + idusuario + "','"
-                    + nombre + "','"
-                    + apellido + "','"
-                    + email + "','"
-                    + telefono + "','"
-                    + genero + "','");
+           
+                PreparedStatement ps = connection_.prepareStatement("INSERT INTO Contactos (Id_usuario,Nombre,Apellidos,Email,Telefono,Genero) VALUES (?,?,?,?,?,?)");
+                ps.setInt(1, idusuario);
+                System.out.println(idusuario);
+                ps.setString(2, nombre);
+                                System.out.println(nombre);
+
+                ps.setString(3, apellido);
+System.out.println(apellido);
+                ps.setString(4, email);
+System.out.println(email);
+                ps.setInt(5, telefono);
+System.out.println(telefono);
+                ps.setString(6, genero);
+System.out.println(genero);
+                
+                System.out.println(ps.toString());
+                ps.executeUpdate();
             System.out.println("hola");
 
             JOptionPane.showMessageDialog(null, "Contacto añadido");
