@@ -8,15 +8,21 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.InputMap;
 import javax.swing.JOptionPane;
+import static proyectointerfaces.AgendaPrincipal.TablaContactos;
 
 /**
  *
  * @author LucasMorenoZabala
  */
 public class EditarContacto extends javax.swing.JFrame {
+
+    public static int idcontacto;
 
     /**
      * Creates new form Registro
@@ -206,15 +212,50 @@ public class EditarContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
+        Statement st_;
+        ResultSet rs_;
+
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+            System.out.println("Update Contactos set "
+                    + " nombre= '" + inputNombre.getText()
+                    + "', apellidos='" + inputApellido.getText()
+                    + "', Email='" + inputEmail.getText()
+                    + "', telefono='" + inputTelefono.getText()
+                    + "', genero= '" + comboBoxGenero.getItemAt(comboBoxGenero.getSelectedIndex())
+                    + "' where IdContacto=" + idcontacto
+            );
+            st_.executeUpdate("Update Contactos set "
+                    + " nombre= '" + inputNombre.getText()
+                    + "', apellidos='" + inputApellido.getText()
+                    + "', Email='" + inputEmail.getText()
+                    + "', telefono='" + inputTelefono.getText()
+                    + "', genero= '" + comboBoxGenero.getItemAt(comboBoxGenero.getSelectedIndex())
+                    + "' where IdContacto=" + idcontacto
+            );
+            System.out.println("adios");
+           
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
+        }
+
         AgendaPrincipal ag = new AgendaPrincipal();
-        ag.setVisible(true);
+
+        ag.setVisible(
+                true);
         dispose();
     }//GEN-LAST:event_botonEditarActionPerformed
 
     public static boolean validarNumeros(String datos) {
         return datos.matches("[0-9]");
     }
-
 
     /**
      * @param args the command line arguments
@@ -230,16 +271,24 @@ public class EditarContacto extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditarContacto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarContacto.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditarContacto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarContacto.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditarContacto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarContacto.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditarContacto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarContacto.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -269,11 +318,11 @@ public class EditarContacto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonEditar;
-    private javax.swing.JComboBox<String> comboBoxGenero;
-    private javax.swing.JTextField inputApellido;
-    private javax.swing.JTextField inputEmail;
-    private javax.swing.JTextField inputNombre;
-    private javax.swing.JTextField inputTelefono;
+    public static javax.swing.JComboBox<String> comboBoxGenero;
+    public static javax.swing.JTextField inputApellido;
+    public static javax.swing.JTextField inputEmail;
+    public static javax.swing.JTextField inputNombre;
+    public static javax.swing.JTextField inputTelefono;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -174,7 +174,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
     public static int IdUsuario = 0;
     private void BotonInicioSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInicioSesionMouseClicked
-        AgendaPrincipal ag = new AgendaPrincipal();
+        
 
         String nombreUsuario, psw = null;
         
@@ -196,16 +196,15 @@ public class InicioSesion extends javax.swing.JFrame {
                 IdUsuario = rs_.getInt(1);
                 psw = rs_.getString(8);
             }
+            System.out.println("asd: " + IdUsuario);
 
-            System.out.println(psw);
-            System.out.println("id usuario: " + IdUsuario);
+            
+            
             if (IdUsuario != 0) {
-                System.out.println("Nombre Usuario correcto");
 
                 rs_.next();
-                System.out.println(new String(InputContrasenya.getPassword()));
                 if (new String(InputContrasenya.getPassword()).equals(psw)) {
-
+                    AgendaPrincipal ag = new AgendaPrincipal();
                     ag.setVisible(true);
                     dispose();
                 } else {
