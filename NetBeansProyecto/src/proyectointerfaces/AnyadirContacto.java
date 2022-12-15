@@ -4,12 +4,8 @@
  */
 package proyectointerfaces;
 
-import java.beans.Statement;
-import java.sql.Connection;
 import java.sql.*;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -208,12 +204,15 @@ public class AnyadirContacto extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonAnyadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnyadirActionPerformed
+        Statement st_;
+        Connection connection_;
         try {
-            Statement st_;
-            Connection con = Conexion.getConexion();
+            connection_ = Conexion.getConexion();
+            st_ = connection_.createStatement();
 
             String nombre, apellido, email, genero, telefono;
             int idusuario;
+            System.out.println(InicioSesion.IdUsuario);
             nombre = inputNombre.getText();
             apellido = inputApellido.getText();
             email = inputEmail.getText();
@@ -221,17 +220,16 @@ public class AnyadirContacto extends javax.swing.JFrame {
             idusuario = InicioSesion.IdUsuario;
             telefono = inputTelefono.getText();
 
-            PreparedStatement ps = con.prepareStatement(
-                    ("INSERT INTO Contactos(Id_usuario, Nombre, Apellidos, Email, Telefono, Genero) VALUES('"
+            System.out.println("adios");
+            st_.executeQuery("INSERT INTO Contactos(Id_usuario, Nombre, Apellidos, Email, Telefono, Genero) VALUES('"
                     + idusuario + "','"
                     + nombre + "','"
                     + apellido + "','"
                     + email + "','"
                     + telefono + "','"
-                    + genero + "','"));
+                    + genero + "','");
             System.out.println("hola");
-            ps.executeUpdate();
-            System.out.println("adios");
+
             JOptionPane.showMessageDialog(null, "Contacto añadido");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "fallo1");
