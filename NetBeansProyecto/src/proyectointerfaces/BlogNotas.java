@@ -9,19 +9,62 @@ import javax.swing.DefaultListModel;
 
 import static proyectointerfaces.NuevaNota.txtTitulo;
 import java.util.ArrayList;
+import java.sql.*;
+import java.sql.Statement;
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import static proyectointerfaces.AgendaPrincipal.TablaContactos;
+
+
+
 
 /**
  *
  * @author AndresRoldanGonzalez
  */
 public class BlogNotas extends javax.swing.JFrame {
+   
+    
+    int idusuario = InicioSesion.IdUsuario;
+    
+     DefaultListModel modelo = new DefaultListModel();
+    
 
     /**
      * Creates new form BlogNotas
      */
     public BlogNotas() {
-        initComponents();
-        limpiarJlist();
+           initComponents();
+           
+         Statement st_;
+        ResultSet rs_;
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+            rs_ = st_.executeQuery("select * from Notas where Id_usuario = " + idusuario);
+            
+            while (rs_.next()) {
+               modelo.addElement(rs_.getString("Titulo"));
+                
+            }
+            Notas.setModel(modelo);
+           
+            rs_.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "usuario ya exitente");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
+        
+        
+        
+     
         setTitle("Mi Agenda - Bloc de Notas");
     }
 
@@ -41,7 +84,7 @@ public class BlogNotas extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jlDatos = new javax.swing.JList<>();
+        Notas = new javax.swing.JList<>();
         btnAgregar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnAbrirNota = new javax.swing.JButton();
@@ -136,11 +179,17 @@ public class BlogNotas extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(153, 196, 255));
 
-        jlDatos.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jScrollPane1.setViewportView(jlDatos);
+        Notas.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        Notas.setModel(new DefaultListModel ());
+        jScrollPane1.setViewportView(Notas);
 
         btnAgregar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnAgregar.setText("Agregar Nota");
+        btnAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarMouseClicked(evt);
+            }
+        });
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -149,6 +198,11 @@ public class BlogNotas extends javax.swing.JFrame {
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnEliminar.setText("Eliminar Nota");
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseClicked(evt);
+            }
+        });
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -157,6 +211,11 @@ public class BlogNotas extends javax.swing.JFrame {
 
         btnAbrirNota.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnAbrirNota.setText("Abrir Nota");
+        btnAbrirNota.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAbrirNotaMouseClicked(evt);
+            }
+        });
         btnAbrirNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAbrirNotaActionPerformed(evt);
@@ -227,14 +286,13 @@ public class BlogNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        eliminarDato();
+       // eliminarDato();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnAbrirNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirNotaActionPerformed
 
         EditarNota en = new EditarNota();
         en.setVisible(true);
-        abrirNota();
     }//GEN-LAST:event_btnAbrirNotaActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -272,6 +330,52 @@ public class BlogNotas extends javax.swing.JFrame {
            cart.setSize(1080, 720);
            dispose();
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
+     
+        
+    }//GEN-LAST:event_btnAgregarMouseClicked
+
+    private void btnAbrirNotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAbrirNotaMouseClicked
+
+    }//GEN-LAST:event_btnAbrirNotaMouseClicked
+
+    private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
+         Statement st_;
+        ResultSet rs_;
+
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            rs_ = st_.executeQuery("select * from Notas where Id_usuario = " + idusuario);
+
+            int[] rows = Notas.getSelectedIndices();
+
+            if (!(rows.length > 1)) {
+
+                while (rs_.getRow() <= rows[0]) {
+                    rs_.next();
+                    System.out.println(rs_.getRow());
+
+                }
+                st_.executeUpdate("Delete from Notas where IdNota=" + rs_.getString("IdNota"));
+                dispose();
+                  BlogNotas bn = new BlogNotas();
+                bn.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione unicamente 1 fila ");
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
+        }
+    }//GEN-LAST:event_btnEliminarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -311,32 +415,12 @@ public class BlogNotas extends javax.swing.JFrame {
         });
     }
 
-    public DefaultListModel limpiarJlist() {
-        DefaultListModel modelo = new DefaultListModel();
-        jlDatos.setModel(modelo);
-        return modelo;
-    }
 
-    public static ArrayList<String> datosArea = new ArrayList<String>();
-    public static ArrayList<String> datosTitulo = new ArrayList<String>();
-
-    public static DefaultListModel eliminarDato() {
-        DefaultListModel modelo = (DefaultListModel) jlDatos.getModel();
-        int indx = jlDatos.getSelectedIndex();
-        System.out.println(indx);
-        modelo.remove(indx);
-        datosArea.remove(indx);
-        datosTitulo.remove(indx);
-        return modelo;
-    }
-
-    public void abrirNota() {
-        EditarNota.txtArea.setText(datosArea.get(jlDatos.getSelectedIndex()));
-        EditarNota.txtTitulo.setText(datosTitulo.get(jlDatos.getSelectedIndex()));
-    }
+  
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> Notas;
     private javax.swing.JButton btnAbrirNota;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
@@ -347,6 +431,5 @@ public class BlogNotas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public static javax.swing.JList<String> jlDatos;
     // End of variables declaration//GEN-END:variables
 }
