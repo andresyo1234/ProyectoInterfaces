@@ -6,6 +6,10 @@ package proyectointerfaces;
 
 import static proyectointerfaces.BlogNotas.jlDatos;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +22,7 @@ import javax.swing.DefaultListModel;
  * @author AndresRoldanGonzalez
  */
 public class Cartera extends javax.swing.JFrame {
-
+    int idusuario = 1;
     /**
      * Creates new form BlogNotas
      */
@@ -26,8 +30,53 @@ public class Cartera extends javax.swing.JFrame {
         initComponents();
         limpiarLista();
         setTitle("Mi Agenda - Cartera");
+        
+        
+        Statement st_;
+        ResultSet rs_;
+
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            rs_ = st_.executeQuery("SELECT * from Usuarios where Id = " + idusuario);
+            rs_.next();
+            jLabel1.setText("saldo de: "+ rs_.getString("nombre")+" "+rs_.getString("Apellidos"));
+            rs_.close();
+            rs_ = st_.executeQuery("select * from usuarios where Id_usuario = " + idusuario);
+            while (rs_.next()) {
+                //modelo.addElement(rs_.getString("Nombre"));
+            }
+            //ListaProductos.setModel(modelo);
+            rs_.close();
+            //TablaContactos.setModel(model);
+            // JOptionPane.showMessageDialog(null, "El alumno se ha registrado correctamente");
+        } catch (SQLException e) {
+            System.out.println("fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
+        }
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -166,7 +215,7 @@ public class Cartera extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(153, 196, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Saldo Actual de: Jose Antonio Giraldo");
+        jLabel1.setText("Saldo Actual de:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
