@@ -145,7 +145,7 @@ public class Cartera extends javax.swing.JFrame {
 
         jPanel16.setBackground(new java.awt.Color(153, 196, 255));
 
-        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton10.setText("Modificar Saldo");
         jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

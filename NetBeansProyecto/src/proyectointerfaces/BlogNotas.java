@@ -139,7 +139,7 @@ public class BlogNotas extends javax.swing.JFrame {
         jlDatos.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jScrollPane1.setViewportView(jlDatos);
 
-        btnAgregar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnAgregar.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnAgregar.setText("Agregar Nota");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +147,7 @@ public class BlogNotas extends javax.swing.JFrame {
             }
         });
 
-        btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnEliminar.setText("Eliminar Nota");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,7 +155,7 @@ public class BlogNotas extends javax.swing.JFrame {
             }
         });
 
-        btnAbrirNota.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        btnAbrirNota.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnAbrirNota.setText("Abrir Nota");
         btnAbrirNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,13 +168,13 @@ public class BlogNotas extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(221, Short.MAX_VALUE)
+                .addContainerGap(236, Short.MAX_VALUE)
                 .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(55, 55, 55)
-                .addComponent(btnAbrirNota, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(btnAbrirNota, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                 .addGap(53, 53, 53)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addContainerGap(245, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -184,12 +184,12 @@ public class BlogNotas extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
-                .addGap(39, 39, 39)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregar)
-                    .addComponent(btnAbrirNota)
-                    .addComponent(btnEliminar))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAbrirNota, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(39, 39, 39))
         );
 
