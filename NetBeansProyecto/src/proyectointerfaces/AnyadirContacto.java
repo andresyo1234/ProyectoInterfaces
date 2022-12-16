@@ -206,7 +206,10 @@ public class AnyadirContacto extends javax.swing.JFrame {
     private void botonAnyadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnyadirActionPerformed
         Statement st_;
         Connection connection_;
+<<<<<<< HEAD
         
+=======
+>>>>>>> andresyo
         try {
             connection_ = Conexion.getConexion();
             st_ = connection_.createStatement();

@@ -31,6 +31,11 @@ public class AgendaPrincipal extends javax.swing.JFrame {
      */
     public AgendaPrincipal() {
         initComponents();
+<<<<<<< HEAD
+=======
+        
+        
+>>>>>>> andresyo
         BotonPaginaAgenda.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
         jButton2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
         BotonPaginaCompra.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
