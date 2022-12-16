@@ -15,7 +15,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
-import static proyectointerfaces.BlogNotas.Notas;
 
 /**
  *
