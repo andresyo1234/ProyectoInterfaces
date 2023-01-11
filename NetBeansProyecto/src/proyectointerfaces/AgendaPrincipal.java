@@ -24,7 +24,7 @@ import static proyectointerfaces.InicioSesion.IdUsuario;
  */
 public class AgendaPrincipal extends javax.swing.JFrame {
 
-    int idusuario = 1;
+    
 
     /**
      * Creates new form AgendaPrincipal
@@ -47,7 +47,8 @@ public class AgendaPrincipal extends javax.swing.JFrame {
             Connection con = Conexion.getConexion();
             st_ = con.createStatement();
 
-            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + idusuario);
+            System.out.println("ID del usuario: " + IdUsuario);
+            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + IdUsuario);
             Vector v;
             DefaultTableModel model = (DefaultTableModel) TablaContactos.getModel();
 
@@ -505,7 +506,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
             Connection con = Conexion.getConexion();
             st_ = con.createStatement();
 
-            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + idusuario);
+            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + IdUsuario);
 
             int[] rows = TablaContactos.getSelectedRows();
 
@@ -550,7 +551,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
             Connection con = Conexion.getConexion();
             st_ = con.createStatement();
 
-            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + idusuario);
+            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + IdUsuario);
 
             int[] rows = TablaContactos.getSelectedRows();
 
