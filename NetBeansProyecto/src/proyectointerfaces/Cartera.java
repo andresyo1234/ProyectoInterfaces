@@ -4,8 +4,11 @@
  */
 package proyectointerfaces;
 
-import static proyectointerfaces.BlogNotas.jlDatos;
 import java.awt.Color;
+import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +22,9 @@ import javax.swing.DefaultListModel;
  */
 public class Cartera extends javax.swing.JFrame {
 
+    int idusuario = 1;
+    DefaultListModel modelo = new DefaultListModel();
+
     /**
      * Creates new form BlogNotas
      */
@@ -26,6 +32,52 @@ public class Cartera extends javax.swing.JFrame {
         initComponents();
         limpiarLista();
         setTitle("Mi Agenda - Cartera");
+
+        Statement st_;
+        Statement st_2;
+        ResultSet rs_;
+
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            rs_ = st_.executeQuery("SELECT * from Usuarios where Id = " + idusuario);
+            rs_.next();
+            jLabel1.setText("Saldo de: " + rs_.getString("nombre") + " " + rs_.getString("Apellidos"));
+            rs_.close();
+            rs_ = st_.executeQuery("select * from Cartera where Id_usuario = " + idusuario);
+
+            if (!rs_.next()) {
+                PreparedStatement ps = con.prepareStatement("INSERT INTO cartera (Id_usuario,Saldo) VALUES (?,?)");
+                ps.setInt(1, idusuario);
+                ps.setInt(2, 0);
+                ps.executeUpdate();
+
+            }
+            rs_.close();
+            rs_ = st_.executeQuery("select * from Cartera where Id_usuario = " + idusuario);
+            rs_.next();
+            textoDinero.setText(rs_.getString("saldo") + '€');
+            int idcartera= rs_.getInt("IdCartera");
+            rs_.close();
+            
+             rs_ = st_.executeQuery("select * from TRANSACCIONES where IdCartera = " + idcartera);
+             while(rs_.next()){
+                 modelo.addElement(rs_.getString("texto"));
+             }
+            listaRegistro.setModel(modelo);
+            
+            
+            
+        } catch (SQLException e) {
+            System.out.println("fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
+        }
+
     }
 
     /**
@@ -166,7 +218,7 @@ public class Cartera extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(153, 196, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Saldo Actual de: Jose Antonio Giraldo");
+        jLabel1.setText("Saldo Actual de:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -261,9 +313,7 @@ public class Cartera extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -275,37 +325,37 @@ public class Cartera extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         AgendaPrincipal ap = new AgendaPrincipal();
-           ap.setVisible(true);
-           ap.setLocationRelativeTo(null);
-           ap.setSize(1080, 720);
-           dispose();
+        ap.setVisible(true);
+        ap.setLocationRelativeTo(null);
+        ap.setSize(1080, 720);
+        dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-           BlogNotas bn = new BlogNotas();
-           bn.setVisible(true);
-           bn.setLocationRelativeTo(null);
-           bn.setSize(1080, 720);
-           dispose();
+        BlogNotas bn = new BlogNotas();
+        bn.setVisible(true);
+        bn.setLocationRelativeTo(null);
+        bn.setSize(1080, 720);
+        dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         ListaCompra lc = new ListaCompra();
-           lc.setVisible(true);
-           lc.setLocationRelativeTo(null);
-           lc.setSize(1080, 720);
-           dispose();
+        lc.setVisible(true);
+        lc.setLocationRelativeTo(null);
+        lc.setSize(1080, 720);
+        dispose();
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
         Cartera cart = new Cartera();
-           cart.setVisible(true);
-           cart.setLocationRelativeTo(null);
-           cart.setSize(1080, 720);
-           dispose();
+        cart.setVisible(true);
+        cart.setLocationRelativeTo(null);
+        cart.setSize(1080, 720);
+        dispose();
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -364,19 +414,15 @@ public class Cartera extends javax.swing.JFrame {
                 new Cartera().setVisible(true);
             }
         });
-        
-        
-       
-        
-        
+
     }
-    
+
     public DefaultListModel limpiarLista() {
         DefaultListModel modelo = new DefaultListModel();
         listaRegistro.setModel(modelo);
         return modelo;
     }
-    
+
     public static int dineroFinal = 0;
     public static int dineroModificar = 0;
     public static String texto = "";
@@ -385,9 +431,8 @@ public class Cartera extends javax.swing.JFrame {
     public static DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
     public static DefaultListModel listModel = new DefaultListModel();
     public static ArrayList listaCartera = new ArrayList();
-    
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;

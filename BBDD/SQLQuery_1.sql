@@ -18,7 +18,7 @@ USE Agenda
 CREATE TABLE [dbo].[Usuarios]
 (
     [Id] INT IDENTITY(1,1) PRIMARY KEY, -- Primary Key column
-    [NombreUsuario] NVARCHAR(25) NOT NULL,
+    [NombreUsuario] NVARCHAR(25) NOT NULL UNIQUE,
     [Nombre] NVARCHAR(50) NOT NULL,
     [Apellidos] NVARCHAR(50) NOT NULL,
     [Email] NVARCHAR(100) NOT NULL,
@@ -31,55 +31,74 @@ GO
 
 CREATE TABLE [dbo].[Contactos]
 (
-    [IdContacto] INT NOT NULL PRIMARY KEY, -- Primary Key column
-    [Id_usuario] INT NOT NULL UNIQUE, 
+    [IdContacto] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, -- Primary Key column
+    [Id_usuario] INT NOT NULL, 
     [Nombre] NVARCHAR(50) NOT NULL,
     [Apellidos] NVARCHAR(50) NOT NULL,
     [Email] NVARCHAR(100) NOT NULL,
     [Telefono] int NOT NULL,
     [Genero] varchar(25) NOT NULL,
 
-    CONSTRAINT fkId_usuario FOREIGN KEY (Id_usuario)  REFERENCES Usuarios(Id)
+    CONSTRAINT fkId_usuarioContactos FOREIGN KEY (Id_usuario)  REFERENCES Usuarios(Id)
     -- Specify more columns here
 )
 
 
 CREATE TABLE [dbo].[Notas]
 (
-    [IdNota] INT NOT NULL PRIMARY KEY, -- Primary Key column
+    [IdNota] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, -- Primary Key column
+    [Id_usuario] INT NOT NULL,
     [Titulo] NVARCHAR(50) NOT NULL,
     [Nota] NVARCHAR(50) NOT NULL,
-    [idusuario] INT NOT NULL UNIQUE,
+    
 
-    CONSTRAINT fkidusuario FOREIGN KEY (idusuario)  REFERENCES Usuarios(Id)
+    CONSTRAINT fkId_usuarioNotas FOREIGN KEY (Id_usuario)  REFERENCES Usuarios(Id)
     -- Specify more columns here
    
 )
 
 CREATE TABLE [dbo].[Articulo]
 (
-    [IdArticulo] INT NOT NULL PRIMARY KEY, -- Primary Key column
+    [IdArticulo] INT IDENTITY(1,1) NOT NULL PRIMARY KEY, -- Primary Key column
+    [Id_usuario]  INT NOT NULL,
     [Nombre] NVARCHAR(50) NOT NULL,
-    [idUsuario]  INT NOT NULL UNIQUE,
+    
 
-     CONSTRAINT fkidUsuarioArticulo FOREIGN KEY (idUsuario)  REFERENCES Usuarios(Id)
+     CONSTRAINT fkidUsuarioArticulo FOREIGN KEY (Id_usuario)  REFERENCES Usuarios(Id)
    
     -- Specify more columns here
 )
 
 
 
-CREATE TABLE [dbo].[Tarjetas]
+CREATE TABLE [dbo].[Cartera]
 (
-    [idTarjeta] INT NOT NULL PRIMARY KEY,-- Primary Key column
-    [IdUsuario]  INT NOT NULL UNIQUE, 
+<<<<<<< HEAD
+    [idTarjeta] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,-- Primary Key column
+=======
+    [idCartera] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,-- Primary Key column
+>>>>>>> andresyo
+    [Id_usuario]  INT NOT NULL, 
     [Saldo] INT NOT NULL,
-    [Caducidad] DATE NOT NULL,
-    [Codigo] INT NOT NULL,
-    [NumeroCuenta] NVARCHAR(100) NOT NULL,
-    [Imagen] IMAGE NULL
 
-    CONSTRAINT fkIdUsuarioTarjetas FOREIGN KEY (IdUsuario)  REFERENCES Usuarios(Id)
+<<<<<<< HEAD
+    CONSTRAINT fkIdUsuarioTarjetas FOREIGN KEY (Id_usuario)  REFERENCES Usuarios(Id)
+=======
+    CONSTRAINT fkIdUsuarioCartera FOREIGN KEY (Id_usuario)  REFERENCES Usuarios(Id)
+   
+  
+    -- Specify more columns here
+);
+
+
+CREATE TABLE [dbo].[Transacciones]
+(
+    [idTransaccion] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,-- Primary Key column
+    [idCartera]  INT NOT NULL, 
+    [texto] text NOT NULL,
+
+    CONSTRAINT fkCarteraTran FOREIGN KEY (idCartera)  REFERENCES Cartera(idCartera)
+>>>>>>> andresyo
    
   
     -- Specify more columns here
