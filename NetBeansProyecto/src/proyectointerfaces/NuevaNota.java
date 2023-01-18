@@ -5,13 +5,9 @@
 package proyectointerfaces;
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import static proyectointerfaces.BlogNotas.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -68,20 +64,15 @@ public class NuevaNota extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Escribe la descripción de la nota:");
 
-        btnAddNota.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAddNota.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnAddNota.setText("Añadir");
-        btnAddNota.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAddNotaMouseClicked(evt);
-            }
-        });
         btnAddNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddNotaActionPerformed(evt);
             }
         });
 
-        btnCancelarNota.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnCancelarNota.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnCancelarNota.setText("Cancelar");
         btnCancelarNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +80,7 @@ public class NuevaNota extends javax.swing.JFrame {
             }
         });
 
-        btnResetNota.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnResetNota.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnResetNota.setText("Reset");
         btnResetNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,18 +110,18 @@ public class NuevaNota extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAddNota)
+                        .addComponent(btnAddNota, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnCancelarNota, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCancelarNota)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnResetNota, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnResetNota, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -140,12 +131,12 @@ public class NuevaNota extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(btnAddNota)
-                    .addComponent(btnCancelarNota)
-                    .addComponent(btnResetNota))
+                    .addComponent(btnAddNota, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelarNota, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnResetNota, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,36 +147,8 @@ public class NuevaNota extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTituloActionPerformed
 
     private void btnAddNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNotaActionPerformed
-        
-        boolean title = txtTitulo.getText().length()<=0;
-         boolean txt = txtArea.getText().length()<=0;
-        
-        if(title || txt){
-            JOptionPane.showMessageDialog(null,(title? "El campo titulo tine que estar relleno \n":"") + (txt?"inserte Texto a la nota": ""));
-        }else{
-        try {
-                
-                Connection con = Conexion.getConexion();
-                PreparedStatement ps = con.prepareStatement("INSERT INTO Notas (Titulo,Nota,idusuario) VALUES (?,?,?)");
-                ps.setString(1, txtTitulo.getText());
-                ps.setString(2, txtArea.getText());
-                ps.setInt(3, InicioSesion.IdUsuario);
-                ps.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Nota creada correctamente");
-
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "fallo1");
-            } catch (ClassNotFoundException e) {
-                System.out.println("fallo2");
-            } catch (Exception e) {
-
-            }
-        
-        
-        
         agregarDato();
         dispose();
-        }
     }//GEN-LAST:event_btnAddNotaActionPerformed
 
     private void btnResetNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetNotaActionPerformed
@@ -195,17 +158,6 @@ public class NuevaNota extends javax.swing.JFrame {
     private void btnCancelarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarNotaActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarNotaActionPerformed
-
-    private void btnAddNotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddNotaMouseClicked
-        
-        
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_btnAddNotaMouseClicked
 
     /**
      * @param args the command line arguments
