@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Informe1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b13fca0d-7786-4e07-b477-724f94946634">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BBDDAgenda"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Tabla" uuid="444b0b23-335c-492b-9925-c9682254ed4a">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BBDDAgenda"/>
+		<queryString language="SQL">
+			<![CDATA[select Usuarios.NombreUsuario, count(IdContacto) as "Numero Contactos" from Contactos  INNER JOIN Usuarios on contactos.Id_usuario=Usuarios.Id group by Usuarios.NombreUsuario
+]]>
+		</queryString>
+		<field name="NombreUsuario" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="NombreUsuario"/>
+			<property name="com.jaspersoft.studio.field.label" value="NombreUsuario"/>
+		</field>
+		<field name="Numero Contactos" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="Numero Contactos"/>
+			<property name="com.jaspersoft.studio.field.label" value="Numero Contactos"/>
+		</field>
+	</subDataset>
+	<subDataset name="Dataset1" uuid="f6db069c-aea3-40d7-88f4-c94f60f57b31">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BBDDAgenda"/>
+		<queryString language="SQL">
+			<![CDATA[select Usuarios.NombreUsuario, count(1) as "Numero Contactos" from Contactos  INNER JOIN Usuarios on contactos.Id_usuario=Usuarios.Id group by Usuarios.NombreUsuario
+]]>
+		</queryString>
+		<field name="NombreUsuario" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="NombreUsuario"/>
+			<property name="com.jaspersoft.studio.field.label" value="NombreUsuario"/>
+		</field>
+		<field name="Numero Contactos" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="Numero Contactos"/>
+			<property name="com.jaspersoft.studio.field.label" value="Numero Contactos"/>
+		</field>
+	</subDataset>
+	<subDataset name="Dataset2" uuid="f73cd6f2-7ac1-4894-a0e1-4d54d1c3b16c">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="BBDDAgenda"/>
+		<queryString language="SQL">
+			<![CDATA[select avg(count) as "Media"from ( 
+    select count(*) as Count from Contactos group by Id_usuario
+ )as count]]>
+		</queryString>
+		<field name="Media" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="Media"/>
+			<property name="com.jaspersoft.studio.field.label" value="Media"/>
+		</field>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[select * from contactos where idcontacto=1]]>
+	</queryString>
+	<field name="IdContacto" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="IdContacto"/>
+		<property name="com.jaspersoft.studio.field.label" value="IdContacto"/>
+	</field>
+	<field name="Id_usuario" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Id_usuario"/>
+		<property name="com.jaspersoft.studio.field.label" value="Id_usuario"/>
+	</field>
+	<field name="Nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nombre"/>
+	</field>
+	<field name="Apellidos" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Apellidos"/>
+		<property name="com.jaspersoft.studio.field.label" value="Apellidos"/>
+	</field>
+	<field name="Email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Email"/>
+		<property name="com.jaspersoft.studio.field.label" value="Email"/>
+	</field>
+	<field name="Telefono" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Telefono"/>
+		<property name="com.jaspersoft.studio.field.label" value="Telefono"/>
+	</field>
+	<field name="Genero" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Genero"/>
+		<property name="com.jaspersoft.studio.field.label" value="Genero"/>
+	</field>
+	<variable name="MediContactos" class="java.lang.String" incrementType="Report" calculation="Count">
+		<variableDescription><![CDATA[Calcula la media de los contactos por usuarios]]></variableDescription>
+		<variableExpression><![CDATA[$F{IdContacto}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="-1" y="0" width="551" height="30" uuid="864597cc-39cb-4c60-b0eb-88243c559ee8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Media de Contactos por Usuario]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="-1" y="0" width="551" height="30" uuid="c0cfc5ce-f194-48f2-bdb5-4571eafae98a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Media de Contactos por Usuario]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="124" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="550" height="124" uuid="17df053c-cdc6-4b35-a0d1-9513c59281af"/>
+				<textElement textAlignment="Left">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Vamos a realizar un estudio sobre la media de contactos que tiene cada usuario.
+A la hora de realizarlo, hemos optado por recoger la información de la Base de Datos. Esta operación consistirá en el filtrado para el descarte de la información innecesaria(Usuarios recién creados,contactos duplicados, cuentas inactivas...). Acto seguido, se analizarán los datos individualmente y se realizará la media de estos.
+Este documento nos permitirá establecer unos límites claros a la hora del consumo de memoria de la aplicación, velocidad de la carga de datos, así como la simplificación de la interfaz de la agenda acorde con el normal uso de los usuarios.]]></text>
+			</staticText>
+		</band>
+		<band height="31">
+			<staticText>
+				<reportElement x="0" y="1" width="550" height="30" uuid="2464cb3b-1d2a-45bc-af96-10f29dc4b181"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Analisis de Datos]]></text>
+			</staticText>
+		</band>
+		<band height="84">
+			<componentElement>
+				<reportElement x="180" y="12" width="200" height="60" uuid="29152bc2-053d-4456-88a0-c2ed78cec9bc">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset1" uuid="c68a8d50-db08-4774-95b6-d07ca54fca1e">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="100" uuid="11a7d096-5c04-40da-8b5b-ad5e624b730a">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="8bbafc1d-6eb8-48d0-b302-992f220faaad"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[NombreUsuario]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="d5548d11-4622-44ed-8ba0-f51ad4110ba6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{NombreUsuario}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="51df5d96-b71c-4bbf-9fe3-9df5a35b4cbe">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:columnHeader style="Table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="278a9a92-4b71-4dab-826f-d9e5784236c3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Numero Contactos]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="379cef72-6c32-4f36-ad13-40fbe1a1b20c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{Numero Contactos}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="80">
+			<componentElement>
+				<reportElement x="180" y="10" width="200" height="60" uuid="6d330dfa-7e63-4ddf-9494-39d898ded537">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table 1_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset2" uuid="0d826fff-f011-4a01-82dc-3196c58a8227">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="200" uuid="acd63047-db70-4185-a6d4-46e72f5e26fa">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="200" height="30" uuid="086a82cc-5ef2-4a76-9b7e-6b9ca29ac6b2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Media]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="200" height="30" uuid="ba65e241-bd57-40a8-be6f-80968a818592"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{Media}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="50"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="180" y="0" width="100" height="30" uuid="99662eee-31e6-41a6-b881-fe36268eb0f5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="280" y="0" width="100" height="30" uuid="bdf166ff-20e6-4d63-8641-9eaa1952eac8"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
