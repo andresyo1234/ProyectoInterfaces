@@ -6,10 +6,15 @@ package proyectointerfaces;
 
 import static proyectointerfaces.Cartera.*;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,11 +55,6 @@ public class ayadirDinero extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton1.setText("Añadir Saldo");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -63,11 +63,6 @@ public class ayadirDinero extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton2.setText("Quitar Saldo");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -136,9 +131,49 @@ public class ayadirDinero extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseClicked
     //AYADIR DINERO 
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Statement st_;
+        Connection connection_;
+        /*try {
+            connection_ = Conexion.getConexion();
+            st_ = connection_.createStatement();
 
+            String nombre, apellido, email, genero;
+            int idusuario, telefono;
+            System.out.println(InicioSesion.IdUsuario);
+            nombre = inputNombre.getText();
+            apellido = inputApellido.getText();
+            email = inputEmail.getText();
+            genero = comboBoxGenero.getItemAt(comboBoxGenero.getSelectedIndex());
+            idusuario = InicioSesion.IdUsuario;
+            telefono = Integer.parseInt((inputTelefono.getText()));
+
+            System.out.println("adios");
+           
+                PreparedStatement ps = connection_.prepareStatement("INSERT INTO Contactos (Id_usuario,Nombre,Apellidos,Email,Telefono,Genero) VALUES (?,?,?,?,?,?)");
+                ps.setInt(1, idusuario);
+                ps.setString(2, nombre);
+                ps.setString(3, apellido);
+                ps.setString(4, email);
+                ps.setInt(5, telefono);
+                ps.setString(6, genero);
+                ps.executeUpdate();
+            System.out.println("hola");
+
+            JOptionPane.showMessageDialog(null, "Contacto añadido");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+        }
+
+        AgendaPrincipal ag = new AgendaPrincipal();
+        ag.setVisible(true);
+        dispose();*/
+        
+        
         sumarCalcular();
         if (dineroFinal < 0) {
             textoDinero.setForeground(Color.red);
@@ -153,13 +188,9 @@ public class ayadirDinero extends javax.swing.JFrame {
         listaRegistro.setModel(listModel);
 
         dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-
-    }//GEN-LAST:event_jButton1MouseClicked
-    //QUITAR SALDO
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
-
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         restarCalcular();
 
         if (dineroFinal < 0) {
@@ -173,14 +204,6 @@ public class ayadirDinero extends javax.swing.JFrame {
         }
         listaRegistro.setModel(listModel);
         dispose();
-    }//GEN-LAST:event_jButton2MouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

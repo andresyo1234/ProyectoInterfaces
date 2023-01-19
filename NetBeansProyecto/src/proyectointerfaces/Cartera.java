@@ -147,11 +147,6 @@ public class Cartera extends javax.swing.JFrame {
 
         jButton10.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton10.setText("Modificar Saldo");
-        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton7MouseClicked(evt);
-            }
-        });
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -309,16 +304,13 @@ public class Cartera extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        // TODO add your handling code here:
+       
+     
         ayadirDinero ad = new ayadirDinero();
         ad.setVisible(true);
         ad.setSize(477, 204);
         ad.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButton7MouseClicked
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
