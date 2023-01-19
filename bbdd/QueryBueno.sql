@@ -73,14 +73,10 @@ CREATE TABLE [dbo].[Articulo]
 
 CREATE TABLE [dbo].[Tarjetas]
 (
-    [idTarjeta] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,-- Primary Key column
+    [idTransaccion] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,-- Primary Key column
     [Id_usuario]  INT NOT NULL, 
+    [Operacion] INT NOT NULL,
     [Saldo] INT NOT NULL,
-    [Caducidad] DATE NOT NULL,
-    [Codigo] INT NOT NULL,
-    [NumeroCuenta] NVARCHAR(100) NOT NULL,
-    [Imagen] IMAGE NULL
-
     CONSTRAINT fkIdUsuarioTarjetas FOREIGN KEY (Id_usuario)  REFERENCES Usuarios(Id)
    
   

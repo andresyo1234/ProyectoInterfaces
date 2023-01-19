@@ -177,7 +177,7 @@ public class InicioSesion extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BotonRegistroMouseClicked
 
-    public static int IdUsuario = 0;
+    public static int IdUsuario;
     private void BotonInicioSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInicioSesionMouseClicked
         
 

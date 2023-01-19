@@ -238,7 +238,7 @@ public class AnyadirContacto extends javax.swing.JFrame {
         } catch (ClassNotFoundException e) {
             System.out.println("fallo2");
         } catch (Exception e) {
-
+            System.out.println("fallo3");
         }
 
         AgendaPrincipal ag = new AgendaPrincipal();
