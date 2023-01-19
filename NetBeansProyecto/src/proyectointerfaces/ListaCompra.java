@@ -4,8 +4,16 @@
  */
 package proyectointerfaces;
 
+import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Iterator;
+import java.util.Vector;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import static proyectointerfaces.AgendaPrincipal.TablaContactos;
 
 /**
  *
@@ -13,13 +21,42 @@ import javax.swing.DefaultListModel;
  */
 public class ListaCompra extends javax.swing.JFrame {
 
+    int idusuario = InicioSesion.IdUsuario;
+
     /**
-     * Creates new form BlogNotas
+     * int idusuario = InicioSesion.IdUsuario; Creates new form BlogNotas
      */
     DefaultListModel modelo = new DefaultListModel();
+
     public ListaCompra() {
         initComponents();
         setTitle("Mi Agenda - Listas de Compra");
+
+        Statement st_;
+        ResultSet rs_;
+
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            rs_ = st_.executeQuery("select * from Articulo where Id_usuario = " + idusuario);
+
+            while (rs_.next()) {
+                modelo.addElement(rs_.getString("Nombre"));
+            }
+            ListaProductos.setModel(modelo);
+            rs_.close();
+            //TablaContactos.setModel(model);
+            // JOptionPane.showMessageDialog(null, "El alumno se ha registrado correctamente");
+        } catch (SQLException e) {
+            System.out.println("fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
+        }
+
     }
 
     /**
@@ -32,7 +69,7 @@ public class ListaCompra extends javax.swing.JFrame {
     private void initComponents() {
 
         jDialog1 = new javax.swing.JDialog();
-        jTextField1 = new javax.swing.JTextField();
+        inputNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -44,12 +81,12 @@ public class ListaCompra extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        ListaProductos = new javax.swing.JList<>();
         jButton6 = new javax.swing.JButton();
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        inputNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                inputNombreActionPerformed(evt);
             }
         });
 
@@ -75,7 +112,7 @@ public class ListaCompra extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
+                    .addComponent(inputNombre)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
@@ -85,7 +122,7 @@ public class ListaCompra extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inputNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
@@ -207,18 +244,23 @@ public class ListaCompra extends javax.swing.JFrame {
             }
         });
 
-        jList1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        ListaProductos.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        ListaProductos.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = {};
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(ListaProductos);
 
         jButton6.setText("Borrar todo");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton6MouseClicked(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
             }
         });
 
@@ -285,37 +327,37 @@ public class ListaCompra extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         ListaCompra lc = new ListaCompra();
-           lc.setVisible(true);
-           lc.setLocationRelativeTo(null);
-           lc.setSize(1080, 720);
-           dispose();
+        lc.setVisible(true);
+        lc.setLocationRelativeTo(null);
+        lc.setSize(1080, 720);
+        dispose();
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         AgendaPrincipal ap = new AgendaPrincipal();
-           ap.setVisible(true);
-           ap.setLocationRelativeTo(null);
-           ap.setSize(1080, 720);
-           dispose();
+        ap.setVisible(true);
+        ap.setLocationRelativeTo(null);
+        ap.setSize(1080, 720);
+        dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         BlogNotas bn = new BlogNotas();
-           bn.setVisible(true);
-           bn.setLocationRelativeTo(null);
-           bn.setSize(1080, 720);
-           dispose();
+        bn.setVisible(true);
+        bn.setLocationRelativeTo(null);
+        bn.setSize(1080, 720);
+        dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-           Cartera cart = new Cartera();
-           cart.setVisible(true);
-           cart.setLocationRelativeTo(null);
-           cart.setSize(1080, 720);
-           dispose();
+        Cartera cart = new Cartera();
+        cart.setVisible(true);
+        cart.setLocationRelativeTo(null);
+        cart.setSize(1080, 720);
+        dispose();
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -323,9 +365,9 @@ public class ListaCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
-        
+
         jDialog1.setVisible(true);
-        jDialog1.setSize(500,200);
+        jDialog1.setSize(500, 200);
         jDialog1.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton9MouseClicked
 
@@ -334,33 +376,110 @@ public class ListaCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        int[] indices =jList1.getSelectedIndices();
-        for (int i = indices.length-1; i >=0 ; i--) {   
-            modelo.remove(indices[i]);
+
+        Statement st_;
+        ResultSet rs_;
+
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            rs_ = st_.executeQuery("select * from Articulo where Id_usuario = " + idusuario);
+
+            int[] rows = ListaProductos.getSelectedIndices();
+
+            if (!(rows.length > 1)) {
+
+                while (rs_.getRow() <= rows[0]) {
+                    rs_.next();
+                    System.out.println(rs_.getRow());
+                }
+                st_.executeUpdate("Delete from Articulo where IdArticulo=" + rs_.getString("IdArticulo"));
+                dispose();
+                ListaCompra lc = new ListaCompra();
+                lc.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione unicamente 1 fila ");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
         }
-        jList1.setModel(modelo);
+
     }//GEN-LAST:event_jButton7MouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void inputNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_inputNombreActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-       
-        modelo.addElement(jTextField1.getText()!=null? jTextField1.getText():"nota");
-        jList1.setModel(modelo);
+
+        Statement st_;
+        Connection connection_;
+        try {
+            connection_ = Conexion.getConexion();
+            st_ = connection_.createStatement();
+
+            String nombre;
+
+            System.out.println(InicioSesion.IdUsuario);
+            nombre = inputNombre.getText();
+
+            PreparedStatement ps = connection_.prepareStatement("INSERT INTO Articulo (Id_usuario,Nombre) VALUES (?,?)");
+            ps.setInt(1, idusuario);
+            ps.setString(2, nombre);
+            ps.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Producto añadido");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+
+        }
+
+        modelo.addElement(inputNombre.getText() != null ? inputNombre.getText() : "nota");
+        ListaProductos.setModel(modelo);
         jDialog1.setVisible(false);
-        jTextField1.setText("");
+        inputNombre.setText("");
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        modelo.clear();
-        jList1.setModel(modelo);
+        Statement st_;
+        ResultSet rs_;
+
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            st_.executeUpdate("Delete from Articulo where id_Usuario=" + idusuario);
+            dispose();
+            ListaCompra lc = new ListaCompra();
+            lc.setVisible(true);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
+        }
     }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -405,6 +524,8 @@ public class ListaCompra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> ListaProductos;
+    private javax.swing.JTextField inputNombre;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -415,10 +536,8 @@ public class ListaCompra extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

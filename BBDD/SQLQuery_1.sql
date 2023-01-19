@@ -71,17 +71,34 @@ CREATE TABLE [dbo].[Articulo]
 
 
 
-CREATE TABLE [dbo].[Tarjetas]
+CREATE TABLE [dbo].[Cartera]
 (
+<<<<<<< HEAD
     [idTarjeta] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,-- Primary Key column
+=======
+    [idCartera] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,-- Primary Key column
+>>>>>>> andresyo
     [Id_usuario]  INT NOT NULL, 
     [Saldo] INT NOT NULL,
-    [Caducidad] DATE NOT NULL,
-    [Codigo] INT NOT NULL,
-    [NumeroCuenta] NVARCHAR(100) NOT NULL,
-    [Imagen] IMAGE NULL
 
+<<<<<<< HEAD
     CONSTRAINT fkIdUsuarioTarjetas FOREIGN KEY (Id_usuario)  REFERENCES Usuarios(Id)
+=======
+    CONSTRAINT fkIdUsuarioCartera FOREIGN KEY (Id_usuario)  REFERENCES Usuarios(Id)
+   
+  
+    -- Specify more columns here
+);
+
+
+CREATE TABLE [dbo].[Transacciones]
+(
+    [idTransaccion] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,-- Primary Key column
+    [idCartera]  INT NOT NULL, 
+    [texto] text NOT NULL,
+
+    CONSTRAINT fkCarteraTran FOREIGN KEY (idCartera)  REFERENCES Cartera(idCartera)
+>>>>>>> andresyo
    
   
     -- Specify more columns here

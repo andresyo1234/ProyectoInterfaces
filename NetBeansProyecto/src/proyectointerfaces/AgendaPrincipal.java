@@ -24,13 +24,17 @@ import static proyectointerfaces.InicioSesion.IdUsuario;
  */
 public class AgendaPrincipal extends javax.swing.JFrame {
 
-    int idusuario = 1;
+    int idusuario = InicioSesion.IdUsuario;
 
     /**
      * Creates new form AgendaPrincipal
      */
     public AgendaPrincipal() {
         initComponents();
+
+        
+        
+
         BotonPaginaAgenda.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
         jButton2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
         BotonPaginaCompra.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
