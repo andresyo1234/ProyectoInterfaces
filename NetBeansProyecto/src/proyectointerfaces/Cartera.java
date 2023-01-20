@@ -6,12 +6,20 @@ package proyectointerfaces;
 
 import static proyectointerfaces.BlogNotas.jlDatos;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import static proyectointerfaces.InicioSesion.IdUsuario;
+
 
 /**
  *
@@ -22,10 +30,42 @@ public class Cartera extends javax.swing.JFrame {
     /**
      * Creates new form BlogNotas
      */
+    public static String tipoOperacion;
+    public static int idusuario, operacion, saldo;
     public Cartera() {
         initComponents();
         limpiarLista();
         setTitle("Mi Agenda - Cartera");
+        
+        
+        
+        Statement st_;
+        ResultSet rs_;
+        Connection connection_;
+        try {
+            connection_ = Conexion.getConexion();
+            st_ = connection_.createStatement();
+            
+            rs_ = st_.executeQuery("select top 1 saldo from Tarjetas where Id_usuario=" + IdUsuario + " order by idTransaccion desc");
+            
+            rs_.next();
+            saldo = rs_.getInt("Saldo");
+            textoDinero.setText(String.valueOf(saldo) + "€");
+            
+           
+            System.out.println("Saldo: " + saldo);
+           
+             
+            System.out.println("hola");
+
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+        }
     }
 
     /**

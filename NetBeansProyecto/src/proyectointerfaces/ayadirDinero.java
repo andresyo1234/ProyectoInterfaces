@@ -90,7 +90,7 @@ public class ayadirDinero extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dineroSpinner)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(38, 38, 38)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
@@ -130,37 +130,51 @@ public class ayadirDinero extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton3MouseClicked
     //AYADIR DINERO 
-
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        final Integer operacion = (Integer) dineroSpinner.getValue();
+        saldo += operacion;
+        texto = "Ingresado: " + String.valueOf(operacion) + "€";
+        listaCartera.add(texto);
+        if (saldo < 0) {
+            textoDinero.setForeground(Color.red);
+        } else {
+            textoDinero.setForeground(Color.BLACK);
+        }
+
+        for (int i = 0; i < listaCartera.size(); i++) {
+            //Añadir cada elemento del ArrayList en el modelo de la lista
+            listModel.add(i, listaCartera.get(i));
+        }
+        listaRegistro.setModel(listModel);
+
+        dispose();
+        
+        
         Statement st_;
         Connection connection_;
-        /*try {
+        try {
             connection_ = Conexion.getConexion();
             st_ = connection_.createStatement();
 
-            String nombre, apellido, email, genero;
-            int idusuario, telefono;
+            
+            
             System.out.println(InicioSesion.IdUsuario);
-            nombre = inputNombre.getText();
-            apellido = inputApellido.getText();
-            email = inputEmail.getText();
-            genero = comboBoxGenero.getItemAt(comboBoxGenero.getSelectedIndex());
             idusuario = InicioSesion.IdUsuario;
-            telefono = Integer.parseInt((inputTelefono.getText()));
-
+            tipoOperacion = "Ingreso";
+           
             System.out.println("adios");
            
-                PreparedStatement ps = connection_.prepareStatement("INSERT INTO Contactos (Id_usuario,Nombre,Apellidos,Email,Telefono,Genero) VALUES (?,?,?,?,?,?)");
+                PreparedStatement ps = connection_.prepareStatement("INSERT INTO Tarjetas (Id_usuario,Tipo_operacion,Operacion,Saldo) VALUES (?,?,?,?)");
                 ps.setInt(1, idusuario);
-                ps.setString(2, nombre);
-                ps.setString(3, apellido);
-                ps.setString(4, email);
-                ps.setInt(5, telefono);
-                ps.setString(6, genero);
+                ps.setString(2, tipoOperacion);
+                ps.setInt(3, operacion);
+                ps.setInt(4, saldo);
                 ps.executeUpdate();
             System.out.println("hola");
 
-            JOptionPane.showMessageDialog(null, "Contacto añadido");
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "fallo1");
         } catch (ClassNotFoundException e) {
@@ -169,31 +183,24 @@ public class ayadirDinero extends javax.swing.JFrame {
             System.out.println("fallo3");
         }
 
-        AgendaPrincipal ag = new AgendaPrincipal();
-        ag.setVisible(true);
-        dispose();*/
+        
+        Cartera.textoDinero.setText(String.valueOf(saldo) + "€");
         
         
-        sumarCalcular();
-        if (dineroFinal < 0) {
-            textoDinero.setForeground(Color.red);
-        } else {
-            textoDinero.setForeground(Color.BLACK);
-        }
-
-        for (int i = 0; i < listaCartera.size(); i++) {
-            //Añadir cada elemento del ArrayList en el modelo de la lista
-            listModel.add(i, listaCartera.get(i));
-        }
-        listaRegistro.setModel(listModel);
-
-        dispose();
+        
+        
+        
+        
+        System.out.println("Dinero:" + dineroModificar);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        restarCalcular();
-
-        if (dineroFinal < 0) {
+        final Integer operacion = (Integer) dineroSpinner.getValue();
+        saldo -= operacion;
+        texto = "RETIRADO: " + String.valueOf(operacion) + "€";
+        listaCartera.add(texto);
+        
+        if (saldo < 0) {
             textoDinero.setForeground(Color.red);
         } else {
             textoDinero.setForeground(Color.BLACK);
@@ -204,6 +211,43 @@ public class ayadirDinero extends javax.swing.JFrame {
         }
         listaRegistro.setModel(listModel);
         dispose();
+        System.out.println("Dinero:" + dineroModificar);
+        
+        
+        Statement st_;
+        Connection connection_;
+        try {
+            connection_ = Conexion.getConexion();
+            st_ = connection_.createStatement();
+
+            
+            
+            System.out.println(InicioSesion.IdUsuario);
+            idusuario = InicioSesion.IdUsuario;
+             
+            tipoOperacion = "Gasto";
+           
+            System.out.println("adios");
+           
+                PreparedStatement ps = connection_.prepareStatement("INSERT INTO Tarjetas (Id_usuario,Tipo_operacion,Operacion,Saldo) VALUES (?,?,?,?)");
+                ps.setInt(1, idusuario);
+                ps.setString(2, tipoOperacion);
+                ps.setInt(3, operacion);
+                ps.setInt(4, saldo);
+                ps.executeUpdate();
+            System.out.println("hola");
+
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+        }
+
+        Cartera.textoDinero.setText(String.valueOf(saldo) + "€");
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -260,17 +304,16 @@ public class ayadirDinero extends javax.swing.JFrame {
     }
 
     public static void restarCalcular() {
-        dineroModificar = (Integer) dineroSpinner.getValue();
-        dineroFinal = dineroFinal - dineroModificar;
+        
+        dineroFinal -= (Integer) dineroSpinner.getValue();
 
-        textoDinero.setText(String.valueOf(dineroFinal) + "€");
+        
         
         //NO FUNCIONA ES EL FORMATEO DE LAS HORAS
         //fecha.getTime();
         //texto = formateador.format((TemporalAccessor) fecha) + ", RETIRADO: " + String.valueOf(dineroModificar) + "€";
         
-        texto = "RETIRADO: " + String.valueOf(dineroModificar) + "€";
-        listaCartera.add(texto);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
