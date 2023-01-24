@@ -7,13 +7,13 @@ package proyectointerfaces;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import org.apache.commons.digester.Digester;
 
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.view.JasperViewer;
+
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
