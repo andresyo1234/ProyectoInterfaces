@@ -4,14 +4,22 @@
  */
 package proyectointerfaces;
 
+import static proyectointerfaces.BlogNotas.jlDatos;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
-import static proyectointerfaces.BlogNotas.Notas;
+import javax.swing.JOptionPane;
+import static proyectointerfaces.InicioSesion.IdUsuario;
+
 
 /**
  *
@@ -22,10 +30,42 @@ public class Cartera extends javax.swing.JFrame {
     /**
      * Creates new form BlogNotas
      */
+    public static String tipoOperacion;
+    public static int idusuario, operacion, saldo;
     public Cartera() {
         initComponents();
         limpiarLista();
         setTitle("Mi Agenda - Cartera");
+        
+        
+        
+        Statement st_;
+        ResultSet rs_;
+        Connection connection_;
+        try {
+            connection_ = Conexion.getConexion();
+            st_ = connection_.createStatement();
+            
+            rs_ = st_.executeQuery("select top 1 saldo from Tarjetas where Id_usuario=" + IdUsuario + " order by idTransaccion desc");
+            
+            rs_.next();
+            saldo = rs_.getInt("Saldo");
+            textoDinero.setText(String.valueOf(saldo) + "€");
+            
+           
+            System.out.println("Saldo: " + saldo);
+           
+             
+            System.out.println("hola");
+
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+        }
     }
 
     /**
@@ -145,13 +185,8 @@ public class Cartera extends javax.swing.JFrame {
 
         jPanel16.setBackground(new java.awt.Color(153, 196, 255));
 
-        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton10.setText("Modificar Saldo");
-        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton7MouseClicked(evt);
-            }
-        });
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -309,16 +344,13 @@ public class Cartera extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        // TODO add your handling code here:
+       
+     
         ayadirDinero ad = new ayadirDinero();
         ad.setVisible(true);
         ad.setSize(477, 204);
         ad.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButton7MouseClicked
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
