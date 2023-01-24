@@ -74,13 +74,17 @@ CREATE TABLE [dbo].[Articulo]
 CREATE TABLE [dbo].[Tarjetas]
 (
     [idTransaccion] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,-- Primary Key column
-    [Id_usuario]  INT NOT NULL, 
+    [Id_usuario]  INT NOT NULL,
+    [Tipo_operacion]  NVARCHAR(50) NOT NULL,
     [Operacion] INT NOT NULL,
     [Saldo] INT NOT NULL,
     CONSTRAINT fkIdUsuarioTarjetas FOREIGN KEY (Id_usuario)  REFERENCES Usuarios(Id)
-   
-  
     -- Specify more columns here
 );
 GO
 
+BULK INSERT Usuarios FROM '/VAR/OPT/MSSQL/DATA/Libro1.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ';' , ROWTERMINATOR = '\n')
+BULK INSERT Contactos FROM '/VAR/OPT/MSSQL/DATA/Libro2.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ';' , ROWTERMINATOR = '\n')
+BULK INSERT Contactos FROM '/VAR/OPT/MSSQL/DATA/Libro2.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ';' , ROWTERMINATOR = '\n')
+BULK INSERT Contactos FROM '/VAR/OPT/MSSQL/DATA/Libro2.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ';' , ROWTERMINATOR = '\n')
+BULK INSERT Contactos FROM '/VAR/OPT/MSSQL/DATA/Libro2.csv' WITH (FIRSTROW = 1, FIELDTERMINATOR = ';' , ROWTERMINATOR = '\n')
