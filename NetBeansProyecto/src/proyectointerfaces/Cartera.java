@@ -4,7 +4,6 @@
  */
 package proyectointerfaces;
 
-import static proyectointerfaces.BlogNotas.jlDatos;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
