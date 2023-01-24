@@ -161,7 +161,7 @@ public class ayadirDinero extends javax.swing.JFrame {
             
             
             System.out.println(InicioSesion.IdUsuario);
-            idusuario = InicioSesion.IdUsuario;
+            int idusuario = InicioSesion.IdUsuario;
             tipoOperacion = "Ingreso";
            
             System.out.println("adios");
@@ -223,7 +223,7 @@ public class ayadirDinero extends javax.swing.JFrame {
             
             
             System.out.println(InicioSesion.IdUsuario);
-            idusuario = InicioSesion.IdUsuario;
+            int idusuario = InicioSesion.IdUsuario;
              
             tipoOperacion = "Gasto";
            

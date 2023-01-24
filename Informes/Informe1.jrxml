@@ -129,7 +129,7 @@
 			<staticText>
 				<reportElement x="2" y="80" width="551" height="30" uuid="864597cc-39cb-4c60-b0eb-88243c559ee8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="22" isBold="true"/>
+					<font fontName="Arial" size="22" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Media de Contactos por Usuario]]></text>
 			</staticText>
@@ -137,12 +137,12 @@
 				<reportElement x="-20" y="-20" width="595" height="100" uuid="fe72e1e0-2a1f-48ac-a064-62814415f7f6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<imageExpression><![CDATA["C:/Users/DanielEspinosaMauri/Desktop/logoFinal.png"]]></imageExpression>
+				<imageExpression><![CDATA["logoFinal.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="-20" y="109" width="551" height="30" uuid="c0cfc5ce-f194-48f2-bdb5-4571eafae98a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="18" isBold="false" isItalic="false" isUnderline="false"/>
+					<font fontName="Arial" size="18" isBold="false" isItalic="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[DESCRIPCIÓN DEL INFORME]]></text>
 			</staticText>
@@ -153,7 +153,7 @@
 			<staticText>
 				<reportElement x="0" y="-1" width="550" height="20" uuid="17df053c-cdc6-4b35-a0d1-9513c59281af"/>
 				<textElement textAlignment="Center">
-					<font size="15" isBold="false" isItalic="true"/>
+					<font fontName="Arial" size="15" isBold="false" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Estudio de la media de contactos que tiene cada usuario.]]></text>
 			</staticText>
@@ -162,7 +162,7 @@
 			<staticText>
 				<reportElement mode="Opaque" x="-20" y="0" width="595" height="30" forecolor="#FFFFFF" backcolor="#001B38" uuid="2464cb3b-1d2a-45bc-af96-10f29dc4b181"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="18" isBold="true"/>
+					<font fontName="Arial" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Analisis de Datos]]></text>
 			</staticText>
@@ -185,7 +185,7 @@
 							<staticText>
 								<reportElement mode="Opaque" x="0" y="0" width="200" height="30" forecolor="#F0F0F0" backcolor="#001B38" uuid="086a82cc-5ef2-4a76-9b7e-6b9ca29ac6b2"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="12" isBold="true"/>
+									<font fontName="Arial" size="12" isBold="true"/>
 								</textElement>
 								<text><![CDATA[Media]]></text>
 							</staticText>
@@ -193,7 +193,9 @@
 						<jr:detailCell style="Table 1_TD" height="30">
 							<textField>
 								<reportElement x="0" y="0" width="200" height="30" uuid="ba65e241-bd57-40a8-be6f-80968a818592"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{Media}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -203,7 +205,7 @@
 			<staticText>
 				<reportElement x="0" y="27" width="310" height="30" uuid="0862c694-dd4f-4c77-ba92-fdcc59150b51"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="18"/>
+					<font fontName="Arial" size="18"/>
 				</textElement>
 				<text><![CDATA[Media de Contactos]]></text>
 			</staticText>
@@ -226,7 +228,7 @@
 							<staticText>
 								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#001B38" uuid="8bbafc1d-6eb8-48d0-b302-992f220faaad"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="12" isBold="true"/>
+									<font fontName="Arial" size="12" isBold="true"/>
 								</textElement>
 								<text><![CDATA[NombreUsuario]]></text>
 							</staticText>
@@ -235,7 +237,7 @@
 							<textField>
 								<reportElement x="0" y="0" width="100" height="30" uuid="d5548d11-4622-44ed-8ba0-f51ad4110ba6"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="10"/>
+									<font fontName="Arial" size="10"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{NombreUsuario}]]></textFieldExpression>
 							</textField>
@@ -247,7 +249,7 @@
 							<staticText>
 								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#001B38" uuid="278a9a92-4b71-4dab-826f-d9e5784236c3"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="12" isBold="true"/>
+									<font fontName="Arial" size="12" isBold="true"/>
 								</textElement>
 								<text><![CDATA[Numero Contactos]]></text>
 							</staticText>
@@ -255,7 +257,9 @@
 						<jr:detailCell height="30">
 							<textField>
 								<reportElement x="0" y="0" width="100" height="30" uuid="379cef72-6c32-4f36-ad13-40fbe1a1b20c"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{Numero Contactos}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -265,7 +269,7 @@
 			<staticText>
 				<reportElement mode="Opaque" x="-20" y="11" width="595" height="30" forecolor="#FFFFFF" backcolor="#001B38" uuid="b8ff8b3c-949e-41ad-b992-47d51471f5a1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
-					<font size="18" isBold="true"/>
+					<font fontName="Arial" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Contactos por Usuarios]]></text>
 			</staticText>
@@ -282,7 +286,7 @@
 			<staticText>
 				<reportElement mode="Opaque" x="-20" y="0" width="595" height="34" forecolor="#FFFFFF" backcolor="#001B38" uuid="45d1f642-8626-4f5a-b66e-9df11afc3385"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="18" isBold="true"/>
+					<font fontName="Arial" size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[]]></text>
 			</staticText>
