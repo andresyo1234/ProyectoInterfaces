@@ -194,7 +194,7 @@ public class ListaCompra extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("*");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectointerfaces/imagenes/PNGENGRANAJE.png"))); // NOI18N
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);

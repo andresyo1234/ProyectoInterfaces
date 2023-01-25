@@ -160,7 +160,7 @@ public class Cartera extends javax.swing.JFrame {
             }
         });
 
-        jButton19.setText("*");
+        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectointerfaces/imagenes/PNGENGRANAJE.png"))); // NOI18N
         jButton19.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton19MouseClicked(evt);
