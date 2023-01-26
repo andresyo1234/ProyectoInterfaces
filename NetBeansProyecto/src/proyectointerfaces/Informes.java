@@ -271,7 +271,7 @@ public class Informes extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectointerfaces/imagenes/PNGENGRANAJE.png"))); // NOI18N
+        jButton1.setText("*");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -303,14 +303,14 @@ public class Informes extends javax.swing.JFrame {
             .addComponent(BotonPaginaCartera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jButton3.setText("Report 1");
+        jButton3.setText("INFORME MEDIA DE CONTACTOS POR USUARIOS");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Report 1");
+        jButton4.setText("INFORME TRANSACCIONES DE LA CUENTA");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -323,27 +323,21 @@ public class Informes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(54, 54, 54)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(683, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(238, 238, 238)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 336, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(150, 150, 150)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(491, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 501, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(1096, 740));
@@ -437,20 +431,32 @@ public class Informes extends javax.swing.JFrame {
         try{
         Connection con = Conexion.getConexion();
             System.out.println("0");
-        String reportPath = "C:\\Projects\\ProyectoInterfaces\\Informes\\Informe2.jasper";
+        String reportPath = "C:\\ProyectoInterfaces\\Informes\\Informe1.jasper";
         System.out.println("1");
-        JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        //JasperReport jr = JasperCompileManager.compileReport(reportPath);
         System.out.println("2");
-        JasperPrint jp = JasperFillManager.fillReport(jr,null, con);
+        JasperPrint jp = JasperFillManager.fillReport(reportPath,null, con);
         System.out.println("3");
-        JasperViewer.viewReport(jp);
+        JasperViewer.viewReport(jp,false);
         System.out.println("4");
         con.close();
         }catch(Exception ex){ex.printStackTrace();}
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        try{
+        Connection con = Conexion.getConexion();
+            System.out.println("0");
+        String reportPath = "C:\\ProyectoInterfaces\\Informes\\Informe3.jasper";
+        System.out.println("1");
+        //JasperReport jr = JasperCompileManager.compileReport(reportPath);
+        System.out.println("2");
+        JasperPrint jp = JasperFillManager.fillReport(reportPath,null, con);
+        System.out.println("3");
+        JasperViewer.viewReport(jp,false);
+        System.out.println("4");
+        con.close();
+        }catch(Exception ex){ex.printStackTrace();}
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
