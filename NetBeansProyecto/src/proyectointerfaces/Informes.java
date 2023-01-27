@@ -4,7 +4,6 @@
  */
 package proyectointerfaces;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -37,8 +36,6 @@ import static proyectointerfaces.InicioSesion.IdUsuario;
  */
 public class Informes extends javax.swing.JFrame {
 
-    
-
     /**
      * Creates new form AgendaPrincipal
      */
@@ -50,8 +47,6 @@ public class Informes extends javax.swing.JFrame {
         BotonPaginaCartera.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
         setTitle("Mi Agenda - Agenda");
 
-        
-
         Statement st_;
         ResultSet rs_;
 
@@ -59,7 +54,6 @@ public class Informes extends javax.swing.JFrame {
             Connection con = Conexion.getConexion();
             st_ = con.createStatement();
 
-            
             //TablaContactos.setModel(model);
             // JOptionPane.showMessageDialog(null, "El alumno se ha registrado correctamente");
         } catch (SQLException e) {
@@ -345,11 +339,10 @@ public class Informes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonPaginaAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPaginaAgendaActionPerformed
-        // TODO add your handling code here:
-        ListaCompra lc = new ListaCompra();
-        lc.setVisible(true);
-        lc.setLocationRelativeTo(null);
-        lc.setSize(1080, 720);
+        AgendaPrincipal ag = new AgendaPrincipal();
+        ag.setVisible(true);
+        ag.setLocationRelativeTo(null);
+        ag.setSize(1080, 720);
         dispose();    }//GEN-LAST:event_BotonPaginaAgendaActionPerformed
 
     private void BotonPaginaCarteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPaginaCarteraActionPerformed
@@ -428,35 +421,39 @@ public class Informes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try{
-        Connection con = Conexion.getConexion();
+        try {
+            Connection con = Conexion.getConexion();
             System.out.println("0");
-        String reportPath = "C:\\ProyectoInterfaces\\Informes\\Informe1.jasper";
-        System.out.println("1");
-        //JasperReport jr = JasperCompileManager.compileReport(reportPath);
-        System.out.println("2");
-        JasperPrint jp = JasperFillManager.fillReport(reportPath,null, con);
-        System.out.println("3");
-        JasperViewer.viewReport(jp,false);
-        System.out.println("4");
-        con.close();
-        }catch(Exception ex){ex.printStackTrace();}
+            String reportPath = "C:\\ProyectoInterfaces\\Informes\\Informe1.jasper";
+            System.out.println("1");
+            //JasperReport jr = JasperCompileManager.compileReport(reportPath);
+            System.out.println("2");
+            JasperPrint jp = JasperFillManager.fillReport(reportPath, null, con);
+            System.out.println("3");
+            JasperViewer.viewReport(jp, false);
+            System.out.println("4");
+            con.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try{
-        Connection con = Conexion.getConexion();
+        try {
+            Connection con = Conexion.getConexion();
             System.out.println("0");
-        String reportPath = "C:\\ProyectoInterfaces\\Informes\\Informe3.jasper";
-        System.out.println("1");
-        //JasperReport jr = JasperCompileManager.compileReport(reportPath);
-        System.out.println("2");
-        JasperPrint jp = JasperFillManager.fillReport(reportPath,null, con);
-        System.out.println("3");
-        JasperViewer.viewReport(jp,false);
-        System.out.println("4");
-        con.close();
-        }catch(Exception ex){ex.printStackTrace();}
+            String reportPath = "C:\\ProyectoInterfaces\\Informes\\Informe3.jasper";
+            System.out.println("1");
+            //JasperReport jr = JasperCompileManager.compileReport(reportPath);
+            System.out.println("2");
+            JasperPrint jp = JasperFillManager.fillReport(reportPath, null, con);
+            System.out.println("3");
+            JasperViewer.viewReport(jp, false);
+            System.out.println("4");
+            con.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

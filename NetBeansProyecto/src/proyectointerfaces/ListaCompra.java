@@ -461,7 +461,11 @@ public class ListaCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void BotonPaginaAgenda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPaginaAgenda1ActionPerformed
-        // TODO add your handling code here:
+        AgendaPrincipal ag = new AgendaPrincipal();
+        ag.setVisible(true);
+        ag.setLocationRelativeTo(null);
+        ag.setSize(1080, 720);
+        dispose();
     }//GEN-LAST:event_BotonPaginaAgenda1ActionPerformed
 
     private void BotonPaginaCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonPaginaCompraMouseClicked

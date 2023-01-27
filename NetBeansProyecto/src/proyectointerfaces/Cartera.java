@@ -331,7 +331,11 @@ public class Cartera extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void BotonPaginaAgenda7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPaginaAgenda7ActionPerformed
-        // TODO add your handling code here:
+        AgendaPrincipal ag = new AgendaPrincipal();
+        ag.setVisible(true);
+        ag.setLocationRelativeTo(null);
+        ag.setSize(1080, 720);
+        dispose();
     }//GEN-LAST:event_BotonPaginaAgenda7ActionPerformed
 
     private void BotonPaginaCompra7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonPaginaCompra7MouseClicked
