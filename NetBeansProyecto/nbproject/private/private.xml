@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Projects/ProyectoInterfaces/NetBeansProyecto/src/proyectointerfaces/Informes.java</file>
-            <file>file:/C:/Projects/ProyectoInterfaces/NetBeansProyecto/src/proyectointerfaces/InicioSesion.java</file>
-            <file>file:/C:/Projects/ProyectoInterfaces/NetBeansProyecto/src/proyectointerfaces/Conexion.java</file>
+            <file>file:/C:/ProyectoInterfaces/NetBeansProyecto/src/proyectointerfaces/Cartera.java</file>
+            <file>file:/C:/ProyectoInterfaces/NetBeansProyecto/src/proyectointerfaces/InicioSesion.java</file>
+            <file>file:/C:/ProyectoInterfaces/NetBeansProyecto/src/proyectointerfaces/AgendaPrincipal.java</file>
+            <file>file:/C:/ProyectoInterfaces/NetBeansProyecto/src/proyectointerfaces/AnyadirContacto.java</file>
+            <file>file:/C:/ProyectoInterfaces/NetBeansProyecto/src/proyectointerfaces/Informes.java</file>
+            <file>file:/C:/ProyectoInterfaces/NetBeansProyecto/src/proyectointerfaces/BlogNotas.java</file>
+            <file>file:/C:/ProyectoInterfaces/NetBeansProyecto/src/proyectointerfaces/ListaCompra.java</file>
         </group>
     </open-files>
 </project-private>
