@@ -56,9 +56,11 @@ public class NuevaNota extends javax.swing.JFrame {
         txtArea.setColumns(20);
         txtArea.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtArea.setRows(5);
+        txtArea.setToolTipText("Introduce la descrición de la Nota");
         jScrollPane1.setViewportView(txtArea);
 
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        txtTitulo.setToolTipText("Introduce el título de la Nota");
         txtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTituloActionPerformed(evt);
@@ -73,6 +75,7 @@ public class NuevaNota extends javax.swing.JFrame {
 
         btnAddNota.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnAddNota.setText("Añadir");
+        btnAddNota.setToolTipText("Click para Añadir la Nota");
         btnAddNota.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddNotaMouseClicked(evt);
@@ -86,6 +89,7 @@ public class NuevaNota extends javax.swing.JFrame {
 
         btnCancelarNota.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnCancelarNota.setText("Cancelar");
+        btnCancelarNota.setToolTipText("Click para cancelar la Operación");
         btnCancelarNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarNotaActionPerformed(evt);
@@ -94,6 +98,7 @@ public class NuevaNota extends javax.swing.JFrame {
 
         btnResetNota.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnResetNota.setText("Reset");
+        btnResetNota.setToolTipText("Click para vaciar los campos Título y Descripción");
         btnResetNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetNotaActionPerformed(evt);

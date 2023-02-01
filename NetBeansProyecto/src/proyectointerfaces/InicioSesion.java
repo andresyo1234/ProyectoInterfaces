@@ -4,6 +4,7 @@
  */
 package proyectointerfaces;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -53,6 +54,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
         inputUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         inputUsuario.setText("Usuario...");
+        inputUsuario.setToolTipText("Introduce tu nombre de Usuario...");
         inputUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 inputUsuarioMouseClicked(evt);
@@ -63,17 +65,29 @@ public class InicioSesion extends javax.swing.JFrame {
                 inputUsuarioActionPerformed(evt);
             }
         });
+        inputUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputUsuarioKeyTyped(evt);
+            }
+        });
 
         BotonInicioSesion.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         BotonInicioSesion.setText("Inicio Sesión");
+        BotonInicioSesion.setToolTipText("Click para Iniciar Sesión...");
         BotonInicioSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonInicioSesionMouseClicked(evt);
             }
         });
+        BotonInicioSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonInicioSesionActionPerformed(evt);
+            }
+        });
 
         BotonRegistro.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         BotonRegistro.setText("Registro");
+        BotonRegistro.setToolTipText("Click para Registrarse...");
         BotonRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonRegistroMouseClicked(evt);
@@ -86,9 +100,15 @@ public class InicioSesion extends javax.swing.JFrame {
         });
 
         InputContrasenya.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        InputContrasenya.setToolTipText("Introduce tu Contraseña...");
         InputContrasenya.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InputContrasenyaActionPerformed(evt);
+            }
+        });
+        InputContrasenya.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                InputContrasenyaKeyTyped(evt);
             }
         });
 
@@ -103,40 +123,39 @@ public class InicioSesion extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(298, 298, 298)
+                .addContainerGap(298, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addContainerGap(689, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(InputContrasenya)
-                                .addComponent(TituloInicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
-                                .addComponent(inputUsuario)
-                                .addComponent(BotonInicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BotonRegistro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(326, 326, 326)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(689, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(InputContrasenya)
+                            .addComponent(TituloInicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                            .addComponent(inputUsuario)
+                            .addComponent(BotonInicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotonRegistro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(326, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(47, Short.MAX_VALUE)
                 .addComponent(TituloInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(InputContrasenya, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(BotonInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(BotonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(133, Short.MAX_VALUE))
         );
@@ -244,6 +263,122 @@ public class InicioSesion extends javax.swing.JFrame {
     private void InputContrasenyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputContrasenyaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_InputContrasenyaActionPerformed
+
+    private void InputContrasenyaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InputContrasenyaKeyTyped
+        char teclaPresionada = evt.getKeyChar();
+        
+        if (teclaPresionada == KeyEvent.VK_ENTER) {
+                    
+
+        String nombreUsuario, psw = null;
+        
+
+        Statement st_;
+        ResultSet rs_;
+
+        try {
+
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            nombreUsuario = inputUsuario.getText();
+
+            rs_ = st_.executeQuery("select * from Usuarios where NombreUsuario = '" + nombreUsuario + "'");
+           
+
+            while (rs_.next()) {
+                IdUsuario = rs_.getInt(1);
+                psw = rs_.getString(8);
+            }
+            System.out.println("asd: " + IdUsuario);
+
+            
+            
+            if (IdUsuario != 0) {
+
+                rs_.next();
+                if (new String(InputContrasenya.getPassword()).equals(psw)) {
+                    AgendaPrincipal ag = new AgendaPrincipal();
+                    ag.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario no existe");
+            }
+
+            // JOptionPane.showMessageDialog(null, "El alumno se ha registrado correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "usuario ya exitente");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+
+        }
+
+        }
+    }//GEN-LAST:event_InputContrasenyaKeyTyped
+
+    private void BotonInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInicioSesionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonInicioSesionActionPerformed
+
+    private void inputUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputUsuarioKeyTyped
+                char teclaPresionada = evt.getKeyChar();
+        
+        if (teclaPresionada == KeyEvent.VK_ENTER) {
+                    
+
+        String nombreUsuario, psw = null;
+        
+
+        Statement st_;
+        ResultSet rs_;
+
+        try {
+
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            nombreUsuario = inputUsuario.getText();
+
+            rs_ = st_.executeQuery("select * from Usuarios where NombreUsuario = '" + nombreUsuario + "'");
+           
+
+            while (rs_.next()) {
+                IdUsuario = rs_.getInt(1);
+                psw = rs_.getString(8);
+            }
+            System.out.println("asd: " + IdUsuario);
+
+            
+            
+            if (IdUsuario != 0) {
+
+                rs_.next();
+                if (new String(InputContrasenya.getPassword()).equals(psw)) {
+                    AgendaPrincipal ag = new AgendaPrincipal();
+                    ag.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El usuario no existe");
+            }
+
+            // JOptionPane.showMessageDialog(null, "El alumno se ha registrado correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "usuario ya exitente");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+
+        }
+
+        }
+    }//GEN-LAST:event_inputUsuarioKeyTyped
 
     /**
      * @param args the command line arguments

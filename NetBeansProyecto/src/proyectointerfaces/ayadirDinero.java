@@ -55,6 +55,7 @@ public class ayadirDinero extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton1.setText("Añadir Saldo");
+        jButton1.setToolTipText("Click para Añadir Saldo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -63,6 +64,7 @@ public class ayadirDinero extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton2.setText("Quitar Saldo");
+        jButton2.setToolTipText("Click para Quitar Saldo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -71,6 +73,7 @@ public class ayadirDinero extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jButton3.setText("<");
+        jButton3.setToolTipText("Click para Cancelar la Operación");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
@@ -78,6 +81,7 @@ public class ayadirDinero extends javax.swing.JFrame {
         });
 
         dineroSpinner.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        dineroSpinner.setToolTipText("Selecciona el dinero con el que desee Operar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

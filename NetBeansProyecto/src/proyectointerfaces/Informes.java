@@ -88,12 +88,19 @@ public class Informes extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        Navegacion = new javax.swing.JPopupMenu();
+        irAgenda = new javax.swing.JMenuItem();
+        irBlocNotas = new javax.swing.JMenuItem();
+        irListaCompra = new javax.swing.JMenuItem();
+        irCartera = new javax.swing.JMenuItem();
+        irInformes = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         BotonPaginaAgenda = new javax.swing.JButton();
         BotonPaginaCompra = new javax.swing.JButton();
         BotonPaginaCartera = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -199,6 +206,46 @@ public class Informes extends javax.swing.JFrame {
                 .addGap(49, 49, 49))
         );
 
+        irAgenda.setText("Ir a Agenda");
+        irAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irAgendaActionPerformed(evt);
+            }
+        });
+        Navegacion.add(irAgenda);
+
+        irBlocNotas.setText("Ir a Bloc de Notas");
+        irBlocNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irBlocNotasActionPerformed(evt);
+            }
+        });
+        Navegacion.add(irBlocNotas);
+
+        irListaCompra.setText("Ir a Lista Compra");
+        irListaCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irListaCompraActionPerformed(evt);
+            }
+        });
+        Navegacion.add(irListaCompra);
+
+        irCartera.setText("Ir a Cartera");
+        irCartera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irCarteraActionPerformed(evt);
+            }
+        });
+        Navegacion.add(irCartera);
+
+        irInformes.setText("Ir a Informes");
+        irInformes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irInformesActionPerformed(evt);
+            }
+        });
+        Navegacion.add(irInformes);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(231, 246, 242));
 
@@ -207,6 +254,7 @@ public class Informes extends javax.swing.JFrame {
         BotonPaginaAgenda.setBackground(new java.awt.Color(57, 91, 100));
         BotonPaginaAgenda.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         BotonPaginaAgenda.setText("Agenda");
+        BotonPaginaAgenda.setToolTipText("Ventana Agenda");
         BotonPaginaAgenda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         BotonPaginaAgenda.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         BotonPaginaAgenda.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -219,6 +267,7 @@ public class Informes extends javax.swing.JFrame {
         BotonPaginaCompra.setBackground(new java.awt.Color(57, 91, 100));
         BotonPaginaCompra.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         BotonPaginaCompra.setText("Lista Compra");
+        BotonPaginaCompra.setToolTipText("Ventana Lista Compra");
         BotonPaginaCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         BotonPaginaCompra.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         BotonPaginaCompra.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -235,6 +284,7 @@ public class Informes extends javax.swing.JFrame {
         BotonPaginaCartera.setBackground(new java.awt.Color(57, 91, 100));
         BotonPaginaCartera.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         BotonPaginaCartera.setText("Cartera");
+        BotonPaginaCartera.setToolTipText("Ventana Cartera");
         BotonPaginaCartera.setAlignmentY(0.0F);
         BotonPaginaCartera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         BotonPaginaCartera.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -258,6 +308,7 @@ public class Informes extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(57, 91, 100));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton2.setText("Bloc de Notas");
+        jButton2.setToolTipText("Ventana Bloc de Notas");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,6 +317,7 @@ public class Informes extends javax.swing.JFrame {
         });
 
         jButton1.setText("*");
+        jButton1.setToolTipText("Ventana Actual");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -297,7 +349,11 @@ public class Informes extends javax.swing.JFrame {
             .addComponent(BotonPaginaCartera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPanel2.setBackground(new java.awt.Color(153, 196, 255));
+        jPanel2.setComponentPopupMenu(Navegacion);
+
         jButton3.setText("INFORME MEDIA DE CONTACTOS POR USUARIOS");
+        jButton3.setToolTipText("Click para generar Informe de media de Contactos");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -305,33 +361,47 @@ public class Informes extends javax.swing.JFrame {
         });
 
         jButton4.setText("INFORME TRANSACCIONES DE LA CUENTA");
+        jButton4.setToolTipText("Click para generar infore de transacciones de la cuenta");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(507, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 501, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         setSize(new java.awt.Dimension(1096, 740));
@@ -456,6 +526,47 @@ public class Informes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void irAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irAgendaActionPerformed
+        AgendaPrincipal ag = new AgendaPrincipal();
+        ag.setVisible(true);
+        ag.setLocationRelativeTo(null);
+        ag.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_irAgendaActionPerformed
+
+    private void irBlocNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irBlocNotasActionPerformed
+        BlogNotas bn = new BlogNotas();
+        bn.setVisible(true);
+        bn.setLocationRelativeTo(null);
+        bn.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_irBlocNotasActionPerformed
+
+    private void irListaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irListaCompraActionPerformed
+        ListaCompra lc = new ListaCompra();
+        lc.setVisible(true);
+        lc.setLocationRelativeTo(null);
+        lc.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_irListaCompraActionPerformed
+
+    private void irCarteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irCarteraActionPerformed
+        // TODO add your handling code here:
+        Cartera cart = new Cartera();
+        cart.setVisible(true);
+        cart.setLocationRelativeTo(null);
+        cart.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_irCarteraActionPerformed
+
+    private void irInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irInformesActionPerformed
+        Informes in = new Informes();
+        in.setVisible(true);
+        in.setLocationRelativeTo(null);
+        in.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_irInformesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -499,6 +610,12 @@ public class Informes extends javax.swing.JFrame {
     private javax.swing.JButton BotonPaginaAgenda;
     private javax.swing.JButton BotonPaginaCartera;
     private javax.swing.JButton BotonPaginaCompra;
+    private javax.swing.JPopupMenu Navegacion;
+    private javax.swing.JMenuItem irAgenda;
+    private javax.swing.JMenuItem irBlocNotas;
+    private javax.swing.JMenuItem irCartera;
+    private javax.swing.JMenuItem irInformes;
+    private javax.swing.JMenuItem irListaCompra;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -512,6 +629,7 @@ public class Informes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

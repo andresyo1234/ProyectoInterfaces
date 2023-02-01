@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JPopupMenu" name="Navegacion">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <MenuItem class="javax.swing.JMenuItem" name="irAgenda">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ir a Agenda"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="irAgendaActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="irBlocNotas">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ir a Bloc de Notas"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="irBlocNotasActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="irListaCompra">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ir a Lista Compra"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="irListaCompraActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="irCartera">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ir a Cartera"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="irCarteraActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="irInformes">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ir a Informes"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="irInformesActionPerformed"/>
+          </Events>
+        </MenuItem>
+      </SubComponents>
+    </Container>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -95,6 +145,7 @@
               <Font name="Segoe UI" size="20" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agenda"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ventana Agenda"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder/>
@@ -118,6 +169,7 @@
               <Font name="Segoe UI" size="20" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Lista Compra"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ventana Lista Compra"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder/>
@@ -139,6 +191,7 @@
               <Font name="Segoe UI" size="20" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cartera"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ventana Cartera"/>
             <Property name="alignmentY" type="float" value="0.0"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -171,6 +224,7 @@
               <Font name="Segoe UI" size="20" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Bloc de Notas"/>
+            <Property name="toolTipText" type="java.lang.String" value="Ventana Bloc de Notas"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder/>
@@ -186,7 +240,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/proyectointerfaces/imagenes/PNGENGRANAJE.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="toolTipText" type="java.lang.String" value="Ventana Informes"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
@@ -199,6 +253,9 @@
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="c4" red="99" type="rgb"/>
+        </Property>
+        <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="Navegacion"/>
         </Property>
       </Properties>
 
@@ -267,6 +324,7 @@
               <Font name="Segoe UI" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar Nota"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click para Agregar Nota"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAgregarMouseClicked"/>
@@ -279,6 +337,7 @@
               <Font name="Segoe UI" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Eliminar Nota"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click para Eliminar Nota"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEliminarMouseClicked"/>
@@ -291,6 +350,7 @@
               <Font name="Segoe UI" size="20" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Abrir Nota"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click para Abrir Nota"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAbrirNotaMouseClicked"/>

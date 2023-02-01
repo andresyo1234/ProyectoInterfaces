@@ -72,6 +72,12 @@ public class ListaCompra extends javax.swing.JFrame {
         inputNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        Navegacion = new javax.swing.JPopupMenu();
+        irAgenda = new javax.swing.JMenuItem();
+        irBlocNotas = new javax.swing.JMenuItem();
+        irListaCompra = new javax.swing.JMenuItem();
+        irCartera = new javax.swing.JMenuItem();
+        irInformes = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         BotonPaginaAgenda1 = new javax.swing.JButton();
         BotonPaginaCompra = new javax.swing.JButton();
@@ -129,6 +135,46 @@ public class ListaCompra extends javax.swing.JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
+        irAgenda.setText("Ir a Agenda");
+        irAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irAgendaActionPerformed(evt);
+            }
+        });
+        Navegacion.add(irAgenda);
+
+        irBlocNotas.setText("Ir a Bloc de Notas");
+        irBlocNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irBlocNotasActionPerformed(evt);
+            }
+        });
+        Navegacion.add(irBlocNotas);
+
+        irListaCompra.setText("Ir a Lista Compra");
+        irListaCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irListaCompraActionPerformed(evt);
+            }
+        });
+        Navegacion.add(irListaCompra);
+
+        irCartera.setText("Ir a Cartera");
+        irCartera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irCarteraActionPerformed(evt);
+            }
+        });
+        Navegacion.add(irCartera);
+
+        irInformes.setText("Ir a Informes");
+        irInformes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irInformesActionPerformed(evt);
+            }
+        });
+        Navegacion.add(irInformes);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(57, 91, 100));
@@ -136,6 +182,7 @@ public class ListaCompra extends javax.swing.JFrame {
         BotonPaginaAgenda1.setBackground(new java.awt.Color(57, 91, 100));
         BotonPaginaAgenda1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         BotonPaginaAgenda1.setText("Agenda");
+        BotonPaginaAgenda1.setToolTipText("Ventana Agenda");
         BotonPaginaAgenda1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         BotonPaginaAgenda1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         BotonPaginaAgenda1.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -148,6 +195,7 @@ public class ListaCompra extends javax.swing.JFrame {
         BotonPaginaCompra.setBackground(new java.awt.Color(57, 91, 100));
         BotonPaginaCompra.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         BotonPaginaCompra.setText("Lista Compra");
+        BotonPaginaCompra.setToolTipText("Ventana Actual");
         BotonPaginaCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         BotonPaginaCompra.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         BotonPaginaCompra.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -164,6 +212,7 @@ public class ListaCompra extends javax.swing.JFrame {
         BotonPaginaCartera.setBackground(new java.awt.Color(57, 91, 100));
         BotonPaginaCartera.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         BotonPaginaCartera.setText("Cartera");
+        BotonPaginaCartera.setToolTipText("Ventana Cartera");
         BotonPaginaCartera.setAlignmentY(0.0F);
         BotonPaginaCartera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         BotonPaginaCartera.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -187,6 +236,7 @@ public class ListaCompra extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(57, 91, 100));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton2.setText("Bloc de Notas");
+        jButton2.setToolTipText("Ventana Bloc de Notas");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,6 +245,7 @@ public class ListaCompra extends javax.swing.JFrame {
         });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectointerfaces/imagenes/PNGENGRANAJE.png"))); // NOI18N
+        jButton1.setToolTipText("Ventana Informes");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -232,9 +283,11 @@ public class ListaCompra extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(153, 196, 255));
+        jPanel2.setComponentPopupMenu(Navegacion);
 
         jButton9.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton9.setText("Insertar producto");
+        jButton9.setToolTipText("Click para insertar un nuevo producto");
         jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton9MouseClicked(evt);
@@ -248,6 +301,7 @@ public class ListaCompra extends javax.swing.JFrame {
 
         jButton7.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton7.setText("Eliminar productos seleccionados");
+        jButton7.setToolTipText("Click para eliminar el producto seleccionado");
         jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton7MouseClicked(evt);
@@ -265,9 +319,11 @@ public class ListaCompra extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        ListaProductos.setToolTipText("Selecciona un producto");
         jScrollPane1.setViewportView(ListaProductos);
 
         jButton6.setText("Borrar todo");
+        jButton6.setToolTipText("Click para borrar todos los productos");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton6MouseClicked(evt);
@@ -514,6 +570,47 @@ public class ListaCompra extends javax.swing.JFrame {
         in.setSize(1080, 720);
         dispose();    }//GEN-LAST:event_jButton1MouseClicked
 
+    private void irAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irAgendaActionPerformed
+        AgendaPrincipal ag = new AgendaPrincipal();
+        ag.setVisible(true);
+        ag.setLocationRelativeTo(null);
+        ag.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_irAgendaActionPerformed
+
+    private void irBlocNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irBlocNotasActionPerformed
+        BlogNotas bn = new BlogNotas();
+        bn.setVisible(true);
+        bn.setLocationRelativeTo(null);
+        bn.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_irBlocNotasActionPerformed
+
+    private void irListaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irListaCompraActionPerformed
+        ListaCompra lc = new ListaCompra();
+        lc.setVisible(true);
+        lc.setLocationRelativeTo(null);
+        lc.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_irListaCompraActionPerformed
+
+    private void irCarteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irCarteraActionPerformed
+        // TODO add your handling code here:
+        Cartera cart = new Cartera();
+        cart.setVisible(true);
+        cart.setLocationRelativeTo(null);
+        cart.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_irCarteraActionPerformed
+
+    private void irInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irInformesActionPerformed
+        Informes in = new Informes();
+        in.setVisible(true);
+        in.setLocationRelativeTo(null);
+        in.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_irInformesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -561,7 +658,13 @@ public class ListaCompra extends javax.swing.JFrame {
     private javax.swing.JButton BotonPaginaCartera;
     private javax.swing.JButton BotonPaginaCompra;
     private javax.swing.JList<String> ListaProductos;
+    private javax.swing.JPopupMenu Navegacion;
     private javax.swing.JTextField inputNombre;
+    private javax.swing.JMenuItem irAgenda;
+    private javax.swing.JMenuItem irBlocNotas;
+    private javax.swing.JMenuItem irCartera;
+    private javax.swing.JMenuItem irInformes;
+    private javax.swing.JMenuItem irListaCompra;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
