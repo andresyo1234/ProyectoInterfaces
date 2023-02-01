@@ -75,7 +75,6 @@ public class ListaCompra extends javax.swing.JFrame {
         Navegacion = new javax.swing.JPopupMenu();
         irAgenda = new javax.swing.JMenuItem();
         irBlocNotas = new javax.swing.JMenuItem();
-        irListaCompra = new javax.swing.JMenuItem();
         irCartera = new javax.swing.JMenuItem();
         irInformes = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
@@ -150,14 +149,6 @@ public class ListaCompra extends javax.swing.JFrame {
             }
         });
         Navegacion.add(irBlocNotas);
-
-        irListaCompra.setText("Ir a Lista Compra");
-        irListaCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                irListaCompraActionPerformed(evt);
-            }
-        });
-        Navegacion.add(irListaCompra);
 
         irCartera.setText("Ir a Cartera");
         irCartera.addActionListener(new java.awt.event.ActionListener() {
@@ -586,14 +577,6 @@ public class ListaCompra extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_irBlocNotasActionPerformed
 
-    private void irListaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irListaCompraActionPerformed
-        ListaCompra lc = new ListaCompra();
-        lc.setVisible(true);
-        lc.setLocationRelativeTo(null);
-        lc.setSize(1080, 720);
-        dispose();
-    }//GEN-LAST:event_irListaCompraActionPerformed
-
     private void irCarteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irCarteraActionPerformed
         // TODO add your handling code here:
         Cartera cart = new Cartera();
@@ -664,7 +647,6 @@ public class ListaCompra extends javax.swing.JFrame {
     private javax.swing.JMenuItem irBlocNotas;
     private javax.swing.JMenuItem irCartera;
     private javax.swing.JMenuItem irInformes;
-    private javax.swing.JMenuItem irListaCompra;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;

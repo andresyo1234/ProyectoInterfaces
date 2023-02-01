@@ -32,14 +32,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="irListaCompraActionPerformed"/>
           </Events>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="irCartera">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ir a Cartera"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="irCarteraActionPerformed"/>
-          </Events>
-        </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="irInformes">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ir a Informes"/>

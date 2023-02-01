@@ -79,7 +79,6 @@ public class BlogNotas extends javax.swing.JFrame {
 
         Navegacion = new javax.swing.JPopupMenu();
         irAgenda = new javax.swing.JMenuItem();
-        irBlocNotas = new javax.swing.JMenuItem();
         irListaCompra = new javax.swing.JMenuItem();
         irCartera = new javax.swing.JMenuItem();
         irInformes = new javax.swing.JMenuItem();
@@ -103,14 +102,6 @@ public class BlogNotas extends javax.swing.JFrame {
             }
         });
         Navegacion.add(irAgenda);
-
-        irBlocNotas.setText("Ir a Bloc de Notas");
-        irBlocNotas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                irBlocNotasActionPerformed(evt);
-            }
-        });
-        Navegacion.add(irBlocNotas);
 
         irListaCompra.setText("Ir a Lista Compra");
         irListaCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -474,14 +465,6 @@ public class BlogNotas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_irAgendaActionPerformed
 
-    private void irBlocNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irBlocNotasActionPerformed
-        BlogNotas bn = new BlogNotas();
-        bn.setVisible(true);
-        bn.setLocationRelativeTo(null);
-        bn.setSize(1080, 720);
-        dispose();
-    }//GEN-LAST:event_irBlocNotasActionPerformed
-
     private void irListaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irListaCompraActionPerformed
         ListaCompra lc = new ListaCompra();
         lc.setVisible(true);
@@ -559,7 +542,6 @@ public class BlogNotas extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JMenuItem irAgenda;
-    private javax.swing.JMenuItem irBlocNotas;
     private javax.swing.JMenuItem irCartera;
     private javax.swing.JMenuItem irInformes;
     private javax.swing.JMenuItem irListaCompra;

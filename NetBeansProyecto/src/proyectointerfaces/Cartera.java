@@ -84,7 +84,6 @@ public class Cartera extends javax.swing.JFrame {
         irAgenda = new javax.swing.JMenuItem();
         irBlocNotas = new javax.swing.JMenuItem();
         irListaCompra = new javax.swing.JMenuItem();
-        irCartera = new javax.swing.JMenuItem();
         irInformes = new javax.swing.JMenuItem();
         jPanel10 = new javax.swing.JPanel();
         BotonPaginaAgenda7 = new javax.swing.JButton();
@@ -124,14 +123,6 @@ public class Cartera extends javax.swing.JFrame {
             }
         });
         Navegacion.add(irListaCompra);
-
-        irCartera.setText("Ir a Cartera");
-        irCartera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                irCarteraActionPerformed(evt);
-            }
-        });
-        Navegacion.add(irCartera);
 
         irInformes.setText("Ir a Informes");
         irInformes.addActionListener(new java.awt.event.ActionListener() {
@@ -455,15 +446,6 @@ public class Cartera extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_irListaCompraActionPerformed
 
-    private void irCarteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irCarteraActionPerformed
-        // TODO add your handling code here:
-        Cartera cart = new Cartera();
-        cart.setVisible(true);
-        cart.setLocationRelativeTo(null);
-        cart.setSize(1080, 720);
-        dispose();
-    }//GEN-LAST:event_irCarteraActionPerformed
-
     private void irInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irInformesActionPerformed
         Informes in = new Informes();
         in.setVisible(true);
@@ -551,7 +533,6 @@ public class Cartera extends javax.swing.JFrame {
     private javax.swing.JPopupMenu Navegacion;
     private javax.swing.JMenuItem irAgenda;
     private javax.swing.JMenuItem irBlocNotas;
-    private javax.swing.JMenuItem irCartera;
     private javax.swing.JMenuItem irInformes;
     private javax.swing.JMenuItem irListaCompra;
     private javax.swing.JButton jButton10;

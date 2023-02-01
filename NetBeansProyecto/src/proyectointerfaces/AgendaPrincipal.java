@@ -89,7 +89,6 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         popupEditar = new javax.swing.JMenuItem();
         popupEliminar = new javax.swing.JMenuItem();
         Navegacion = new javax.swing.JPopupMenu();
-        irAgenda = new javax.swing.JMenuItem();
         irBlocNotas = new javax.swing.JMenuItem();
         irListaCompra = new javax.swing.JMenuItem();
         irCartera = new javax.swing.JMenuItem();
@@ -122,14 +121,6 @@ public class AgendaPrincipal extends javax.swing.JFrame {
             }
         });
         Contactos.add(popupEliminar);
-
-        irAgenda.setText("Ir a Agenda");
-        irAgenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                irAgendaActionPerformed(evt);
-            }
-        });
-        Navegacion.add(irAgenda);
 
         irBlocNotas.setText("Ir a Bloc de Notas");
         irBlocNotas.addActionListener(new java.awt.event.ActionListener() {
@@ -672,14 +663,6 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_irBlocNotasActionPerformed
 
-    private void irAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irAgendaActionPerformed
-        AgendaPrincipal ag = new AgendaPrincipal();
-        ag.setVisible(true);
-        ag.setLocationRelativeTo(null);
-        ag.setSize(1080, 720);
-        dispose();
-    }//GEN-LAST:event_irAgendaActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -729,7 +712,6 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton anyadirContacto;
     private javax.swing.JButton editarContacto;
     private javax.swing.JButton eliminarContacto;
-    private javax.swing.JMenuItem irAgenda;
     private javax.swing.JMenuItem irBlocNotas;
     private javax.swing.JMenuItem irCartera;
     private javax.swing.JMenuItem irInformes;

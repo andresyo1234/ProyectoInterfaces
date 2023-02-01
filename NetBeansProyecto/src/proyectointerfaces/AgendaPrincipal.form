@@ -32,14 +32,6 @@
         <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
-        <MenuItem class="javax.swing.JMenuItem" name="irAgenda">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ir a Agenda"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="irAgendaActionPerformed"/>
-          </Events>
-        </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="irBlocNotas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ir a Bloc de Notas"/>

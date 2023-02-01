@@ -45,8 +45,18 @@ public class InicioSesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1080, 720));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                formKeyTyped(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(153, 196, 255));
+        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPanel1KeyTyped(evt);
+            }
+        });
 
         TituloInicioSesion.setAlignment(java.awt.Label.CENTER);
         TituloInicioSesion.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
@@ -55,11 +65,6 @@ public class InicioSesion extends javax.swing.JFrame {
         inputUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         inputUsuario.setText("Usuario...");
         inputUsuario.setToolTipText("Introduce tu nombre de Usuario...");
-        inputUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                inputUsuarioMouseClicked(evt);
-            }
-        });
         inputUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputUsuarioActionPerformed(evt);
@@ -74,11 +79,6 @@ public class InicioSesion extends javax.swing.JFrame {
         BotonInicioSesion.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         BotonInicioSesion.setText("Inicio Sesión");
         BotonInicioSesion.setToolTipText("Click para Iniciar Sesión...");
-        BotonInicioSesion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BotonInicioSesionMouseClicked(evt);
-            }
-        });
         BotonInicioSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonInicioSesionActionPerformed(evt);
@@ -101,11 +101,6 @@ public class InicioSesion extends javax.swing.JFrame {
 
         InputContrasenya.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         InputContrasenya.setToolTipText("Introduce tu Contraseña...");
-        InputContrasenya.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputContrasenyaActionPerformed(evt);
-            }
-        });
         InputContrasenya.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 InputContrasenyaKeyTyped(evt);
@@ -197,10 +192,18 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonRegistroMouseClicked
 
     public static int IdUsuario;
-    private void BotonInicioSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInicioSesionMouseClicked
+    private void InputContrasenyaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InputContrasenyaKeyTyped
+         char teclaPresionada = evt.getKeyChar();
         
+        if (teclaPresionada == KeyEvent.VK_ENTER) {
+                    
+            BotonInicioSesion.doClick(100);
+        }
+        
+    }//GEN-LAST:event_InputContrasenyaKeyTyped
 
-        String nombreUsuario, psw = null;
+    private void BotonInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInicioSesionActionPerformed
+       String nombreUsuario, psw = null;
         
 
         Statement st_;
@@ -246,139 +249,41 @@ public class InicioSesion extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
-    }//GEN-LAST:event_BotonInicioSesionMouseClicked
+    }//GEN-LAST:event_BotonInicioSesionActionPerformed
 
-    private void inputUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputUsuarioMouseClicked
-
-        String value = inputUsuario.getText();
-        if (value.equals("Usuario...")) {
-            inputUsuario.setText("");
-        }
-    }//GEN-LAST:event_inputUsuarioMouseClicked
-
-    private void inputUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputUsuarioActionPerformed
-
-    private void InputContrasenyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputContrasenyaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputContrasenyaActionPerformed
-
-    private void InputContrasenyaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InputContrasenyaKeyTyped
+    private void inputUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputUsuarioKeyTyped
         char teclaPresionada = evt.getKeyChar();
         
         if (teclaPresionada == KeyEvent.VK_ENTER) {
                     
-
-        String nombreUsuario, psw = null;
+            BotonInicioSesion.doClick(100);
+        }
         
+    }//GEN-LAST:event_inputUsuarioKeyTyped
 
-        Statement st_;
-        ResultSet rs_;
-
-        try {
-
-            Connection con = Conexion.getConexion();
-            st_ = con.createStatement();
-
-            nombreUsuario = inputUsuario.getText();
-
-            rs_ = st_.executeQuery("select * from Usuarios where NombreUsuario = '" + nombreUsuario + "'");
-           
-
-            while (rs_.next()) {
-                IdUsuario = rs_.getInt(1);
-                psw = rs_.getString(8);
-            }
-            System.out.println("asd: " + IdUsuario);
-
-            
-            
-            if (IdUsuario != 0) {
-
-                rs_.next();
-                if (new String(InputContrasenya.getPassword()).equals(psw)) {
-                    AgendaPrincipal ag = new AgendaPrincipal();
-                    ag.setVisible(true);
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "El usuario no existe");
-            }
-
-            // JOptionPane.showMessageDialog(null, "El alumno se ha registrado correctamente");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "usuario ya exitente");
-        } catch (ClassNotFoundException e) {
-            System.out.println("fallo2");
-        } catch (Exception e) {
-
-        }
-
-        }
-    }//GEN-LAST:event_InputContrasenyaKeyTyped
-
-    private void BotonInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInicioSesionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotonInicioSesionActionPerformed
-
-    private void inputUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputUsuarioKeyTyped
-                char teclaPresionada = evt.getKeyChar();
+    private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
+        char teclaPresionada = evt.getKeyChar();
         
         if (teclaPresionada == KeyEvent.VK_ENTER) {
                     
+            BotonInicioSesion.doClick(100);
+        }
+    }//GEN-LAST:event_formKeyTyped
 
-        String nombreUsuario, psw = null;
+    private void jPanel1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyTyped
+        char teclaPresionada = evt.getKeyChar();
         
-
-        Statement st_;
-        ResultSet rs_;
-
-        try {
-
-            Connection con = Conexion.getConexion();
-            st_ = con.createStatement();
-
-            nombreUsuario = inputUsuario.getText();
-
-            rs_ = st_.executeQuery("select * from Usuarios where NombreUsuario = '" + nombreUsuario + "'");
-           
-
-            while (rs_.next()) {
-                IdUsuario = rs_.getInt(1);
-                psw = rs_.getString(8);
-            }
-            System.out.println("asd: " + IdUsuario);
-
-            
-            
-            if (IdUsuario != 0) {
-
-                rs_.next();
-                if (new String(InputContrasenya.getPassword()).equals(psw)) {
-                    AgendaPrincipal ag = new AgendaPrincipal();
-                    ag.setVisible(true);
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "El usuario no existe");
-            }
-
-            // JOptionPane.showMessageDialog(null, "El alumno se ha registrado correctamente");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "usuario ya exitente");
-        } catch (ClassNotFoundException e) {
-            System.out.println("fallo2");
-        } catch (Exception e) {
-
+        if (teclaPresionada == KeyEvent.VK_ENTER) {
+                    
+            BotonInicioSesion.doClick(100);
         }
+    }//GEN-LAST:event_jPanel1KeyTyped
 
+    private void inputUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputUsuarioActionPerformed
+        if (inputUsuario.getText() == "Usuario...") {
+            inputUsuario.setText("");
         }
-    }//GEN-LAST:event_inputUsuarioKeyTyped
+    }//GEN-LAST:event_inputUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

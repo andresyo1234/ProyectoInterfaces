@@ -16,14 +16,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="irAgendaActionPerformed"/>
           </Events>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="irBlocNotas">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ir a Bloc de Notas"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="irBlocNotasActionPerformed"/>
-          </Events>
-        </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="irListaCompra">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ir a Lista Compra"/>

@@ -93,7 +93,6 @@ public class Informes extends javax.swing.JFrame {
         irBlocNotas = new javax.swing.JMenuItem();
         irListaCompra = new javax.swing.JMenuItem();
         irCartera = new javax.swing.JMenuItem();
-        irInformes = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         BotonPaginaAgenda = new javax.swing.JButton();
         BotonPaginaCompra = new javax.swing.JButton();
@@ -237,14 +236,6 @@ public class Informes extends javax.swing.JFrame {
             }
         });
         Navegacion.add(irCartera);
-
-        irInformes.setText("Ir a Informes");
-        irInformes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                irInformesActionPerformed(evt);
-            }
-        });
-        Navegacion.add(irInformes);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(231, 246, 242));
@@ -559,14 +550,6 @@ public class Informes extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_irCarteraActionPerformed
 
-    private void irInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irInformesActionPerformed
-        Informes in = new Informes();
-        in.setVisible(true);
-        in.setLocationRelativeTo(null);
-        in.setSize(1080, 720);
-        dispose();
-    }//GEN-LAST:event_irInformesActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -614,7 +597,6 @@ public class Informes extends javax.swing.JFrame {
     private javax.swing.JMenuItem irAgenda;
     private javax.swing.JMenuItem irBlocNotas;
     private javax.swing.JMenuItem irCartera;
-    private javax.swing.JMenuItem irInformes;
     private javax.swing.JMenuItem irListaCompra;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
