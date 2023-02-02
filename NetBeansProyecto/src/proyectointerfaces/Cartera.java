@@ -5,7 +5,8 @@
 package proyectointerfaces;
 
 import java.awt.Color;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,6 +16,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import static proyectointerfaces.InicioSesion.IdUsuario;
+
 
 /**
  *
@@ -22,62 +26,49 @@ import javax.swing.DefaultListModel;
  */
 public class Cartera extends javax.swing.JFrame {
 
-    int idusuario = 1;
-    DefaultListModel modelo = new DefaultListModel();
-
     /**
      * Creates new form BlogNotas
      */
+    public static String tipoOperacion;
+    public static int operacion, saldo;
     public Cartera() {
         initComponents();
         limpiarLista();
         setTitle("Mi Agenda - Cartera");
-
+        
+        
+        
         Statement st_;
-        Statement st_2;
         ResultSet rs_;
-
+        Connection connection_;
         try {
-            Connection con = Conexion.getConexion();
-            st_ = con.createStatement();
-
-            rs_ = st_.executeQuery("SELECT * from Usuarios where Id = " + idusuario);
-            rs_.next();
-            jLabel1.setText("Saldo de: " + rs_.getString("nombre") + " " + rs_.getString("Apellidos"));
-            rs_.close();
-            rs_ = st_.executeQuery("select * from Cartera where Id_usuario = " + idusuario);
-
-            if (!rs_.next()) {
-                PreparedStatement ps = con.prepareStatement("INSERT INTO cartera (Id_usuario,Saldo) VALUES (?,?)");
-                ps.setInt(1, idusuario);
-                ps.setInt(2, 0);
-                ps.executeUpdate();
-
+            connection_ = Conexion.getConexion();
+            st_ = connection_.createStatement();
+            
+            rs_ = st_.executeQuery("select top 1 saldo from Tarjetas where Id_usuario=" + IdUsuario + " order by idTransaccion desc");
+            
+            if(rs_.next()){
+                saldo = rs_.getInt(1);
+            
+            }else{
+                saldo = 0;
             }
-            rs_.close();
-            rs_ = st_.executeQuery("select * from Cartera where Id_usuario = " + idusuario);
-            rs_.next();
-            textoDinero.setText(rs_.getString("saldo") + '€');
-            int idcartera= rs_.getInt("IdCartera");
-            rs_.close();
             
-             rs_ = st_.executeQuery("select * from TRANSACCIONES where IdCartera = " + idcartera);
-             while(rs_.next()){
-                 modelo.addElement(rs_.getString("texto"));
-             }
-            listaRegistro.setModel(modelo);
-            
-            
+            textoDinero.setText(String.valueOf(saldo) + "€");
+           
+            System.out.println("Saldo: " + saldo);
+           
+             
+            System.out.println("hola");
+
             
         } catch (SQLException e) {
-            System.out.println("fallo1");
+            JOptionPane.showMessageDialog(null, "fallo1");
         } catch (ClassNotFoundException e) {
             System.out.println("fallo2");
         } catch (Exception e) {
             System.out.println("fallo3");
-
         }
-
     }
 
     /**
@@ -89,11 +80,12 @@ public class Cartera extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        BotonPaginaAgenda7 = new javax.swing.JButton();
+        BotonPaginaCompra7 = new javax.swing.JButton();
+        BotonPaginaCartera7 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
         jPanel16 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -105,105 +97,110 @@ public class Cartera extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(57, 91, 100));
+        jPanel10.setBackground(new java.awt.Color(57, 91, 100));
 
-        jButton1.setBackground(new java.awt.Color(57, 91, 100));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jButton1.setText("Agenda");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotonPaginaAgenda7.setBackground(new java.awt.Color(57, 91, 100));
+        BotonPaginaAgenda7.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        BotonPaginaAgenda7.setText("Agenda");
+        BotonPaginaAgenda7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BotonPaginaAgenda7.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        BotonPaginaAgenda7.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        BotonPaginaAgenda7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotonPaginaAgenda7ActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(57, 91, 100));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jButton2.setText("Bloc de Notas");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        BotonPaginaCompra7.setBackground(new java.awt.Color(57, 91, 100));
+        BotonPaginaCompra7.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        BotonPaginaCompra7.setText("Lista Compra");
+        BotonPaginaCompra7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BotonPaginaCompra7.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        BotonPaginaCompra7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                BotonPaginaCompra7MouseClicked(evt);
             }
         });
-
-        jButton3.setBackground(new java.awt.Color(57, 91, 100));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jButton3.setText("Lista Compra");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton3.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BotonPaginaCompra7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BotonPaginaCompra7ActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(57, 91, 100));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jButton4.setText("Cartera");
-        jButton4.setAlignmentY(0.0F);
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton4.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setIconTextGap(0);
-        jButton4.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton4.setRequestFocusEnabled(false);
-        jButton4.setRolloverEnabled(false);
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        BotonPaginaCartera7.setBackground(new java.awt.Color(57, 91, 100));
+        BotonPaginaCartera7.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        BotonPaginaCartera7.setText("Cartera");
+        BotonPaginaCartera7.setAlignmentY(0.0F);
+        BotonPaginaCartera7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BotonPaginaCartera7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        BotonPaginaCartera7.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        BotonPaginaCartera7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotonPaginaCartera7.setIconTextGap(0);
+        BotonPaginaCartera7.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        BotonPaginaCartera7.setRequestFocusEnabled(false);
+        BotonPaginaCartera7.setRolloverEnabled(false);
+        BotonPaginaCartera7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+                BotonPaginaCartera7MouseClicked(evt);
             }
         });
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        BotonPaginaCartera7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                BotonPaginaCartera7ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jButton18.setBackground(new java.awt.Color(57, 91, 100));
+        jButton18.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jButton18.setText("Bloc de Notas");
+        jButton18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
+
+        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectointerfaces/imagenes/PNGENGRANAJE.png"))); // NOI18N
+        jButton19.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton19MouseClicked(evt);
+            }
+        });
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(BotonPaginaAgenda7, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonPaginaCompra7, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(BotonPaginaCartera7, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BotonPaginaCompra7, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addComponent(BotonPaginaAgenda7, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BotonPaginaCartera7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel16.setBackground(new java.awt.Color(153, 196, 255));
 
-        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton10.setText("Modificar Saldo");
-        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton7MouseClicked(evt);
-            }
-        });
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -297,82 +294,95 @@ public class Cartera extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(67, 67, 67)
                 .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, 0)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(653, Short.MAX_VALUE)))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+       
+     
+        ayadirDinero ad = new ayadirDinero();
+        ad.setVisible(true);
+        ad.setSize(477, 204);
+        ad.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        AgendaPrincipal ap = new AgendaPrincipal();
-        ap.setVisible(true);
-        ap.setLocationRelativeTo(null);
-        ap.setSize(1080, 720);
+    private void BotonPaginaAgenda7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPaginaAgenda7ActionPerformed
+        AgendaPrincipal ag = new AgendaPrincipal();
+        ag.setVisible(true);
+        ag.setLocationRelativeTo(null);
+        ag.setSize(1080, 720);
         dispose();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_BotonPaginaAgenda7ActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
-        BlogNotas bn = new BlogNotas();
-        bn.setVisible(true);
-        bn.setLocationRelativeTo(null);
-        bn.setSize(1080, 720);
-        dispose();
-    }//GEN-LAST:event_jButton2MouseClicked
-
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    private void BotonPaginaCompra7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonPaginaCompra7MouseClicked
         // TODO add your handling code here:
         ListaCompra lc = new ListaCompra();
         lc.setVisible(true);
         lc.setLocationRelativeTo(null);
         lc.setSize(1080, 720);
         dispose();
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_BotonPaginaCompra7MouseClicked
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    private void BotonPaginaCompra7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPaginaCompra7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonPaginaCompra7ActionPerformed
+
+    private void BotonPaginaCartera7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonPaginaCartera7MouseClicked
         // TODO add your handling code here:
         Cartera cart = new Cartera();
         cart.setVisible(true);
         cart.setLocationRelativeTo(null);
         cart.setSize(1080, 720);
         dispose();
-    }//GEN-LAST:event_jButton4MouseClicked
+    }//GEN-LAST:event_BotonPaginaCartera7MouseClicked
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void BotonPaginaCartera7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPaginaCartera7ActionPerformed
 
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        // TODO add your handling code here:
-        ayadirDinero ad = new ayadirDinero();
-        ad.setVisible(true);
-        ad.setSize(477, 204);
-        ad.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButton7MouseClicked
+    }//GEN-LAST:event_BotonPaginaCartera7ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        BlogNotas bn = new BlogNotas();
+        bn.setVisible(true);
+        bn.setLocationRelativeTo(null);
+        bn.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton19MouseClicked
+        // TODO add your handling code here:
+        Informes in = new Informes();
+        in.setVisible(true);
+        in.setLocationRelativeTo(null);
+        in.setSize(1080, 720);
+        dispose();    }//GEN-LAST:event_jButton19MouseClicked
 
     /**
      * @param args the command line arguments
@@ -414,15 +424,19 @@ public class Cartera extends javax.swing.JFrame {
                 new Cartera().setVisible(true);
             }
         });
-
+        
+        
+       
+        
+        
     }
-
+    
     public DefaultListModel limpiarLista() {
         DefaultListModel modelo = new DefaultListModel();
         listaRegistro.setModel(modelo);
         return modelo;
     }
-
+    
     public static int dineroFinal = 0;
     public static int dineroModificar = 0;
     public static String texto = "";
@@ -431,16 +445,18 @@ public class Cartera extends javax.swing.JFrame {
     public static DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
     public static DefaultListModel listModel = new DefaultListModel();
     public static ArrayList listaCartera = new ArrayList();
-
-
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BotonPaginaAgenda7;
+    private javax.swing.JButton BotonPaginaCartera7;
+    private javax.swing.JButton BotonPaginaCompra7;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

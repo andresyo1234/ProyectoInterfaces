@@ -24,17 +24,13 @@ import static proyectointerfaces.InicioSesion.IdUsuario;
  */
 public class AgendaPrincipal extends javax.swing.JFrame {
 
-    int idusuario = InicioSesion.IdUsuario;
+    
 
     /**
      * Creates new form AgendaPrincipal
      */
     public AgendaPrincipal() {
         initComponents();
-
-        
-        
-
         BotonPaginaAgenda.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
         jButton2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
         BotonPaginaCompra.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -51,7 +47,8 @@ public class AgendaPrincipal extends javax.swing.JFrame {
             Connection con = Conexion.getConexion();
             st_ = con.createStatement();
 
-            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + idusuario);
+            System.out.println("ID del usuario: " + IdUsuario);
+            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + IdUsuario);
             Vector v;
             DefaultTableModel model = (DefaultTableModel) TablaContactos.getModel();
 
@@ -105,6 +102,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         BotonPaginaCompra = new javax.swing.JButton();
         BotonPaginaCartera = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaContactos = new javax.swing.JTable();
@@ -273,9 +271,22 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(57, 91, 100));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton2.setText("Bloc de Notas");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectointerfaces/imagenes/PNGENGRANAJE.png"))); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -284,21 +295,24 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(BotonPaginaAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BotonPaginaAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(BotonPaginaCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(BotonPaginaCartera, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addComponent(BotonPaginaCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(BotonPaginaCartera, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BotonPaginaCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(BotonPaginaCartera, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(BotonPaginaAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BotonPaginaCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addComponent(BotonPaginaAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BotonPaginaCartera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(153, 196, 255));
@@ -463,10 +477,10 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     /// ABRIR AGENDA    
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        AgendaPrincipal ap = new AgendaPrincipal();
-        ap.setVisible(true);
-        ap.setLocationRelativeTo(null);
-        ap.setSize(1080, 720);
+        Informes in = new Informes();
+        in.setVisible(true);
+        in.setLocationRelativeTo(null);
+        in.setSize(1080, 720);
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -509,7 +523,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
             Connection con = Conexion.getConexion();
             st_ = con.createStatement();
 
-            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + idusuario);
+            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + IdUsuario);
 
             int[] rows = TablaContactos.getSelectedRows();
 
@@ -554,7 +568,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
             Connection con = Conexion.getConexion();
             st_ = con.createStatement();
 
-            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + idusuario);
+            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + IdUsuario);
 
             int[] rows = TablaContactos.getSelectedRows();
 
@@ -589,6 +603,10 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         editarContacto.setEnabled(true);
         eliminarContacto.setEnabled(true);
     }//GEN-LAST:event_TablaContactosFocusGained
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -637,6 +655,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton anyadirContacto;
     private javax.swing.JButton editarContacto;
     private javax.swing.JButton eliminarContacto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
