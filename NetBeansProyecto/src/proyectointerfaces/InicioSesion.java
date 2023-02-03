@@ -4,6 +4,7 @@
  */
 package proyectointerfaces;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -44,8 +45,18 @@ public class InicioSesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1080, 720));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                formKeyTyped(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(153, 196, 255));
+        jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPanel1KeyTyped(evt);
+            }
+        });
 
         TituloInicioSesion.setAlignment(java.awt.Label.CENTER);
         TituloInicioSesion.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
@@ -53,27 +64,30 @@ public class InicioSesion extends javax.swing.JFrame {
 
         inputUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         inputUsuario.setText("Usuario...");
-        inputUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                inputUsuarioMouseClicked(evt);
-            }
-        });
+        inputUsuario.setToolTipText("Introduce tu nombre de Usuario...");
         inputUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputUsuarioActionPerformed(evt);
             }
         });
+        inputUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputUsuarioKeyTyped(evt);
+            }
+        });
 
         BotonInicioSesion.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         BotonInicioSesion.setText("Inicio Sesión");
-        BotonInicioSesion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BotonInicioSesionMouseClicked(evt);
+        BotonInicioSesion.setToolTipText("Click para Iniciar Sesión...");
+        BotonInicioSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonInicioSesionActionPerformed(evt);
             }
         });
 
         BotonRegistro.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         BotonRegistro.setText("Registro");
+        BotonRegistro.setToolTipText("Click para Registrarse...");
         BotonRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 BotonRegistroMouseClicked(evt);
@@ -86,9 +100,10 @@ public class InicioSesion extends javax.swing.JFrame {
         });
 
         InputContrasenya.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        InputContrasenya.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputContrasenyaActionPerformed(evt);
+        InputContrasenya.setToolTipText("Introduce tu Contraseña...");
+        InputContrasenya.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                InputContrasenyaKeyTyped(evt);
             }
         });
 
@@ -103,40 +118,39 @@ public class InicioSesion extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(298, 298, 298)
+                .addContainerGap(298, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addContainerGap(689, Short.MAX_VALUE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(InputContrasenya)
-                                .addComponent(TituloInicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
-                                .addComponent(inputUsuario)
-                                .addComponent(BotonInicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BotonRegistro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(326, 326, 326)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(689, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(InputContrasenya)
+                            .addComponent(TituloInicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                            .addComponent(inputUsuario)
+                            .addComponent(BotonInicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotonRegistro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(326, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(47, Short.MAX_VALUE)
                 .addComponent(TituloInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(InputContrasenya, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(BotonInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(BotonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(133, Short.MAX_VALUE))
         );
@@ -177,11 +191,19 @@ public class InicioSesion extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BotonRegistroMouseClicked
 
-    public static int IdUsuario = 0;
-    private void BotonInicioSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonInicioSesionMouseClicked
+    public static int IdUsuario;
+    private void InputContrasenyaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_InputContrasenyaKeyTyped
+         char teclaPresionada = evt.getKeyChar();
         
+        if (teclaPresionada == KeyEvent.VK_ENTER) {
+                    
+            BotonInicioSesion.doClick(100);
+        }
+        
+    }//GEN-LAST:event_InputContrasenyaKeyTyped
 
-        String nombreUsuario, psw = null;
+    private void BotonInicioSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInicioSesionActionPerformed
+       String nombreUsuario, psw = null;
         
 
         Statement st_;
@@ -227,23 +249,41 @@ public class InicioSesion extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }
-    }//GEN-LAST:event_BotonInicioSesionMouseClicked
+    }//GEN-LAST:event_BotonInicioSesionActionPerformed
 
-    private void inputUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputUsuarioMouseClicked
-
-        String value = inputUsuario.getText();
-        if (value.equals("Usuario...")) {
-            inputUsuario.setText("");
+    private void inputUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputUsuarioKeyTyped
+        char teclaPresionada = evt.getKeyChar();
+        
+        if (teclaPresionada == KeyEvent.VK_ENTER) {
+                    
+            BotonInicioSesion.doClick(100);
         }
-    }//GEN-LAST:event_inputUsuarioMouseClicked
+        
+    }//GEN-LAST:event_inputUsuarioKeyTyped
+
+    private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
+        char teclaPresionada = evt.getKeyChar();
+        
+        if (teclaPresionada == KeyEvent.VK_ENTER) {
+                    
+            BotonInicioSesion.doClick(100);
+        }
+    }//GEN-LAST:event_formKeyTyped
+
+    private void jPanel1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyTyped
+        char teclaPresionada = evt.getKeyChar();
+        
+        if (teclaPresionada == KeyEvent.VK_ENTER) {
+                    
+            BotonInicioSesion.doClick(100);
+        }
+    }//GEN-LAST:event_jPanel1KeyTyped
 
     private void inputUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputUsuarioActionPerformed
-        // TODO add your handling code here:
+        if (inputUsuario.getText() == "Usuario...") {
+            inputUsuario.setText("");
+        }
     }//GEN-LAST:event_inputUsuarioActionPerformed
-
-    private void InputContrasenyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputContrasenyaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputContrasenyaActionPerformed
 
     /**
      * @param args the command line arguments

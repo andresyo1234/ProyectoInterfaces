@@ -64,24 +64,29 @@ public class AnyadirContacto extends javax.swing.JFrame {
         jLabel4.setText("Apellido");
 
         inputNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        inputNombre.setToolTipText("Introduce el nombre del Contacto");
 
         inputApellido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        inputApellido.setToolTipText("Introduce el apellido del Contacto");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Email");
 
         inputEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        inputEmail.setToolTipText("Introduce el email del Contacto");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Telefono");
 
         inputTelefono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        inputTelefono.setToolTipText("Introduce el telefono del Contacto");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Genero");
 
         botonAnyadir.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         botonAnyadir.setText("Añadir");
+        botonAnyadir.setToolTipText("Click para añadir Contacto");
         botonAnyadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAnyadirActionPerformed(evt);
@@ -90,6 +95,7 @@ public class AnyadirContacto extends javax.swing.JFrame {
 
         botonCancelar.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         botonCancelar.setText("Cancelar");
+        botonCancelar.setToolTipText("Click para cancelar la Operación");
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCancelarActionPerformed(evt);
@@ -98,6 +104,7 @@ public class AnyadirContacto extends javax.swing.JFrame {
 
         comboBoxGenero.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         comboBoxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer" }));
+        comboBoxGenero.setToolTipText("Selecciona el genero");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -206,6 +213,8 @@ public class AnyadirContacto extends javax.swing.JFrame {
     private void botonAnyadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnyadirActionPerformed
         Statement st_;
         Connection connection_;
+
+
         try {
             connection_ = Conexion.getConexion();
             st_ = connection_.createStatement();
@@ -238,7 +247,7 @@ public class AnyadirContacto extends javax.swing.JFrame {
         } catch (ClassNotFoundException e) {
             System.out.println("fallo2");
         } catch (Exception e) {
-
+            System.out.println("fallo3");
         }
 
         AgendaPrincipal ag = new AgendaPrincipal();

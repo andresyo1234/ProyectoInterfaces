@@ -9,19 +9,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
+import static proyectointerfaces.InicioSesion.IdUsuario;
 
 /**
  *
  * @author andres
  */
 public class AgendaPrincipal extends javax.swing.JFrame {
+
+    
 
     /**
      * Creates new form AgendaPrincipal
@@ -33,6 +36,44 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         BotonPaginaCompra.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
         BotonPaginaCartera.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
         setTitle("Mi Agenda - Agenda");
+
+        editarContacto.setEnabled(false);
+        eliminarContacto.setEnabled(false);
+
+        Statement st_;
+        ResultSet rs_;
+
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            System.out.println("ID del usuario: " + IdUsuario);
+            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + IdUsuario);
+            Vector v;
+            DefaultTableModel model = (DefaultTableModel) TablaContactos.getModel();
+
+            while (rs_.next()) {
+                v = new Vector();
+                v.add(rs_.getString("Nombre"));
+                v.add(rs_.getString("Apellidos"));
+                v.add(rs_.getString("Email"));
+                v.add(rs_.getString("Telefono"));
+                v.add(rs_.getString("Genero"));
+                model.addRow(v);
+
+            }
+            rs_.close();
+            //TablaContactos.setModel(model);
+            // JOptionPane.showMessageDialog(null, "El alumno se ha registrado correctamente");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "usuario ya exitente");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
+        }
+
     }
 
     /**
@@ -44,131 +85,74 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFrame1 = new javax.swing.JFrame();
-        jButton6 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        Contactos = new javax.swing.JPopupMenu();
+        popupEditar = new javax.swing.JMenuItem();
+        popupEliminar = new javax.swing.JMenuItem();
+        Navegacion = new javax.swing.JPopupMenu();
+        irBlocNotas = new javax.swing.JMenuItem();
+        irListaCompra = new javax.swing.JMenuItem();
+        irCartera = new javax.swing.JMenuItem();
+        irInformes = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         BotonPaginaAgenda = new javax.swing.JButton();
         BotonPaginaCompra = new javax.swing.JButton();
         BotonPaginaCartera = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaContactos = new javax.swing.JTable();
         anyadirContacto = new javax.swing.JButton();
-        anyadirContacto1 = new javax.swing.JButton();
-        anyadirContacto2 = new javax.swing.JButton();
+        editarContacto = new javax.swing.JButton();
+        eliminarContacto = new javax.swing.JButton();
 
-        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton6.setText("Crear");
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton6MouseClicked(evt);
-            }
-        });
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        popupEditar.setText("Editar Contacto");
+        popupEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                popupEditarActionPerformed(evt);
             }
         });
+        Contactos.add(popupEditar);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Nombre");
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        popupEliminar.setText("Eliminar Contacto");
+        popupEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                popupEliminarActionPerformed(evt);
             }
         });
+        Contactos.add(popupEliminar);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Apellido");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Email");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Telefono");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setText("Genero");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        irBlocNotas.setText("Ir a Bloc de Notas");
+        irBlocNotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                irBlocNotasActionPerformed(evt);
             }
         });
+        Navegacion.add(irBlocNotas);
 
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame1Layout.createSequentialGroup()
-                .addGap(279, 279, 279)
-                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(279, 279, 279))
-            .addGroup(jFrame1Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)
-                    .addGroup(jFrame1Layout.createSequentialGroup()
-                        .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(335, 335, 335)
-                        .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jFrame1Layout.createSequentialGroup()
-                        .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(336, 336, 336)
-                        .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(95, 95, 95))
-        );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFrame1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jFrame1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jFrame1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
-        );
+        irListaCompra.setText("Ir a Lista Compra");
+        irListaCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irListaCompraActionPerformed(evt);
+            }
+        });
+        Navegacion.add(irListaCompra);
+
+        irCartera.setText("Ir a Cartera");
+        irCartera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irCarteraActionPerformed(evt);
+            }
+        });
+        Navegacion.add(irCartera);
+
+        irInformes.setText("Ir a Informes");
+        irInformes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irInformesActionPerformed(evt);
+            }
+        });
+        Navegacion.add(irInformes);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(231, 246, 242));
@@ -178,6 +162,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         BotonPaginaAgenda.setBackground(new java.awt.Color(57, 91, 100));
         BotonPaginaAgenda.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         BotonPaginaAgenda.setText("Agenda");
+        BotonPaginaAgenda.setToolTipText("Ventana de Agenda");
         BotonPaginaAgenda.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         BotonPaginaAgenda.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         BotonPaginaAgenda.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -190,6 +175,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         BotonPaginaCompra.setBackground(new java.awt.Color(57, 91, 100));
         BotonPaginaCompra.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         BotonPaginaCompra.setText("Lista Compra");
+        BotonPaginaCompra.setToolTipText("Ventana de Lista Compra");
         BotonPaginaCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         BotonPaginaCompra.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         BotonPaginaCompra.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -206,6 +192,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         BotonPaginaCartera.setBackground(new java.awt.Color(57, 91, 100));
         BotonPaginaCartera.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         BotonPaginaCartera.setText("Cartera");
+        BotonPaginaCartera.setToolTipText("Ventana de Cartera");
         BotonPaginaCartera.setAlignmentY(0.0F);
         BotonPaginaCartera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         BotonPaginaCartera.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -229,9 +216,24 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(57, 91, 100));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton2.setText("Bloc de Notas");
+        jButton2.setToolTipText("Ventana de Bloc de Notas");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectointerfaces/imagenes/PNGENGRANAJE.png"))); // NOI18N
+        jButton1.setToolTipText("Ventana de Informes");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -240,31 +242,37 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(BotonPaginaAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BotonPaginaAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(BotonPaginaCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(BotonPaginaCartera, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addComponent(BotonPaginaCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(BotonPaginaCartera, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BotonPaginaCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(BotonPaginaCartera, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(BotonPaginaAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BotonPaginaCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addComponent(BotonPaginaAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BotonPaginaCartera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(153, 196, 255));
+        jPanel3.setComponentPopupMenu(Navegacion);
+        jPanel3.setInheritsPopupMenu(true);
 
+        TablaContactos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         TablaContactos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nombre", "Apellido", "Telefono", "Correo", "Genero"
+                "Nombre", "Apellido", "Correo", "Telefono", "Genero"
             }
         ) {
             Class[] types = new Class [] {
@@ -282,6 +290,13 @@ public class AgendaPrincipal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        TablaContactos.setToolTipText("Haz Click en un Contacto para Editarlo o Eliminarlo...");
+        TablaContactos.setComponentPopupMenu(Contactos);
+        TablaContactos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                TablaContactosFocusGained(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablaContactos);
         if (TablaContactos.getColumnModel().getColumnCount() > 0) {
             TablaContactos.getColumnModel().getColumn(0).setResizable(false);
@@ -289,48 +304,36 @@ public class AgendaPrincipal extends javax.swing.JFrame {
             TablaContactos.getColumnModel().getColumn(2).setResizable(false);
             TablaContactos.getColumnModel().getColumn(3).setResizable(false);
             TablaContactos.getColumnModel().getColumn(4).setResizable(false);
+            TablaContactos.getColumnModel().getColumn(4).setPreferredWidth(0);
         }
 
         anyadirContacto.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         anyadirContacto.setText("Añadir contacto");
+        anyadirContacto.setToolTipText("Click para Añadir un Contacto...");
         anyadirContacto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        anyadirContacto.setMargin(new java.awt.Insets(2, 14, 8, 14));
-        anyadirContacto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                anyadirContactoMouseClicked(evt);
-            }
-        });
         anyadirContacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 anyadirContactoActionPerformed(evt);
             }
         });
 
-        anyadirContacto1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        anyadirContacto1.setText("Editar contacto");
-        anyadirContacto1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        anyadirContacto1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                anyadirContacto1MouseClicked(evt);
-            }
-        });
-        anyadirContacto1.addActionListener(new java.awt.event.ActionListener() {
+        editarContacto.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        editarContacto.setText("Editar contacto");
+        editarContacto.setToolTipText("Click para Editar un Contacto...");
+        editarContacto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        editarContacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                anyadirContacto1ActionPerformed(evt);
+                editarContactoActionPerformed(evt);
             }
         });
 
-        anyadirContacto2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        anyadirContacto2.setText("Eliminar contacto");
-        anyadirContacto2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        anyadirContacto2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                anyadirContacto2MouseClicked(evt);
-            }
-        });
-        anyadirContacto2.addActionListener(new java.awt.event.ActionListener() {
+        eliminarContacto.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        eliminarContacto.setText("Eliminar contacto");
+        eliminarContacto.setToolTipText("Click para Eliminar un Contacto...");
+        eliminarContacto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        eliminarContacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                anyadirContacto2ActionPerformed(evt);
+                eliminarContactoActionPerformed(evt);
             }
         });
 
@@ -340,12 +343,12 @@ public class AgendaPrincipal extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
                 .addGap(33, 33, 33)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(anyadirContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                    .addComponent(anyadirContacto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(anyadirContacto2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(anyadirContacto, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                    .addComponent(editarContacto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(eliminarContacto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(45, 45, 45))
         );
         jPanel3Layout.setVerticalGroup(
@@ -357,9 +360,9 @@ public class AgendaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(anyadirContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(anyadirContacto1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editarContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(anyadirContacto2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eliminarContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(39, 39, 39))
         );
@@ -380,7 +383,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        setSize(new java.awt.Dimension(1096, 740));
+        setSize(new java.awt.Dimension(1095, 740));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -389,6 +392,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonPaginaAgendaActionPerformed
 
     private void anyadirContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anyadirContactoActionPerformed
+
         AnyadirContacto ac = new AnyadirContacto();
         ac.setVisible(true);
         dispose();
@@ -398,39 +402,6 @@ public class AgendaPrincipal extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_BotonPaginaCarteraActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void anyadirContactoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anyadirContactoMouseClicked
-                
-    }//GEN-LAST:event_anyadirContactoMouseClicked
-
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-
-        Vector v = new Vector();
-        v.add(jTextField1.getText());
-        v.add(jTextField2.getText());
-        v.add(jTextField3.getText());
-        v.add(jTextField4.getText());
-        v.add(String.valueOf(jComboBox1.getSelectedItem()));
-
-        DefaultTableModel model = (DefaultTableModel) TablaContactos.getModel();
-        model.addRow(v);
-        
-  
-
-
-    }//GEN-LAST:event_jButton6MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         rootPane.repaint();
@@ -443,10 +414,10 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     /// ABRIR AGENDA    
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        AgendaPrincipal ap = new AgendaPrincipal();
-        ap.setVisible(true);
-        ap.setLocationRelativeTo(null);
-        ap.setSize(1080, 720);
+        Informes in = new Informes();
+        in.setVisible(true);
+        in.setLocationRelativeTo(null);
+        in.setSize(1080, 720);
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -481,23 +452,216 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonPaginaCompraActionPerformed
 
-    private void anyadirContacto1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anyadirContacto1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_anyadirContacto1MouseClicked
+    private void editarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarContactoActionPerformed
+        Statement st_;
+        ResultSet rs_;
 
-    private void anyadirContacto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anyadirContacto1ActionPerformed
-        EditarContacto ec = new EditarContacto();
-        ec.setVisible(true);
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + IdUsuario);
+
+            int[] rows = TablaContactos.getSelectedRows();
+
+            if (!(rows.length > 1)) {
+
+                while (rs_.getRow() <= rows[0]) {
+                    rs_.next();
+                    System.out.println(rs_.getRow());
+                    
+                }
+                EditarContacto ec = new EditarContacto();
+                EditarContacto.idcontacto = rs_.getInt("IdContacto");
+                EditarContacto.inputNombre.setText(rs_.getString("Nombre"));
+                EditarContacto.inputApellido.setText(rs_.getString("Apellidos"));
+                EditarContacto.inputEmail.setText(rs_.getString("Email"));
+                System.out.println("aa");
+                EditarContacto.inputTelefono.setText(rs_.getString("Telefono"));
+               ec.setVisible(true);
+               dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione unicamente 1 fila ");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
+        }
+
+        
+    }//GEN-LAST:event_editarContactoActionPerformed
+
+    private void eliminarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarContactoActionPerformed
+
+        Statement st_;
+        ResultSet rs_;
+
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + IdUsuario);
+
+            int[] rows = TablaContactos.getSelectedRows();
+
+            if (!(rows.length > 1)) {
+
+                while (rs_.getRow() <= rows[0]) {
+                    rs_.next();
+                    System.out.println(rs_.getRow());
+
+                }
+                st_.executeUpdate("Delete from Contactos where IdContacto=" + rs_.getString("IdContacto"));
+                dispose();
+                AgendaPrincipal ap = new AgendaPrincipal();
+                ap.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione unicamente 1 fila ");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
+        }
+
+
+    }//GEN-LAST:event_eliminarContactoActionPerformed
+
+    private void TablaContactosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TablaContactosFocusGained
+        editarContacto.setEnabled(true);
+        eliminarContacto.setEnabled(true);
+    }//GEN-LAST:event_TablaContactosFocusGained
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void popupEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popupEliminarActionPerformed
+        
+        Statement st_;
+        ResultSet rs_;
+
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + IdUsuario);
+
+            int[] rows = TablaContactos.getSelectedRows();
+
+            if (!(rows.length > 1)) {
+
+                while (rs_.getRow() <= rows[0]) {
+                    rs_.next();
+                    System.out.println(rs_.getRow());
+
+                }
+                st_.executeUpdate("Delete from Contactos where IdContacto=" + rs_.getString("IdContacto"));
+                dispose();
+                AgendaPrincipal ap = new AgendaPrincipal();
+                ap.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione unicamente 1 fila ");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
+        }
+
+
+
+    }//GEN-LAST:event_popupEliminarActionPerformed
+
+    private void popupEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popupEditarActionPerformed
+               Statement st_;
+        ResultSet rs_;
+
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            rs_ = st_.executeQuery("select * from Contactos where Id_usuario = " + IdUsuario);
+
+            int[] rows = TablaContactos.getSelectedRows();
+
+            if (!(rows.length > 1)) {
+
+                while (rs_.getRow() <= rows[0]) {
+                    rs_.next();
+                    System.out.println(rs_.getRow());
+                    
+                }
+                EditarContacto ec = new EditarContacto();
+                EditarContacto.idcontacto = rs_.getInt("IdContacto");
+                EditarContacto.inputNombre.setText(rs_.getString("Nombre"));
+                EditarContacto.inputApellido.setText(rs_.getString("Apellidos"));
+                EditarContacto.inputEmail.setText(rs_.getString("Email"));
+                System.out.println("aa");
+                EditarContacto.inputTelefono.setText(rs_.getString("Telefono"));
+               ec.setVisible(true);
+               dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione unicamente 1 fila ");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
+        }
+
+        
+    }//GEN-LAST:event_popupEditarActionPerformed
+
+    private void irInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irInformesActionPerformed
+        Informes in = new Informes();
+        in.setVisible(true);
+        in.setLocationRelativeTo(null);
+        in.setSize(1080, 720);
         dispose();
-    }//GEN-LAST:event_anyadirContacto1ActionPerformed
+    }//GEN-LAST:event_irInformesActionPerformed
 
-    private void anyadirContacto2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anyadirContacto2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_anyadirContacto2MouseClicked
+    private void irCarteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irCarteraActionPerformed
+         // TODO add your handling code here:
+        Cartera cart = new Cartera();
+        cart.setVisible(true);
+        cart.setLocationRelativeTo(null);
+        cart.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_irCarteraActionPerformed
 
-    private void anyadirContacto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anyadirContacto2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_anyadirContacto2ActionPerformed
+    private void irListaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irListaCompraActionPerformed
+        ListaCompra lc = new ListaCompra();
+        lc.setVisible(true);
+        lc.setLocationRelativeTo(null);
+        lc.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_irListaCompraActionPerformed
+
+    private void irBlocNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irBlocNotasActionPerformed
+        BlogNotas bn = new BlogNotas();
+        bn.setVisible(true);
+        bn.setLocationRelativeTo(null);
+        bn.setSize(1080, 720);
+        dispose();
+    }//GEN-LAST:event_irBlocNotasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -528,11 +692,10 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
+        System.out.println("entra");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-
                 new AgendaPrincipal().setVisible(true);
 
             }
@@ -543,25 +706,22 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BotonPaginaAgenda;
     private javax.swing.JButton BotonPaginaCartera;
     private javax.swing.JButton BotonPaginaCompra;
-    private javax.swing.JTable TablaContactos;
+    private javax.swing.JPopupMenu Contactos;
+    private javax.swing.JPopupMenu Navegacion;
+    public static javax.swing.JTable TablaContactos;
     private javax.swing.JButton anyadirContacto;
-    private javax.swing.JButton anyadirContacto1;
-    private javax.swing.JButton anyadirContacto2;
+    private javax.swing.JButton editarContacto;
+    private javax.swing.JButton eliminarContacto;
+    private javax.swing.JMenuItem irBlocNotas;
+    private javax.swing.JMenuItem irCartera;
+    private javax.swing.JMenuItem irInformes;
+    private javax.swing.JMenuItem irListaCompra;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFrame jFrame1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JMenuItem popupEditar;
+    private javax.swing.JMenuItem popupEliminar;
     // End of variables declaration//GEN-END:variables
 }

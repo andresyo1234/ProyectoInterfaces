@@ -5,9 +5,14 @@
 package proyectointerfaces;
 
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import static proyectointerfaces.BlogNotas.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,6 +20,8 @@ import javax.swing.DefaultListModel;
  */
 public class NuevaNota extends javax.swing.JFrame {
 
+    
+     int idusuario = InicioSesion.IdUsuario;
     /**
      * Creates new form NuevaNota
      */
@@ -49,9 +56,11 @@ public class NuevaNota extends javax.swing.JFrame {
         txtArea.setColumns(20);
         txtArea.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtArea.setRows(5);
+        txtArea.setToolTipText("Introduce la descrición de la Nota");
         jScrollPane1.setViewportView(txtArea);
 
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        txtTitulo.setToolTipText("Introduce el título de la Nota");
         txtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTituloActionPerformed(evt);
@@ -66,6 +75,12 @@ public class NuevaNota extends javax.swing.JFrame {
 
         btnAddNota.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnAddNota.setText("Añadir");
+        btnAddNota.setToolTipText("Click para Añadir la Nota");
+        btnAddNota.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddNotaMouseClicked(evt);
+            }
+        });
         btnAddNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddNotaActionPerformed(evt);
@@ -74,6 +89,7 @@ public class NuevaNota extends javax.swing.JFrame {
 
         btnCancelarNota.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnCancelarNota.setText("Cancelar");
+        btnCancelarNota.setToolTipText("Click para cancelar la Operación");
         btnCancelarNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarNotaActionPerformed(evt);
@@ -82,6 +98,7 @@ public class NuevaNota extends javax.swing.JFrame {
 
         btnResetNota.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnResetNota.setText("Reset");
+        btnResetNota.setToolTipText("Click para vaciar los campos Título y Descripción");
         btnResetNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetNotaActionPerformed(evt);
@@ -147,8 +164,7 @@ public class NuevaNota extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTituloActionPerformed
 
     private void btnAddNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNotaActionPerformed
-        agregarDato();
-        dispose();
+
     }//GEN-LAST:event_btnAddNotaActionPerformed
 
     private void btnResetNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetNotaActionPerformed
@@ -158,6 +174,40 @@ public class NuevaNota extends javax.swing.JFrame {
     private void btnCancelarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarNotaActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarNotaActionPerformed
+
+    private void btnAddNotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddNotaMouseClicked
+        Statement st_;
+        Connection connection_;
+        
+         try {
+            connection_ = Conexion.getConexion();
+            st_ = connection_.createStatement();
+
+            String titulo, texto;
+            
+            
+            titulo = txtTitulo.getText();
+            texto = txtArea.getText();
+           
+                PreparedStatement ps = connection_.prepareStatement("INSERT INTO Notas (Id_usuario,Titulo,Nota) VALUES (?,?,?)");
+                ps.setInt(1, idusuario);
+                ps.setString(2, titulo);
+                ps.setString(3, texto);
+                ps.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Nota añadida");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+             System.out.println("asdasdfads");
+        }
+         
+          BlogNotas bn = new BlogNotas();
+        bn.setVisible(true);
+        dispose();      
+    }//GEN-LAST:event_btnAddNotaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -198,16 +248,6 @@ public class NuevaNota extends javax.swing.JFrame {
     }
     
     
-
-    public static DefaultListModel modelo = (DefaultListModel) BlogNotas.jlDatos.getModel();
-    public DefaultListModel agregarDato() {
-        
-
-        modelo.addElement(txtTitulo.getText());
-        datosArea.add(txtArea.getText());
-        datosTitulo.add(txtTitulo.getText());
-        return modelo;
-    }
     
     public void resetDatos() {
         txtArea.setText("");

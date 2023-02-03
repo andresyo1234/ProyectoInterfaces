@@ -5,18 +5,26 @@
 package proyectointerfaces;
 
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import static proyectointerfaces.BlogNotas.*;
-import static proyectointerfaces.NuevaNota.modelo;
 import static proyectointerfaces.NuevaNota.txtArea;
 import static proyectointerfaces.NuevaNota.txtTitulo;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import static proyectointerfaces.NuevaNota.txtArea;
+import static proyectointerfaces.NuevaNota.txtTitulo;
 
 /**
  *
  * @author DanielEspinosaMauri
  */
 public class EditarNota extends javax.swing.JFrame {
+    
+    int idusuario = InicioSesion.IdUsuario;
 
     /**
      * Creates new form NuevaNota
@@ -52,9 +60,11 @@ public class EditarNota extends javax.swing.JFrame {
         txtArea.setColumns(20);
         txtArea.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         txtArea.setRows(5);
+        txtArea.setToolTipText("Introduce la descripción de la Nota");
         jScrollPane1.setViewportView(txtArea);
 
         txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        txtTitulo.setToolTipText("Introduce el Titulo de la nota");
         txtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTituloActionPerformed(evt);
@@ -69,6 +79,12 @@ public class EditarNota extends javax.swing.JFrame {
 
         btnEditarNota.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnEditarNota.setText("Guardar");
+        btnEditarNota.setToolTipText("Click para guardar la Nota");
+        btnEditarNota.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarNotaMouseClicked(evt);
+            }
+        });
         btnEditarNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarNotaActionPerformed(evt);
@@ -77,6 +93,7 @@ public class EditarNota extends javax.swing.JFrame {
 
         btnCancelarNota.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnCancelarNota.setText("Cancelar");
+        btnCancelarNota.setToolTipText("Click para cancelar la Operación");
         btnCancelarNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarNotaActionPerformed(evt);
@@ -85,6 +102,7 @@ public class EditarNota extends javax.swing.JFrame {
 
         btnResetNota.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         btnResetNota.setText("Reset");
+        btnResetNota.setToolTipText("Click para dejar los campos título y descripción Vacíos");
         btnResetNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetNotaActionPerformed(evt);
@@ -150,8 +168,7 @@ public class EditarNota extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTituloActionPerformed
 
     private void btnEditarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarNotaActionPerformed
-        sobreescribirDato();
-        dispose();
+
     }//GEN-LAST:event_btnEditarNotaActionPerformed
 
     private void btnResetNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetNotaActionPerformed
@@ -161,6 +178,39 @@ public class EditarNota extends javax.swing.JFrame {
     private void btnCancelarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarNotaActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarNotaActionPerformed
+
+    private void btnEditarNotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarNotaMouseClicked
+          
+         Statement st_;
+        ResultSet rs_;
+        
+        
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+      
+            
+            st_.executeUpdate("Update Contactos set "
+                   + "', Titulo='" + txtTitulo.getText()
+                    + "', Nota='" + txtArea.getText()
+                    + "' where Id_usuario=" + idusuario
+            );
+          
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
+        }
+        
+            BlogNotas bn = new BlogNotas();
+        bn.setVisible(true);
+        dispose(); 
+        
+        
+    }//GEN-LAST:event_btnEditarNotaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -213,14 +263,7 @@ public class EditarNota extends javax.swing.JFrame {
     //    eliminarDato();
     //}
     
-    public DefaultListModel sobreescribirDato() {
-        eliminarDato();
-
-        modelo.insertElementAt(txtTitulo.getText(), 0);
-        datosArea.add(0, txtArea.getText());
-        datosTitulo.add(0, txtTitulo.getText());
-        return modelo;
-    }
+ 
     
     public void resetDatos() {
         txtArea.setText("");

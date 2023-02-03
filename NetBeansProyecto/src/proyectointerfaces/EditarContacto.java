@@ -63,7 +63,7 @@ public class EditarContacto extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 51));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setText("Editar Usuario");
+        jLabel1.setText("Editar Contacto");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Nombre");
@@ -72,24 +72,29 @@ public class EditarContacto extends javax.swing.JFrame {
         jLabel4.setText("Apellido");
 
         inputNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        inputNombre.setToolTipText("Introduce el nombre del Contacto");
 
         inputApellido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        inputApellido.setToolTipText("Introduce el Apellido del Contacto");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Email");
 
         inputEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        inputEmail.setToolTipText("Introduce el email del Contacto");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Telefono");
 
         inputTelefono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        inputTelefono.setToolTipText("Introduce el telefono del Contacto");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Genero");
 
         botonEditar.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         botonEditar.setText("Editar");
+        botonEditar.setToolTipText("Click para Editar Contacto");
         botonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEditarActionPerformed(evt);
@@ -98,6 +103,7 @@ public class EditarContacto extends javax.swing.JFrame {
 
         botonCancelar.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         botonCancelar.setText("Cancelar");
+        botonCancelar.setToolTipText("Click para Cancelar...");
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCancelarActionPerformed(evt);
@@ -106,6 +112,7 @@ public class EditarContacto extends javax.swing.JFrame {
 
         comboBoxGenero.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         comboBoxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer" }));
+        comboBoxGenero.setToolTipText("Introduce el Genero del Contacto");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
