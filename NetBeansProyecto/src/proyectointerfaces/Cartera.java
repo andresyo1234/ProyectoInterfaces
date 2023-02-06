@@ -5,6 +5,9 @@
 package proyectointerfaces;
 
 import java.awt.Color;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -85,6 +88,9 @@ public class Cartera extends javax.swing.JFrame {
         irBlocNotas = new javax.swing.JMenuItem();
         irListaCompra = new javax.swing.JMenuItem();
         irInformes = new javax.swing.JMenuItem();
+        ManualTecnico = new javax.swing.JMenuItem();
+        ManualDeIntalacion = new javax.swing.JMenuItem();
+        ManualUsuario = new javax.swing.JMenuItem();
         jPanel10 = new javax.swing.JPanel();
         BotonPaginaAgenda7 = new javax.swing.JButton();
         BotonPaginaCompra7 = new javax.swing.JButton();
@@ -131,6 +137,30 @@ public class Cartera extends javax.swing.JFrame {
             }
         });
         Navegacion.add(irInformes);
+
+        ManualTecnico.setText("Manual Técnico");
+        ManualTecnico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManualTecnicoActionPerformed(evt);
+            }
+        });
+        Navegacion.add(ManualTecnico);
+
+        ManualDeIntalacion.setText("Manual de Instalación");
+        ManualDeIntalacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManualDeIntalacionActionPerformed(evt);
+            }
+        });
+        Navegacion.add(ManualDeIntalacion);
+
+        ManualUsuario.setText("Manual de Usuario");
+        ManualUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManualUsuarioActionPerformed(evt);
+            }
+        });
+        Navegacion.add(ManualUsuario);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -462,6 +492,33 @@ public class Cartera extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_irAgendaActionPerformed
 
+    private void ManualTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManualTecnicoActionPerformed
+        try {
+            File myFile = new File("C:\\ProyectoInterfaces\\Manuales\\ManualTecnico.pdf");
+            Desktop.getDesktop().open(myFile);
+        } catch (IOException ex) {
+            // no application registered for PDFs
+        }
+    }//GEN-LAST:event_ManualTecnicoActionPerformed
+
+    private void ManualDeIntalacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManualDeIntalacionActionPerformed
+        try {
+            File myFile = new File("C:\\ProyectoInterfaces\\Manuales\\ManualDeInstalacion.pdf");
+            Desktop.getDesktop().open(myFile);
+        } catch (IOException ex) {
+            // no application registered for PDFs
+        }
+    }//GEN-LAST:event_ManualDeIntalacionActionPerformed
+
+    private void ManualUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManualUsuarioActionPerformed
+        try {
+            File myFile = new File("C:\\ProyectoInterfaces\\Manuales\\ManualDeUsuario.pdf");
+            Desktop.getDesktop().open(myFile);
+        } catch (IOException ex) {
+            // no application registered for PDFs
+        }
+    }//GEN-LAST:event_ManualUsuarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -530,6 +587,9 @@ public class Cartera extends javax.swing.JFrame {
     private javax.swing.JButton BotonPaginaAgenda7;
     private javax.swing.JButton BotonPaginaCartera7;
     private javax.swing.JButton BotonPaginaCompra7;
+    private javax.swing.JMenuItem ManualDeIntalacion;
+    private javax.swing.JMenuItem ManualTecnico;
+    private javax.swing.JMenuItem ManualUsuario;
     private javax.swing.JPopupMenu Navegacion;
     private javax.swing.JMenuItem irAgenda;
     private javax.swing.JMenuItem irBlocNotas;

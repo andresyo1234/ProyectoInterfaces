@@ -7,6 +7,9 @@ package proyectointerfaces;
 import static proyectointerfaces.NuevaNota.txtArea;
 import javax.swing.DefaultListModel;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import static proyectointerfaces.NuevaNota.txtTitulo;
 import java.util.ArrayList;
 import java.sql.*;
@@ -82,6 +85,9 @@ public class BlogNotas extends javax.swing.JFrame {
         irListaCompra = new javax.swing.JMenuItem();
         irCartera = new javax.swing.JMenuItem();
         irInformes = new javax.swing.JMenuItem();
+        ManualTecnico = new javax.swing.JMenuItem();
+        ManualDeIntalacion = new javax.swing.JMenuItem();
+        ManualUsuario = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         BotonPaginaAgenda1 = new javax.swing.JButton();
         BotonPaginaCompra = new javax.swing.JButton();
@@ -126,6 +132,30 @@ public class BlogNotas extends javax.swing.JFrame {
             }
         });
         Navegacion.add(irInformes);
+
+        ManualTecnico.setText("Manual Técnico");
+        ManualTecnico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManualTecnicoActionPerformed(evt);
+            }
+        });
+        Navegacion.add(ManualTecnico);
+
+        ManualDeIntalacion.setText("Manual de Instalación");
+        ManualDeIntalacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManualDeIntalacionActionPerformed(evt);
+            }
+        });
+        Navegacion.add(ManualDeIntalacion);
+
+        ManualUsuario.setText("Manual de Usuario");
+        ManualUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ManualUsuarioActionPerformed(evt);
+            }
+        });
+        Navegacion.add(ManualUsuario);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -490,6 +520,33 @@ public class BlogNotas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_irInformesActionPerformed
 
+    private void ManualTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManualTecnicoActionPerformed
+        try {
+            File myFile = new File("C:\\ProyectoInterfaces\\Manuales\\ManualTecnico.pdf");
+            Desktop.getDesktop().open(myFile);
+        } catch (IOException ex) {
+            // no application registered for PDFs
+        }
+    }//GEN-LAST:event_ManualTecnicoActionPerformed
+
+    private void ManualDeIntalacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManualDeIntalacionActionPerformed
+        try {
+            File myFile = new File("C:\\ProyectoInterfaces\\Manuales\\ManualDeInstalacion.pdf");
+            Desktop.getDesktop().open(myFile);
+        } catch (IOException ex) {
+            // no application registered for PDFs
+        }
+    }//GEN-LAST:event_ManualDeIntalacionActionPerformed
+
+    private void ManualUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManualUsuarioActionPerformed
+        try {
+            File myFile = new File("C:\\ProyectoInterfaces\\Manuales\\ManualDeUsuario.pdf");
+            Desktop.getDesktop().open(myFile);
+        } catch (IOException ex) {
+            // no application registered for PDFs
+        }
+    }//GEN-LAST:event_ManualUsuarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -536,6 +593,9 @@ public class BlogNotas extends javax.swing.JFrame {
     private javax.swing.JButton BotonPaginaAgenda1;
     private javax.swing.JButton BotonPaginaCartera;
     private javax.swing.JButton BotonPaginaCompra;
+    private javax.swing.JMenuItem ManualDeIntalacion;
+    private javax.swing.JMenuItem ManualTecnico;
+    private javax.swing.JMenuItem ManualUsuario;
     private javax.swing.JPopupMenu Navegacion;
     public static javax.swing.JList<String> Notas;
     private javax.swing.JButton btnAbrirNota;
