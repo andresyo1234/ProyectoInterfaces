@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static proyectointerfaces.AgendaPrincipal.TablaContactos;
+import static proyectointerfaces.InicioSesion.IdUsuario;
 
 
 
@@ -382,8 +383,45 @@ public class BlogNotas extends javax.swing.JFrame {
 
     private void btnAbrirNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirNotaActionPerformed
 
-        EditarNota en = new EditarNota();
-        en.setVisible(true);
+
+        
+        
+        Statement st_;
+        ResultSet rs_;
+
+        try {
+            Connection con = Conexion.getConexion();
+            st_ = con.createStatement();
+
+            rs_ = st_.executeQuery("select * from Notas where Id_usuario = " + IdUsuario);
+
+            int[] rows = Notas.getSelectedIndices();
+
+            if (!(rows.length > 1)) {
+
+                while (rs_.getRow() <= rows[0]) {
+                    rs_.next();
+                    System.out.println(rs_.getRow());
+
+                }
+                EditarNota en = new EditarNota();
+                EditarNota.txtTitulo.setText(rs_.getString("Titulo"));
+                EditarNota.txtArea.setText(rs_.getString("Nota"));
+                en.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione unicamente 1 nota ");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "fallo1");
+        } catch (ClassNotFoundException e) {
+            System.out.println("fallo2");
+        } catch (Exception e) {
+            System.out.println("fallo3");
+
+        }
+        
     }//GEN-LAST:event_btnAbrirNotaActionPerformed
 
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked

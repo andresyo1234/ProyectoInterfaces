@@ -27,8 +27,6 @@ import static proyectointerfaces.InicioSesion.IdUsuario;
  */
 public class AgendaPrincipal extends javax.swing.JFrame {
 
-    
-
     /**
      * Creates new form AgendaPrincipal
      */
@@ -499,7 +497,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
                 while (rs_.getRow() <= rows[0]) {
                     rs_.next();
                     System.out.println(rs_.getRow());
-                    
+
                 }
                 EditarContacto ec = new EditarContacto();
                 EditarContacto.idcontacto = rs_.getInt("IdContacto");
@@ -508,8 +506,8 @@ public class AgendaPrincipal extends javax.swing.JFrame {
                 EditarContacto.inputEmail.setText(rs_.getString("Email"));
                 System.out.println("aa");
                 EditarContacto.inputTelefono.setText(rs_.getString("Telefono"));
-               ec.setVisible(true);
-               dispose();
+                ec.setVisible(true);
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione unicamente 1 fila ");
             }
@@ -523,7 +521,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
 
         }
 
-        
+
     }//GEN-LAST:event_editarContactoActionPerformed
 
     private void eliminarContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarContactoActionPerformed
@@ -576,7 +574,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void popupEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popupEliminarActionPerformed
-        
+
         Statement st_;
         ResultSet rs_;
 
@@ -613,11 +611,10 @@ public class AgendaPrincipal extends javax.swing.JFrame {
         }
 
 
-
     }//GEN-LAST:event_popupEliminarActionPerformed
 
     private void popupEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popupEditarActionPerformed
-               Statement st_;
+        Statement st_;
         ResultSet rs_;
 
         try {
@@ -633,7 +630,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
                 while (rs_.getRow() <= rows[0]) {
                     rs_.next();
                     System.out.println(rs_.getRow());
-                    
+
                 }
                 EditarContacto ec = new EditarContacto();
                 EditarContacto.idcontacto = rs_.getInt("IdContacto");
@@ -642,8 +639,8 @@ public class AgendaPrincipal extends javax.swing.JFrame {
                 EditarContacto.inputEmail.setText(rs_.getString("Email"));
                 System.out.println("aa");
                 EditarContacto.inputTelefono.setText(rs_.getString("Telefono"));
-               ec.setVisible(true);
-               dispose();
+                ec.setVisible(true);
+                dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione unicamente 1 fila ");
             }
@@ -657,7 +654,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
 
         }
 
-        
+
     }//GEN-LAST:event_popupEditarActionPerformed
 
     private void irInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irInformesActionPerformed
@@ -669,7 +666,7 @@ public class AgendaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_irInformesActionPerformed
 
     private void irCarteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irCarteraActionPerformed
-         // TODO add your handling code here:
+        // TODO add your handling code here:
         Cartera cart = new Cartera();
         cart.setVisible(true);
         cart.setLocationRelativeTo(null);
