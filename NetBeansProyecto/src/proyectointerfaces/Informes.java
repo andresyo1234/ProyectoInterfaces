@@ -22,6 +22,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -585,7 +587,7 @@ public class Informes extends javax.swing.JFrame {
         try {
             Connection con = Conexion.getConexion();
             System.out.println("0");
-            String reportPath = "C:\\ProyectoInterfaces\\Informes\\Informe1.jasper";
+            String reportPath = "..\\Informes\\Informe1.jasper";
             System.out.println("1");
             //JasperReport jr = JasperCompileManager.compileReport(reportPath);
             System.out.println("2");
@@ -602,15 +604,16 @@ public class Informes extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
             Connection con = Conexion.getConexion();
-            System.out.println("0");
-            String reportPath = "C:\\ProyectoInterfaces\\Informes\\Informe3.jasper";
-            System.out.println("1");
+
+            String reportPath = "..\\Informes\\Informe22.jasper";
             //JasperReport jr = JasperCompileManager.compileReport(reportPath);
-            System.out.println("2");
-            JasperPrint jp = JasperFillManager.fillReport(reportPath, null, con);
-            System.out.println("3");
+            
+            Map<String, Object> params = new HashMap<>();
+            params.put("IdUsuario", "1001");
+            JasperPrint jp = JasperFillManager.fillReport(reportPath,params, con);
+            
             JasperViewer.viewReport(jp, false);
-            System.out.println("4");
+           
             con.close();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -652,7 +655,7 @@ public class Informes extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try {
-            File myFile = new File("C:\\ProyectoInterfaces\\Manuales\\ManualDeUsuario.pdf");
+            File myFile = new File("..\\Manuales\\ManualDeUsuario.pdf");
             Desktop.getDesktop().open(myFile);
         } catch (IOException ex) {
             // no application registered for PDFs
@@ -661,7 +664,7 @@ public class Informes extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         try {
-            File myFile = new File("C:\\ProyectoInterfaces\\Manuales\\ManualDeInstalacion.pdf");
+            File myFile = new File("..\\Manuales\\ManualDeInstalacion.pdf");
             Desktop.getDesktop().open(myFile);
         } catch (IOException ex) {
             // no application registered for PDFs
@@ -670,7 +673,7 @@ public class Informes extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         try {
-            File myFile = new File("C:\\ProyectoInterfaces\\Manuales\\ManualTecnico.pdf");
+            File myFile = new File("..\\Manuales\\ManualTecnico.pdf");
             Desktop.getDesktop().open(myFile);
         } catch (IOException ex) {
             // no application registered for PDFs
@@ -679,7 +682,7 @@ public class Informes extends javax.swing.JFrame {
 
     private void ManualTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManualTecnicoActionPerformed
         try {
-            File myFile = new File("C:\\ProyectoInterfaces\\Manuales\\ManualTecnico.pdf");
+            File myFile = new File("..\\Manuales\\ManualTecnico.pdf");
             Desktop.getDesktop().open(myFile);
         } catch (IOException ex) {
             // no application registered for PDFs
@@ -688,7 +691,7 @@ public class Informes extends javax.swing.JFrame {
 
     private void ManualDeIntalacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManualDeIntalacionActionPerformed
         try {
-            File myFile = new File("C:\\ProyectoInterfaces\\Manuales\\ManualDeInstalacion.pdf");
+            File myFile = new File("..\\Manuales\\ManualDeInstalacion.pdf");
             Desktop.getDesktop().open(myFile);
         } catch (IOException ex) {
             // no application registered for PDFs
@@ -697,7 +700,7 @@ public class Informes extends javax.swing.JFrame {
 
     private void ManualUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManualUsuarioActionPerformed
         try {
-            File myFile = new File("C:\\ProyectoInterfaces\\Manuales\\ManualDeUsuario.pdf");
+            File myFile = new File("..\\Manuales\\ManualDeUsuario.pdf");
             Desktop.getDesktop().open(myFile);
         } catch (IOException ex) {
             // no application registered for PDFs
