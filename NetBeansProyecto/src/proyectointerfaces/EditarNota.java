@@ -176,7 +176,10 @@ public class EditarNota extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetNotaActionPerformed
 
     private void btnCancelarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarNotaActionPerformed
-        dispose();
+        
+        BlogNotas bn = new BlogNotas();
+        bn.setVisible(true);
+        dispose(); 
     }//GEN-LAST:event_btnCancelarNotaActionPerformed
 
     private void btnEditarNotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarNotaMouseClicked
@@ -190,10 +193,10 @@ public class EditarNota extends javax.swing.JFrame {
             st_ = con.createStatement();
       
             
-            st_.executeUpdate("Update Contactos set "
-                   + "', Titulo='" + txtTitulo.getText()
+            st_.executeUpdate("Update Notas set "
+                   + " Titulo='" + txtTitulo.getText()
                     + "', Nota='" + txtArea.getText()
-                    + "' where Id_usuario=" + idusuario
+                    + "' where IdNota="+  BlogNotas.Id
             );
           
         } catch (SQLException e) {

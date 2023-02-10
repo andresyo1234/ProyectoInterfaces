@@ -31,7 +31,7 @@ import static proyectointerfaces.InicioSesion.IdUsuario;
  */
 public class BlogNotas extends javax.swing.JFrame {
    
-    
+    public static int Id = 0;
     int idusuario = InicioSesion.IdUsuario;
     
      DefaultListModel modelo = new DefaultListModel();
@@ -392,7 +392,7 @@ public class BlogNotas extends javax.swing.JFrame {
         try {
             Connection con = Conexion.getConexion();
             st_ = con.createStatement();
-
+            
             rs_ = st_.executeQuery("select * from Notas where Id_usuario = " + IdUsuario);
 
             int[] rows = Notas.getSelectedIndices();
@@ -404,6 +404,7 @@ public class BlogNotas extends javax.swing.JFrame {
                     System.out.println(rs_.getRow());
 
                 }
+                Id = rs_.getInt("IdNota");
                 EditarNota en = new EditarNota();
                 EditarNota.txtTitulo.setText(rs_.getString("Titulo"));
                 EditarNota.txtArea.setText(rs_.getString("Nota"));

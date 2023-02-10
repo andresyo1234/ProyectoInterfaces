@@ -609,7 +609,7 @@ public class Informes extends javax.swing.JFrame {
             //JasperReport jr = JasperCompileManager.compileReport(reportPath);
             
             Map<String, Object> params = new HashMap<>();
-            params.put("IdUsuario", "1001");
+            params.put("IdUsuario",Integer.toString(IdUsuario) );
             JasperPrint jp = JasperFillManager.fillReport(reportPath,params, con);
             
             JasperViewer.viewReport(jp, false);
