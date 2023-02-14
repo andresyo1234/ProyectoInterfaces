@@ -602,15 +602,9 @@ public class Informes extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
             Connection con = Conexion.getConexion();
-            System.out.println("0");
             String reportPath = "C:\\ProyectoInterfaces\\Informes\\Informe3.jasper";
-            System.out.println("1");
-            //JasperReport jr = JasperCompileManager.compileReport(reportPath);
-            System.out.println("2");
-            JasperPrint jp = JasperFillManager.fillReport(reportPath, null, con);
-            System.out.println("3");
+            JasperPrint jp = JasperFillManager.fillReport(reportPath, null, con);  
             JasperViewer.viewReport(jp, false);
-            System.out.println("4");
             con.close();
         } catch (Exception ex) {
             ex.printStackTrace();
